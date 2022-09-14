@@ -4,8 +4,8 @@ const mysqlConnection = {
   init: function () {
     // #2
     return mysql.createConnection({
-      host: '35.89.73.172',
-      port: '33060',
+      host: 'localhost',
+      port: '3306',
       user: 'shop',
       password: '1234',
       database: 'shopping_db',

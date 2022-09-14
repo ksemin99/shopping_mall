@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const dotenv = require('dotenv').config(); // #1
+//const dotenv = require('dotenv').config(); // #1
 const mysqlConObj = require('./config/mysql'); // #2
 const db = mysqlConObj.init();
 

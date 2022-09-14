@@ -4,11 +4,11 @@ const mysqlConnection = {
   init: function () {
     // #2
     return mysql.createConnection({
-      host: process.env.host,
-      port: process.env.port,
-      user: process.env.user,
-      password: process.env.password,
-      database: process.env.database,
+      host: '35.89.73.172',
+      port: 'process.env.port',
+      user: 'shop',
+      password: '1234',
+      database: 'shopping_db',
     });
   },
   open: function (con) {

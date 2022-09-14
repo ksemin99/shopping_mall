@@ -3,6 +3,7 @@ const mysql = require('mysql'); // #1
 const mysqlConnection = {
   init: function () {
     // #2
+    console.log('mysql 성공');
     return mysql.createConnection({
       host: 'localhost',
       port: '3306',

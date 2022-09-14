@@ -5,7 +5,7 @@ const mysqlConnection = {
     // #2
     return mysql.createConnection({
       host: '35.89.73.172',
-      port: 'process.env.port',
+      port: '3306',
       user: 'shop',
       password: '1234',
       database: 'shopping_db',

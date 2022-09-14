@@ -1,12 +1,14 @@
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
+const cors = require('cors');
 
 //const dotenv = require('dotenv').config(); // #1
 const mysqlConObj = require('./config/mysql'); // #2
 const db = mysqlConObj.init();
 
 https: app.use(express.json());
+app.use(cors());
 
 const users = [];
 
@@ -25,16 +27,3 @@ app.post('/user', function (req, res) {
 app.listen(3000, function () {
   console.log('server listening on port 3000');
 });
-
-exports.handler = async (event) => {
-  const response = {
-    statusCode: 200,
-    headers: {
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Allow-Origin': 'https://www.example.com',
-      'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
-    },
-    body: JSON.stringify('Hello from Lambda!'),
-  };
-  return response;
-};

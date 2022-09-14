@@ -8,18 +8,18 @@ const mysql = require('mysql');
 
 // mysqlConObj.open(db);
 
-const con = mysql.createConnection({
-  host: '35.89.73.172',
-  port: '33060',
-  user: 'shop',
-  password: '1234',
-  database: 'shopping_db',
-});
+// const con = mysql.createConnection({
+//   host: '35.89.73.172',
+//   port: '33060',
+//   user: 'shop',
+//   password: '1234',
+//   database: 'shopping_db',
+// });
 
-con.connect((err) => {
-  if (err) console.log('MySQL 연결 실패 : ', err);
-  console.log('MySQL Connected!!!');
-});
+// con.connect((err) => {
+//   if (err) console.log('MySQL 연결 실패 : ', err);
+//   console.log('MySQL Connected!!!');
+// });
 
 https: app.use(express.json());
 

@@ -1,0 +1,43 @@
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{
+    "id": "Park",
+    "pw": "pw1"
+}
+
+###
+
+GET http://localhost:3000/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlBhcmsiLCJwdyI6InB3MSIsImlhdCI6MTY2MzI3MDIyMywiZXhwIjoxNjYzMjcwMjUzfQ.oImhuxK1vZSR3yjKCB0or9c4P0uCvy6Q0FoBrruzQ9w
+
+###
+
+POST http://localhost:4000/token
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlBhcmsiLCJwdyI6InB3MSIsImlhdCI6MTY2MzI3MDIwMn0.fWJAlUMFMxy0laxadrl70hToljEnT7XABxFiO7rkStc"
+}
+
+###
+
+DELETE http://localhost:4000/logout
+Content-Type: application/json
+
+
+{
+    "id": "id",
+    "pw": "pw"
+}
+
+###
+
+POST http://localhost:3000/newuser
+Content-Type: application/json
+
+{
+    "id": "qqqq",
+    "pw": "qqqqqqqq",
+    "pwchk": "qqqqqqqq"
+}

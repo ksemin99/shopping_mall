@@ -98,7 +98,7 @@ app.post('/newuser', function (req, res) {
 
         db.query(sql, (err, result) => {
           if (err) console.log(err);
-          else console.log(result, 'mysql 삽입 성공');
+          else console.log(result, 'mysql 성공');
         });
       } else {
         res.send('꺼져');

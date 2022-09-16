@@ -83,7 +83,21 @@ app.post('/newuser', function (req, res) {
     ) {
       if (pw === pwchk) {
         res.send('굳');
-        //회원가입 성공 + DB에 저장
+        sql =
+          "insert into users(id, pwd, name, sex) values ('" +
+          id +
+          "','" +
+          pw +
+          "','" +
+          name +
+          "','" +
+          sex +
+          "');";
+
+        db.query(sql, (err, result) => {
+          if (err) console.log(err);
+          else console.log(result);
+        });
       } else {
         res.send('꺼져');
       }

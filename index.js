@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 
 //const dotenv = require('dotenv').config(); // #1
 const mysqlConObj = require('./config/mysql'); // #2
+const { request } = require('express');
 const db = mysqlConObj.init();
 
 https: app.use(express.json());
@@ -52,6 +53,7 @@ function authenticateToken(req, res, next) {
 }
 
 app.get('/user', authenticateToken, (req, res) => {
+  console.log(req.user);
   res.json(
     users.filter((user) => user.id === req.user.id && user.pw === req.user.pw)
   );

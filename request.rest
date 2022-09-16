@@ -1,4 +1,4 @@
-POST http://localhost:4000/login
+POST http://localhost:3000/login
 Content-Type: application/json
 
 {
@@ -9,7 +9,7 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3000/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlBhcmsiLCJwdyI6InB3MSIsImlhdCI6MTY2MzI3MDIyMywiZXhwIjoxNjYzMjcwMjUzfQ.oImhuxK1vZSR3yjKCB0or9c4P0uCvy6Q0FoBrruzQ9w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjMzNDI2MTgsImV4cCI6MTY2MzM0MjY0OH0.Rts0caeKUZpW-s2tmRf2QfJ2my4w-inT2ICl5eU5Jao
 
 ###
 

@@ -2,9 +2,24 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 const cors = require('cors');
+const path = require('path');
 const PORT = 3000;
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+
+const login = require('./src/auth/login');
+const logout = require('./src/auth/logout');
+const newuser = require('./src/auth/newuser');
+const token = require('./src/auth/token');
+
+app.use(express.static(path.join(__dirname, 'src')));
+app.use('/login', login);
+app.use('/logout', logout);
+app.use('/newuser', newuser);
+app.use('/token', token);
 
 //const dotenv = require('dotenv').config(); // #1
 const mysqlConObj = require('./config/mysql'); // #2
@@ -27,25 +42,16 @@ const users = [
   },
 ];
 
-app.post('/login', (req, res, next) => {
-  const { id, pw } = req.body;
-
-  const user = {
-    id: id,
-    pw: pw,
-  };
-
-  const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-  res.json({ accessToken: accessToken });
-});
-
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
   if (token == null) return res.sendStatus(401);
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    //accesstoken 받고 .env에 있는 토큰 암호값 계산해서 token에 맞는 사용자 정보 가져오기
     if (err) return res.sendStatus(403);
+    console.log(token);
+    console.log(process.env.ACCESS_TOKEN_SECRET);
     req.user = user;
     next();
   });
@@ -61,36 +67,11 @@ app.get('/user', authenticateToken, (req, res) => {
 });
 
 app.post('/user', function (req, res) {
-  console.log(req.body);
+  //console.log(req.body);
   users.push({ name: req.body.name, age: req.body.age });
   return res.send({ sucess: true });
 });
 
 app.listen(PORT, function () {
   console.log('server listening on port 3000');
-});
-
-app.post('/newuser', function (req, res) {
-  const id = req.body.id;
-  const pw = req.body.pw;
-  const pwchk = req.body.pwchk;
-  const { name, sex } = req.body;
-  if (id.replace(/(\s*)/g, '').length >= 4) {
-    // DB에서 id 중복확인
-    if (
-      pw.replace(/(\s*)/g, '').length >= 8 &&
-      pw.replace(/(\s*)/g, '').length <= 20
-    ) {
-      if (pw === pwchk) {
-        res.send('굳');
-        //회원가입 성공 + DB에 저장
-      } else {
-        res.send('꺼져');
-      }
-    } else {
-      res.send('꺼져');
-    }
-  } else {
-    res.send('꺼져');
-  }
 });

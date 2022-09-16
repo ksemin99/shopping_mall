@@ -23,6 +23,7 @@ app.use('/token', token);
 
 //const dotenv = require('dotenv').config(); // #1
 const mysqlConObj = require('./config/mysql'); // #2
+const { request } = require('express');
 const db = mysqlConObj.init();
 
 https: app.use(express.json());
@@ -58,6 +59,7 @@ function authenticateToken(req, res, next) {
 }
 
 app.get('/user', authenticateToken, (req, res) => {
+  console.log(req.user);
   res.json(
     users.filter((user) => user.id === req.user.id && user.pw === req.user.pw)
   );
@@ -74,4 +76,43 @@ app.post('/user', function (req, res) {
 
 app.listen(PORT, function () {
   console.log('server listening on port 3000');
+});
+
+app.post('/newuser', function (req, res) {
+  const id = req.body.id;
+  const pw = req.body.pw;
+  const pwchk = req.body.pwchk;
+  const { name, sex } = req.body;
+  if (id.replace(/(\s*)/g, '').length >= 4) {
+    // DB에서 id 중복확인
+    if (
+      pw.replace(/(\s*)/g, '').length >= 8 &&
+      pw.replace(/(\s*)/g, '').length <= 20
+    ) {
+      if (pw === pwchk) {
+        res.send('굳');
+        sql =
+          "insert into users(id, pwd, name, sex) values ('" +
+          id +
+          "','" +
+          pw +
+          "','" +
+          name +
+          "','" +
+          sex +
+          "');";
+
+        db.query(sql, (err, result) => {
+          if (err) console.log(err);
+          else console.log(result, 'mysql 성공');
+        });
+      } else {
+        res.send('꺼져');
+      }
+    } else {
+      res.send('꺼져');
+    }
+  } else {
+    res.send('꺼져');
+  }
 });

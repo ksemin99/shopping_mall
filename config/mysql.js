@@ -7,7 +7,7 @@ const mysqlConnection = {
     return mysql.createConnection({
       host: 'localhost',
       port: '3306',
-      user: 'shop',
+      user: 'root',
       password: '1234',
       database: 'shopping_db',
     });

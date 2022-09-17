@@ -23,7 +23,8 @@ app.post('/', (req, res, next) => {
 
   const accessToken = generateAccessToken(user);
   const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET); //이거는 DB에 저장
-  sql = "insert into users(token) values '" + refreshToken + "');";
+  sql =
+    "UPDATE users SET token ='" + refreshToken + "' where id ='" + id + "';";
   db.query(sql, (err, result) => {
     if (err) console.log(err);
     else console.log(result, 'mysql 성공');

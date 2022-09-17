@@ -20,23 +20,27 @@ app.post('/', function (req, res) {
             pw.replace(/(\s*)/g, '').length >= 8 &&
             pw.replace(/(\s*)/g, '').length <= 20
           ) {
-            if (pw === pwchk) {
-              res.send('굳');
-              sql =
-                "insert into users(id, pwd, name, sex) values ('" +
-                id +
-                "','" +
-                pw +
-                "','" +
-                name +
-                "','" +
-                sex +
-                "');";
+            if (pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi) > 0) {
+              if (pw === pwchk) {
+                res.send('굳');
+                sql =
+                  "insert into users(id, pwd, name, sex) values ('" +
+                  id +
+                  "','" +
+                  pw +
+                  "','" +
+                  name +
+                  "','" +
+                  sex +
+                  "');";
 
-              db.query(sql, (err, result) => {
-                if (err) console.log(err);
-                else console.log(result, 'mysql 성공');
-              });
+                db.query(sql, (err, result) => {
+                  if (err) console.log(err);
+                  else console.log(result, 'mysql 성공');
+                });
+              } else {
+                res.send('꺼져');
+              }
             } else {
               res.send('꺼져');
             }

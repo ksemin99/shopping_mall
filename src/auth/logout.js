@@ -3,7 +3,12 @@ const app = express();
 const router = express.Router();
 let refreshTokens = [];
 
-app.delete('/', (req, res) => {
+const mysqlConObj = require('../../config/mysql'); // #2
+const { request } = require('express');
+const db = mysqlConObj.init();
+
+app.post('/', (req, res) => {
+  // db에서 받아오기
   refreshTokens = refreshTokens.filter((token) => token !== req.body.token);
   console.log(refreshTokens);
   console.log(req.body.token);

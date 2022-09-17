@@ -5,6 +5,10 @@ const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 let refreshTokens = [];
 
+const mysqlConObj = require('../../config/mysql'); // #2
+const { request } = require('express');
+const db = mysqlConObj.init();
+
 dotenv.config();
 
 app.post('/', (req, res, next) => {
@@ -19,6 +23,11 @@ app.post('/', (req, res, next) => {
 
   const accessToken = generateAccessToken(user);
   const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET); //이거는 DB에 저장
+  sql = "insert into users(token) values '" + refreshToken + "');";
+  db.query(sql, (err, result) => {
+    if (err) console.log(err);
+    else console.log(result, 'mysql 성공');
+  });
   refreshTokens.push(refreshToken);
   res.json({ accessToken: accessToken, refreshToken: refreshToken }); //이 부분이 로그인 시 accesstoken이랑 refreshtoken 나오는 곳 // DB에 저장
 });

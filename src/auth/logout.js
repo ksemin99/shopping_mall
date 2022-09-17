@@ -9,9 +9,12 @@ const db = mysqlConObj.init();
 
 app.post('/', (req, res) => {
   // db에서 받아오기
-  refreshTokens = refreshTokens.filter((token) => token !== req.body.token);
-  console.log(refreshTokens);
-  console.log(req.body.token);
+  sql = "UPDATE users SET token = ''" + " where id ='" + req.body.id + "';";
+  db.query(sql, (err, result) => {
+    if (err) console.log(err);
+    else console.log(result, 'mysql 성공');
+  });
+  //refreshTokens = refreshTokens.filter((token) => token !== req.body.token);
   //res.sendStatus(204);
   res.send('로그아웃 확인');
   //로그아웃과 동시에 DB에서 토큰 삭제

@@ -25,7 +25,7 @@ app.post('/', (req, res, next) => {
     "UPDATE users SET token ='" + refreshToken + "' where id ='" + id + "';"; // refreshtoken DB에 저장
   db.query(sql, (err, result) => {
     if (err) console.log(err);
-    else console.log(result, 'mysql 성공');
+    else console.log(result, 'mysql 로그인 성공');
   });
   res.json({ accessToken: accessToken, refreshToken: refreshToken }); //이 부분이 로그인 시 accesstoken이랑 refreshtoken 나오는 곳
 });

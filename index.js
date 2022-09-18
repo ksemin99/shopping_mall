@@ -59,7 +59,6 @@ function authenticateToken(req, res, next) {
 }
 
 app.get('/user', authenticateToken, (req, res) => {
-  console.log(req.user);
   res.json(
     users.filter((user) => user.id === req.user.id && user.pw === req.user.pw)
   );

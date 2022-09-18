@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const router = express.Router();
 
 app.post('/', function (req, res) {
   const id = req.body.id;

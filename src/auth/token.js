@@ -1,8 +1,6 @@
 const express = require('express');
 const app = express();
-const router = express.Router();
 const jwt = require('jsonwebtoken');
-let refreshTokens = [];
 
 const mysqlConObj = require('../../config/mysql'); // #2
 const { request } = require('express');

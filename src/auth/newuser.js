@@ -10,22 +10,26 @@ app.post('/', function (req, res) {
   const pw = req.body.pw;
   const pwchk = req.body.pwchk;
   const { name, sex } = req.body;
-  idchksql = "SELECT id FROM users WHERE id = '" + id + "';";
-  db.query(idchksql, (err, idresult) => {
+
+  checkidsql =
+    "SELECT EXISTS (select * from users where id = '" + id + "') as isChk";
+
+  db.query(checkidsql, (err, idresult) => {
     if (err) console.log(err);
     else {
-      if (idresult == id) {
-        res.send('꺼져');
+      // DB에서 id 중복확인
+      if (idresult[0].isChk == 1) {
+        console.log(idresult[0].isChk);
+        res.send('아이디가 데베에 존재함');
       } else {
         if (id.replace(/(\s*)/g, '').length >= 4) {
-          // DB에서 id 중복확인
           if (
             pw.replace(/(\s*)/g, '').length >= 8 &&
             pw.replace(/(\s*)/g, '').length <= 20
           ) {
             if (pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi) > 0) {
               if (pw === pwchk) {
-                res.send('굳');
+                res.send('데베에 삽입 성공');
                 sql =
                   "insert into users(id, pwd, name, sex) values ('" +
                   id +
@@ -39,19 +43,23 @@ app.post('/', function (req, res) {
 
                 db.query(sql, (err, result) => {
                   if (err) console.log(err);
-                  else console.log(result, 'mysql 성공');
+                  else console.log(result, '데베에 삽입 성공');
                 });
               } else {
-                res.send('꺼져');
+                res.send('패스워드가 서로 다름');
+                console.log('패스워드가 서로 다름');
               }
             } else {
-              res.send('꺼져');
+              res.send('특수문자가 들어가지 않음');
+              console.log('특수문자가 들어가지 않음');
             }
           } else {
-            res.send('꺼져');
+            res.send('비밀번호가 8자리 이상, 20자리 이하가 아님');
+            console.log('비밀번호가 8자리 이상, 20자리 이하가 아님');
           }
         } else {
-          res.send('꺼져');
+          res.send('아이디가 4글자 이상이 아님');
+          console.log('아이디가 4글자 이상이 아님');
         }
       }
     }

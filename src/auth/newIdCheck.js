@@ -18,6 +18,7 @@ app.get('/', (req, res, next) => {
   db.query(checkidsql, (err, idresult) => {
     if (err) console.log(err);
     else {
+      console.log(id);
       if (idresult[0].isChk == 1) {
         res.send('아이디가 데베에 존재함');
       } else {

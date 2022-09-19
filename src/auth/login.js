@@ -21,6 +21,7 @@ app.post('/', (req, res, next) => {
     id: id,
     pw: pw,
   };
+  let idIndex;
 
   const accessToken = checkAuthorization.generateAccessToken(user);
   const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {
@@ -46,7 +47,10 @@ app.post('/', (req, res, next) => {
         u_numsql = "select u_num from users where id = '" + id + "';";
         db.query(u_numsql, (err, result) => {
           if (err) console.log(err);
-          else console.log('u_num : ' + result[0].u_num);
+          else {
+            idIndex = result[0].u_num;
+            console.log('u_num : ' + result[0].u_num);
+          }
         });
         sql =
           "UPDATE users SET token ='" +
@@ -65,7 +69,7 @@ app.post('/', (req, res, next) => {
 
   res.json({
     id: id,
-    //idIndex: idIndex,
+    idIndex: idIndex,
     accessToken: accessToken,
     refreshToken: refreshToken,
     accessTokenexpiresIn: accessTokenExpiresIn,

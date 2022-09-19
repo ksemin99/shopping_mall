@@ -58,7 +58,7 @@ function authenticateToken(req, res, next) {
   });
 }
 
-app.get('/user', authenticateToken, (req, res) => {
+app.get('/main', authenticateToken, (req, res) => {
   res.json(
     users.filter((user) => user.id === req.user.id && user.pw === req.user.pw)
   );
@@ -67,7 +67,7 @@ app.get('/user', authenticateToken, (req, res) => {
   //res.send({ users: users });
 });
 
-app.post('/user', function (req, res) {
+app.post('/main', function (req, res) {
   //console.log(req.body);
   users.push({ name: req.body.name, age: req.body.age });
   return res.send({ sucess: true });

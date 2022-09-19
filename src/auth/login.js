@@ -21,7 +21,7 @@ app.post('/', (req, res, next) => {
     id: id,
     pw: pw,
   };
-
+  let idIndex;
   const accessToken = checkAuthorization.generateAccessToken(user);
   const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {
     expiresIn: '1d',
@@ -47,7 +47,7 @@ app.post('/', (req, res, next) => {
         db.query(u_numsql, (err, result) => {
           if (err) console.log(err);
           else {
-            const idIndex = result[0].u_num;
+            idIndex = result[0].u_num;
             console.log(idIndex);
             console.log('u_num : ' + result[0].u_num);
           }

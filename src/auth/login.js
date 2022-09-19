@@ -47,7 +47,7 @@ app.post('/', (req, res, next) => {
         db.query(u_numsql, (err, result) => {
           if (err) console.log(err);
           else {
-            idIndex = result[0].u_num;
+            const idIndex = result[0].u_num;
             console.log(idIndex);
             console.log('u_num : ' + result[0].u_num);
             res.json({

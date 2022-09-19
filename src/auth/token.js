@@ -1,10 +1,14 @@
 const express = require('express');
 const app = express();
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
+const checkAuthorization = require('./checkAuthorization');
 
 const mysqlConObj = require('../../config/mysql'); // #2
 const { request } = require('express');
 const db = mysqlConObj.init();
+
+app.use(cors());
 
 app.post('/', (req, res) => {
   const refreshToken = req.body.token;
@@ -13,13 +17,12 @@ app.post('/', (req, res) => {
   // if (!refreshTokens.includes(refreshToken)) return res.sendStatus(403);
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
     if (err) return res.sendStatus(403);
-    const accessToken = generateAccessToken({ id: user.id, pw: user.pw });
+    const accessToken = checkAuthorization.generateAccessToken({
+      id: user.id,
+      pw: user.pw,
+    });
     res.json({ accessToken: accessToken });
   });
 });
-
-function generateAccessToken(user) {
-  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s' });
-}
 
 module.exports = app;

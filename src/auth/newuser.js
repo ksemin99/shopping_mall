@@ -1,9 +1,13 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
+const checkAuthorization = require('./checkAuthorization');
 
 const mysqlConObj = require('../../config/mysql'); // #2
 const { request } = require('express');
 const db = mysqlConObj.init();
+
+app.use(cors());
 
 app.post('/', function (req, res) {
   const id = req.body.id;

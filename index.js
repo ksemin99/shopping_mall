@@ -16,10 +16,10 @@ const newuser = require('./src/auth/newuser');
 const token = require('./src/auth/token');
 
 app.use(express.static(path.join(__dirname, 'src')));
-app.use('/login', login);
-app.use('/logout', logout);
-app.use('/newuser', newuser);
-app.use('/token', token);
+app.use('/auth/login', login);
+app.use('/auth/logout', logout);
+app.use('/auth/newuser', newuser);
+app.use('/auth/token', token);
 
 //const dotenv = require('dotenv').config(); // #1
 const mysqlConObj = require('./config/mysql'); // #2

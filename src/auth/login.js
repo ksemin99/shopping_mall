@@ -21,7 +21,7 @@ app.post('/', (req, res, next) => {
     id: id,
     pw: pw,
   };
-  let idIndex;
+
   const accessToken = checkAuthorization.generateAccessToken(user);
   const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {
     expiresIn: '1d',

@@ -72,8 +72,6 @@ app.post('/', (req, res, next) => {
             });
           }
         });
-
-        console.log(idIndex + 'qqqq');
       }
     }
   });

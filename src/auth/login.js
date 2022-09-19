@@ -50,26 +50,29 @@ app.post('/', (req, res, next) => {
             const idIndex = result[0].u_num;
             console.log(idIndex);
             console.log('u_num : ' + result[0].u_num);
-            res.json({
-              id: id,
-              idIndex: idIndex,
-              accessToken: accessToken,
-              refreshToken: refreshToken,
-              accessTokenexpiresIn: accessTokenExpiresIn,
-              refreshTokenexpiresIn: refreshTokenExpiresIn,
-            }); //이 부분이 로그인 시 accesstoken이랑 refreshtoken 나오는 곳
+            sql =
+              "UPDATE users SET token ='" +
+              refreshToken +
+              "' where id ='" +
+              id +
+              "';"; // refreshtoken DB에 저장
+            db.query(sql, (err, result) => {
+              if (err) console.log(err);
+              else {
+                console.log(result, 'mysql 안에 refresh 토큰 삽입 성공');
+                res.json({
+                  id: id,
+                  idIndex: idIndex,
+                  accessToken: accessToken,
+                  refreshToken: refreshToken,
+                  accessTokenexpiresIn: accessTokenExpiresIn,
+                  refreshTokenexpiresIn: refreshTokenExpiresIn,
+                }); //이 부분이 로그인 시 accesstoken이랑 refreshtoken 나오는 곳
+              }
+            });
           }
         });
-        sql =
-          "UPDATE users SET token ='" +
-          refreshToken +
-          "' where id ='" +
-          id +
-          "';"; // refreshtoken DB에 저장
-        db.query(sql, (err, result) => {
-          if (err) console.log(err);
-          else console.log(result, 'mysql 안에 refresh 토큰 삽입 성공');
-        });
+
         console.log(idIndex + 'qqqq');
       }
     }

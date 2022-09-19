@@ -43,6 +43,11 @@ app.post('/', (req, res, next) => {
       if (checkid == 0) {
         console.log('db 안에 아이디 없음');
       } else {
+        u_numsql = "select u_num from users where id = '" + id + "';";
+        db.query(u_numsql, (err, result) => {
+          if (err) console.log(err);
+          else console.log('u_num : ' + result[0].u_num);
+        });
         sql =
           "UPDATE users SET token ='" +
           refreshToken +

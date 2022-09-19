@@ -11,15 +11,15 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/:${userid}', (req, res, next) => {
-  const userid = req.params.userid;
-  console.log(userid + 'ddd');
+app.get('/:userId', (req, res, next) => {
+  const userId = req.params.userId;
+  console.log(userId + 'ddd');
   checkidsql =
-    "SELECT EXISTS (select * from users where id = '" + userid + "') as isChk";
+    "SELECT EXISTS (select * from users where id = '" + userId + "') as isChk";
   db.query(checkidsql, (err, idresult) => {
     if (err) console.log(err);
     else {
-      console.log(userid);
+      console.log(userId);
       if (idresult[0].isChk == 1) {
         res.send('아이디가 데베에 존재함');
       } else {

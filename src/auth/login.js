@@ -21,12 +21,16 @@ app.post('/', (req, res, next) => {
     id: id,
     pw: pw,
   };
-  console.log(user);
 
   const accessToken = checkAuthorization.generateAccessToken(user);
   const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {
     expiresIn: '1d',
   }); //이거는 DB에 저장
+
+  const accessTokenExpiresIn =
+    checkAuthorization.checkAccessTokenExpiresIn(accessToken);
+  const refreshTokenExpiresIn =
+    checkAuthorization.checkRefreshTokenExpiresIn(refreshToken);
 
   //id 체크부분 --
   checkidsql =
@@ -52,9 +56,16 @@ app.post('/', (req, res, next) => {
       }
     }
   });
-  //--
+  // --
 
-  res.json({ accessToken: accessToken, refreshToken: refreshToken }); //이 부분이 로그인 시 accesstoken이랑 refreshtoken 나오는 곳
+  res.json({
+    id: id,
+    //idIndex: idIndex,
+    accessToken: accessToken,
+    refreshToken: refreshToken,
+    accessTokenexpiresIn: accessTokenExpiresIn,
+    refreshTokenexpiresIn: refreshTokenExpiresIn,
+  }); //이 부분이 로그인 시 accesstoken이랑 refreshtoken 나오는 곳
 });
 
 module.exports = app;

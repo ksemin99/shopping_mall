@@ -10,10 +10,11 @@ const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-const login = require('./src/auth/login');
-const logout = require('./src/auth/logout');
-const newuser = require('./src/auth/newuser');
+const login = require('./src/auth/logIn');
+const logout = require('./src/auth/logOut');
+const newuser = require('./src/auth/newUser');
 const token = require('./src/auth/token');
+const newidcheck = require('./src/auth/newIdCheck');
 const checkAuthorization = require('./src/auth/checkAuthorization');
 
 app.use(express.static(path.join(__dirname, 'src')));
@@ -21,6 +22,7 @@ app.use('/auth/login', login);
 app.use('/auth/logout', logout);
 app.use('/auth/newuser', newuser);
 app.use('/auth/token', token);
+app.use('/auth/newidcheck', newidcheck);
 
 //const dotenv = require('dotenv').config(); // #1
 const mysqlConObj = require('./config/mysql'); // #2
@@ -33,7 +35,12 @@ app.use(cors());
 dotenv.config();
 
 app.get('/main', checkAuthorization.authenticateToken, (req, res) => {
-  console.log(res);
+  //console.log(res);
+
+  const id = req.user.id;
+
+  const checkidsql =
+    "SELECT EXISTS (select * from users where id = '" + id + "') as isChk";
   db.query(checkidsql, (err, result) => {
     if (err) console.log(err);
     else {
@@ -45,6 +52,8 @@ app.get('/main', checkAuthorization.authenticateToken, (req, res) => {
       }
     }
   });
+
+  res.send('굳');
   // 첫번째 인자 req: 클라이언트에서 요청이올 때, ReqBody, ReqHeader, url 등등 그런 정보들이 모두 들어있다.
   // 두번째 인자 res: 클라이언트에 응답할 때 필요한 모든 정보들이 들어있다. 지금부터 저희가 작성할 내용 외에도 기본적으로 들어가야되는 네트워크 정보라던지 그런 것들이 모두 여기 들어있다.
   //res.send({ users: users });

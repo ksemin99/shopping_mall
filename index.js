@@ -10,11 +10,11 @@ const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-const login = require('./src/auth/logIn');
-const logout = require('./src/auth/logOut');
-const newuser = require('./src/auth/newUser');
+const login = require('./src/auth/login');
+const logout = require('./src/auth/logout');
+const newuser = require('./src/auth/newuser');
 const token = require('./src/auth/token');
-const newidcheck = require('./src/auth/newIdCheck');
+const newidcheck = require('./src/auth/newidcheck');
 const checkAuthorization = require('./src/auth/checkAuthorization');
 
 app.use(express.static(path.join(__dirname, 'src')));

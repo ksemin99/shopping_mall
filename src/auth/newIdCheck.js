@@ -12,9 +12,9 @@ app.use(cors());
 dotenv.config();
 
 app.get('/:userid', (req, res, next) => {
-  const { id } = req.params;
+  const { userid } = req.params;
   checkidsql =
-    "SELECT EXISTS (select * from users where id = '" + id + "') as isChk";
+    "SELECT EXISTS (select * from users where id = '" + userid + "') as isChk";
   db.query(checkidsql, (err, idresult) => {
     if (err) console.log(err);
     else {

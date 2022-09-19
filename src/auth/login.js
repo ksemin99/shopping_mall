@@ -70,7 +70,6 @@ app.post('/', (req, res, next) => {
           if (err) console.log(err);
           else console.log(result, 'mysql 안에 refresh 토큰 삽입 성공');
         });
-        console.log(idIndex + 'qqqq');
       }
     }
   });

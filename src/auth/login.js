@@ -47,9 +47,17 @@ app.post('/', (req, res, next) => {
         db.query(u_numsql, (err, result) => {
           if (err) console.log(err);
           else {
-            idIndex = result[0].u_num;
+            const idIndex = result[0].u_num;
             console.log(idIndex);
             console.log('u_num : ' + result[0].u_num);
+            res.json({
+              id: id,
+              idIndex: idIndex,
+              accessToken: accessToken,
+              refreshToken: refreshToken,
+              accessTokenexpiresIn: accessTokenExpiresIn,
+              refreshTokenexpiresIn: refreshTokenExpiresIn,
+            }); //이 부분이 로그인 시 accesstoken이랑 refreshtoken 나오는 곳
           }
         });
         sql =
@@ -63,14 +71,6 @@ app.post('/', (req, res, next) => {
           else console.log(result, 'mysql 안에 refresh 토큰 삽입 성공');
         });
         console.log(idIndex + 'qqqq');
-        res.json({
-          id: id,
-          idIndex: idIndex,
-          accessToken: accessToken,
-          refreshToken: refreshToken,
-          accessTokenexpiresIn: accessTokenExpiresIn,
-          refreshTokenexpiresIn: refreshTokenExpiresIn,
-        }); //이 부분이 로그인 시 accesstoken이랑 refreshtoken 나오는 곳
       }
     }
   });

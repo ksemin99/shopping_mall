@@ -21,7 +21,6 @@ app.post('/', (req, res, next) => {
     id: id,
     pw: pw,
   };
-  let idIndex;
 
   const accessToken = checkAuthorization.generateAccessToken(user);
   const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {
@@ -48,7 +47,7 @@ app.post('/', (req, res, next) => {
         db.query(u_numsql, (err, result) => {
           if (err) console.log(err);
           else {
-            idIndex = result[0].u_num;
+            const idIndex = result[0].u_num;
             console.log(idIndex);
             console.log('u_num : ' + result[0].u_num);
           }
@@ -61,21 +60,21 @@ app.post('/', (req, res, next) => {
           "';"; // refreshtoken DB에 저장
         db.query(sql, (err, result) => {
           if (err) console.log(err);
-          else console.log(result, 'mysql 안에 access 토큰 삽입 성공');
+          else console.log(result, 'mysql 안에 refresh 토큰 삽입 성공');
         });
+        console.log(idIndex + 'qqqq');
+        res.json({
+          id: id,
+          idIndex: idIndex,
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+          accessTokenexpiresIn: accessTokenExpiresIn,
+          refreshTokenexpiresIn: refreshTokenExpiresIn,
+        }); //이 부분이 로그인 시 accesstoken이랑 refreshtoken 나오는 곳
       }
     }
   });
   // --
-
-  res.json({
-    id: id,
-    idIndex: idIndex,
-    accessToken: accessToken,
-    refreshToken: refreshToken,
-    accessTokenexpiresIn: accessTokenExpiresIn,
-    refreshTokenexpiresIn: refreshTokenExpiresIn,
-  }); //이 부분이 로그인 시 accesstoken이랑 refreshtoken 나오는 곳
 });
 
 module.exports = app;

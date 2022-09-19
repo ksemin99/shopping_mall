@@ -13,7 +13,8 @@ dotenv.config();
 
 app.get('/userId', (req, res, next) => {
   const userId = req.params.userId;
-  console.log(userId + 'ddd');
+  console.log(req.params);
+  console.log(userId + ' ddd');
   checkidsql =
     "SELECT EXISTS (select * from users where id = '" + userId + "') as isChk";
   db.query(checkidsql, (err, idresult) => {

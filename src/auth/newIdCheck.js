@@ -16,17 +16,17 @@ app.get('/:userid', (req, res, next) => {
   console.log(userid + 'ddd');
   checkidsql =
     "SELECT EXISTS (select * from users where id = '" + userid + "') as isChk";
-  // db.query(checkidsql, (err, idresult) => {
-  //   if (err) console.log(err);
-  //   else {
-  //     console.log(userid);
-  //     if (idresult[0].isChk == 1) {
-  //       res.send('아이디가 데베에 존재함');
-  //     } else {
-  //       res.send('사용가능한 ID입니다.');
-  //     }
-  //   }
-  // });
+  db.query(checkidsql, (err, idresult) => {
+    if (err) console.log(err);
+    else {
+      console.log(userid);
+      if (idresult[0].isChk == 1) {
+        res.send('아이디가 데베에 존재함');
+      } else {
+        res.send('사용가능한 ID입니다.');
+      }
+    }
+  });
 });
 
 module.exports = app;

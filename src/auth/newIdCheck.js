@@ -11,7 +11,7 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/newid/:userId', (req, res, next) => {
+app.get('/newid', (req, res, next) => {
   console.log('일단 들어옴');
   let { userId } = req.params;
   console.log(req);

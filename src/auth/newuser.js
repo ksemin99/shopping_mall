@@ -20,7 +20,7 @@ app.post('/', function (req, res) {
       pw.replace(/(\s*)/g, '').length <= 20
     ) {
       if (pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi) > 0) {
-        res.send({ newuser: id });
+        res.send({ newuser: id, count: 1 });
         sql =
           "insert into users(id, pwd, name, sex) values ('" +
           id +

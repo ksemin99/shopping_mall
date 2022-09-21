@@ -11,9 +11,10 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/newid', (req, res, next) => {
+app.get('/', (req, res, next) => {
+  res.send('연결 완');
   console.log('일단 들어옴');
-  let { userId } = req.params;
+  let userId = req.params.userId;
   console.log(req);
   console.log(userId + ' ddd');
   if (userId === undefined) {

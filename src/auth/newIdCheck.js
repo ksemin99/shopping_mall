@@ -11,7 +11,7 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/:{userId}', (req, res, next) => {
+app.get('/:userId', (req, res, next) => {
   const userId = req.params.userId;
   console.log(req.params);
   console.log(userId + ' ddd');

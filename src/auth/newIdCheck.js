@@ -13,15 +13,15 @@ dotenv.config();
 
 app.get('/', (req, res, next) => {
   res.send('연결 완');
-  console.log('일단 들어옴');
-  let userId = req.params.userId;
-  console.log(req);
-  console.log(userId + ' ddd');
-  if (userId === undefined) {
-    console.log('안넘어옴');
-  }
-  checkidsql =
-    "SELECT EXISTS (select * from users where id = '" + userId + "') as isChk";
+  // console.log('일단 들어옴');
+  // let userId = req.params.userId;
+  // console.log(req);
+  // console.log(userId + ' ddd');
+  // if (userId == undefined) {
+  //   console.log('안넘어옴');
+  // }
+  // checkidsql =
+  //   "SELECT EXISTS (select * from users where id = '" + userId + "') as isChk";
   // db.query(checkidsql, (err, idresult) => {
   //   if (err) console.log(err);
   //   else {

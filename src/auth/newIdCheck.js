@@ -15,6 +15,9 @@ app.get('/:userId', (req, res, next) => {
   const userId = req.params.userId;
   console.log(req.params);
   console.log(userId + ' ddd');
+  if (userId === undefined) {
+    console.log('안넘어옴');
+  }
   checkidsql =
     "SELECT EXISTS (select * from users where id = '" + userId + "') as isChk";
   db.query(checkidsql, (err, idresult) => {

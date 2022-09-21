@@ -22,17 +22,17 @@ app.get('/', (req, res, next) => {
   }
   checkidsql =
     "SELECT EXISTS (select * from users where id = '" + userId + "') as isChk";
-  db.query(checkidsql, (err, idresult) => {
-    if (err) console.log(err);
-    else {
-      console.log(userId);
-      if (idresult[0].isChk == 1) {
-        res.send('아이디가 데베에 존재함');
-      } else {
-        res.send('사용가능한 ID입니다.');
-      }
-    }
-  });
+  // db.query(checkidsql, (err, idresult) => {
+  //   if (err) console.log(err);
+  //   else {
+  //     console.log(userId);
+  //     if (idresult[0].isChk == 1) {
+  //       res.send('아이디가 데베에 존재함');
+  //     } else {
+  //       res.send('사용가능한 ID입니다.');
+  //     }
+  //   }
+  // });
 });
 
 module.exports = app;

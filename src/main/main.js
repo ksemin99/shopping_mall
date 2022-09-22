@@ -31,7 +31,7 @@ app.get('/', checkauthorization.authenticateToken, (req, res, next) => {
   });
 });
 
-app.get('/:new', checkauthorization.authenticateToken, (req, res, next) => {
+app.get('/new', checkauthorization.authenticateToken, (req, res, next) => {
   const id = req.user.id;
 
   const checkidsql =
@@ -48,7 +48,7 @@ app.get('/:new', checkauthorization.authenticateToken, (req, res, next) => {
     }
   });
 });
-app.get('/:best', checkauthorization.authenticateToken, (req, res, next) => {
+app.get('/best', checkauthorization.authenticateToken, (req, res, next) => {
   const id = req.user.id;
 
   const checkidsql =
@@ -65,7 +65,7 @@ app.get('/:best', checkauthorization.authenticateToken, (req, res, next) => {
     }
   });
 });
-app.get('/:top', checkauthorization.authenticateToken, (req, res, next) => {
+app.get('/top', checkauthorization.authenticateToken, (req, res, next) => {
   const id = req.user.id;
 
   const checkidsql =
@@ -82,7 +82,7 @@ app.get('/:top', checkauthorization.authenticateToken, (req, res, next) => {
     }
   });
 });
-app.get('/:pants', checkauthorization.authenticateToken, (req, res, next) => {
+app.get('/pants', checkauthorization.authenticateToken, (req, res, next) => {
   const id = req.user.id;
 
   const checkidsql =
@@ -99,7 +99,7 @@ app.get('/:pants', checkauthorization.authenticateToken, (req, res, next) => {
     }
   });
 });
-app.get('/:outer', checkauthorization.authenticateToken, (req, res, next) => {
+app.get('/outer', checkauthorization.authenticateToken, (req, res, next) => {
   const id = req.user.id;
 
   const checkidsql =
@@ -116,7 +116,7 @@ app.get('/:outer', checkauthorization.authenticateToken, (req, res, next) => {
     }
   });
 });
-app.get('/:skirt', checkauthorization.authenticateToken, (req, res, next) => {
+app.get('/skirt', checkauthorization.authenticateToken, (req, res, next) => {
   const id = req.user.id;
 
   const checkidsql =
@@ -134,7 +134,7 @@ app.get('/:skirt', checkauthorization.authenticateToken, (req, res, next) => {
   });
 });
 app.get(
-  '/:shoes&bags',
+  '/shoes&bags',
   checkauthorization.authenticateToken,
   checkjwtid,
   (req, res, next) => {

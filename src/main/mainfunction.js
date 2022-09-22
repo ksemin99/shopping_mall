@@ -1,3 +1,7 @@
+const mysqlConObj = require('../../config/mysql'); // #2
+const { request } = require('express');
+const db = mysqlConObj.init();
+
 module.exports = {
   checkjwtid: function checkjwtid(req, res, next) {
     console.log(req.user);

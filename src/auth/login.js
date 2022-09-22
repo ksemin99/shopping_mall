@@ -3,7 +3,7 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const checkAuthorization = require('./checkAuthorization');
+const checkauthorization = require('./checkauthorization');
 
 const mysqlConObj = require('../../config/mysql'); // #2
 const { request } = require('express');
@@ -22,15 +22,15 @@ app.post('/', (req, res, next) => {
     pw: pw,
   };
 
-  const accessToken = checkAuthorization.generateAccessToken(user);
+  const accessToken = checkauthorization.generateAccessToken(user);
   const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {
     expiresIn: '1d',
   }); //이거는 DB에 저장
 
   const accessTokenExpiresIn =
-    checkAuthorization.checkAccessTokenExpiresIn(accessToken);
+    checkauthorization.checkAccessTokenExpiresIn(accessToken);
   const refreshTokenExpiresIn =
-    checkAuthorization.checkRefreshTokenExpiresIn(refreshToken);
+    checkauthorization.checkRefreshTokenExpiresIn(refreshToken);
 
   //id 체크부분 --
   checkidsql =

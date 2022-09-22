@@ -15,7 +15,8 @@ const logout = require('./src/auth/logout');
 const newuser = require('./src/auth/newuser');
 const token = require('./src/auth/token');
 const newidcheck = require('./src/auth/newidcheck');
-const checkAuthorization = require('./src/auth/checkAuthorization');
+const checkauthorization = require('./src/auth/checkauthorization');
+const main = require('./src/main/main');
 
 app.use(express.static(path.join(__dirname, 'src')));
 app.use('/auth/login', login);
@@ -23,6 +24,7 @@ app.use('/auth/logout', logout);
 app.use('/auth/newuser', newuser);
 app.use('/auth/token', token);
 app.use('/auth/newidcheck', newidcheck);
+app.use('/main', main);
 
 //const dotenv = require('dotenv').config(); // #1
 const mysqlConObj = require('./config/mysql'); // #2
@@ -34,7 +36,7 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/main', checkAuthorization.authenticateToken, (req, res) => {
+app.get('/main', checkauthorization.authenticateToken, (req, res) => {
   //console.log(res);
 
   const id = req.user.id;
@@ -59,7 +61,7 @@ app.get('/main', checkAuthorization.authenticateToken, (req, res) => {
   //res.send({ users: users });
 });
 
-app.post('/main', function (req, res) {
+app.post('/', function (req, res) {
   //console.log(req.body);
   users.push({ name: req.body.name, age: req.body.age });
   return res.send({ sucess: true });

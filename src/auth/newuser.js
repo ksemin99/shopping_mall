@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const checkAuthorization = require('./checkAuthorization');
+const checkauthorization = require('./checkauthorization');
 
 const mysqlConObj = require('../../config/mysql'); // #2
 const { request } = require('express');

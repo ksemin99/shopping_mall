@@ -156,8 +156,8 @@ checkjwtid: function checkjwtid(req, res, next) {
     if (err) console.log(err);
     else {
       checkid = result[0].isChk;
-      if (checkid == 0) req.userstat.stat = 'db안에 아이디 없음';
-      else req.userstat.stat = 'shoes&bags 연결 완료';
+      if (checkid == 0) req.userstat = 'db안에 아이디 없음';
+      else req.userstat = 'shoes&bags 연결 완료';
       next();
     }
   });

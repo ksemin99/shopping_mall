@@ -134,7 +134,7 @@ app.get('/skirt', checkauthorization.authenticateToken, (req, res, next) => {
   });
 });
 app.get(
-  '/shoes&bags',
+  '/shoesbags',
   checkauthorization.authenticateToken,
   checkjwtid,
   (req, res, next) => {

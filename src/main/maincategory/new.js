@@ -20,15 +20,12 @@ app.get(
   mainfunction.checkjwtid,
   (req, res, next) => {
     let userstat = '';
-    if (err) throw err;
-    else {
-      if (req.userstat == '') userstat = 'new 연결 완료';
-      else userstat = req.userstat;
+    if (req.userstat == '') userstat = 'new 연결 완료';
+    else userstat = req.userstat;
 
-      console.log(userstat);
+    console.log(userstat);
 
-      res.send(userstat);
-    }
+    res.send(userstat);
   }
 );
 

@@ -140,7 +140,6 @@ app.get(
   (req, res, next) => {
     const userstat = req.userstat.stat;
 
-    console.log(id);
     console.log(userstat);
 
     res.send(userstat);

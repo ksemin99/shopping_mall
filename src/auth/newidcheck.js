@@ -28,7 +28,7 @@ app.get('/:userId', (req, res, next) => {
     else {
       console.log(userId);
       if (idresult[0].isChk == 1) {
-        res.send('아이디가 데베에 존재함');
+        res.send('아이디가 중복입니다. 다른아이디를 입력해주세요');
       } else {
         res.send('사용가능한 ID입니다.');
       }

@@ -14,33 +14,151 @@ app.use(cors());
 dotenv.config();
 
 app.get('/', checkauthorization.authenticateToken, (req, res, next) => {
-  console.log(req.body.accesskey);
-  res.send('메인 페이지 연결 완료');
+  const id = req.user.id;
+
+  const checkidsql =
+    "SELECT EXISTS (select * from users where id = '" + id + "') as isChk";
+  db.query(checkidsql, (err, result) => {
+    if (err) console.log(err);
+    else {
+      checkid = result[0].isChk;
+      if (checkid == 0) {
+        console.log('db 안에 아이디 없음');
+      } else {
+        res.send('메인 페이지 연결 완료');
+      }
+    }
+  });
 });
+
 app.get('/:new', checkauthorization.authenticateToken, (req, res, next) => {
-  res.send('new 연결 완료');
+  const id = req.user.id;
+
+  const checkidsql =
+    "SELECT EXISTS (select * from users where id = '" + id + "') as isChk";
+  db.query(checkidsql, (err, result) => {
+    if (err) console.log(err);
+    else {
+      checkid = result[0].isChk;
+      if (checkid == 0) {
+        console.log('db 안에 아이디 없음');
+      } else {
+        res.send('new 연결 완료');
+      }
+    }
+  });
 });
 app.get('/:best', checkauthorization.authenticateToken, (req, res, next) => {
-  res.send('best 연결 완료');
+  const id = req.user.id;
+
+  const checkidsql =
+    "SELECT EXISTS (select * from users where id = '" + id + "') as isChk";
+  db.query(checkidsql, (err, result) => {
+    if (err) console.log(err);
+    else {
+      checkid = result[0].isChk;
+      if (checkid == 0) {
+        console.log('db 안에 아이디 없음');
+      } else {
+        res.send('best 연결 완료');
+      }
+    }
+  });
 });
 app.get('/:top', checkauthorization.authenticateToken, (req, res, next) => {
-  res.send('top 연결 완료');
+  const id = req.user.id;
+
+  const checkidsql =
+    "SELECT EXISTS (select * from users where id = '" + id + "') as isChk";
+  db.query(checkidsql, (err, result) => {
+    if (err) console.log(err);
+    else {
+      checkid = result[0].isChk;
+      if (checkid == 0) {
+        console.log('db 안에 아이디 없음');
+      } else {
+        res.send('top 연결 완료');
+      }
+    }
+  });
 });
 app.get('/:pants', checkauthorization.authenticateToken, (req, res, next) => {
-  res.send('pants 연결 완료');
+  const id = req.user.id;
+
+  const checkidsql =
+    "SELECT EXISTS (select * from users where id = '" + id + "') as isChk";
+  db.query(checkidsql, (err, result) => {
+    if (err) console.log(err);
+    else {
+      checkid = result[0].isChk;
+      if (checkid == 0) {
+        console.log('db 안에 아이디 없음');
+      } else {
+        res.send('pants 연결 완료');
+      }
+    }
+  });
 });
 app.get('/:outer', checkauthorization.authenticateToken, (req, res, next) => {
-  res.send('outer 연결 완료');
+  const id = req.user.id;
+
+  const checkidsql =
+    "SELECT EXISTS (select * from users where id = '" + id + "') as isChk";
+  db.query(checkidsql, (err, result) => {
+    if (err) console.log(err);
+    else {
+      checkid = result[0].isChk;
+      if (checkid == 0) {
+        console.log('db 안에 아이디 없음');
+      } else {
+        res.send('outer 연결 완료');
+      }
+    }
+  });
 });
 app.get('/:skirt', checkauthorization.authenticateToken, (req, res, next) => {
-  res.send('skirt 연결 완료');
+  const id = req.user.id;
+
+  const checkidsql =
+    "SELECT EXISTS (select * from users where id = '" + id + "') as isChk";
+  db.query(checkidsql, (err, result) => {
+    if (err) console.log(err);
+    else {
+      checkid = result[0].isChk;
+      if (checkid == 0) {
+        console.log('db 안에 아이디 없음');
+      } else {
+        res.send('skirt 연결 완료');
+      }
+    }
+  });
 });
 app.get(
   '/:shoes&bags',
   checkauthorization.authenticateToken,
+  checkjwtid,
   (req, res, next) => {
-    res.send('shoes&bags 연결 완료');
+    const id = req.user.id;
+    const userstat = req.userstat.result;
+
+    console.log(id);
+    console.log(userstat);
+
+    res.send(userstat);
   }
 );
 
+checkjwtid: function checkjwtid(req, res, next) {
+  const checkidsql =
+    "SELECT EXISTS (select * from users where id = '" + id + "') as isChk";
+  db.query(checkidsql, (err, result) => {
+    if (err) console.log(err);
+    else {
+      checkid = result[0].isChk;
+      if (checkid == 0) req.userstat.result = 'db안에 아이디 없음';
+      else req.userstat.result = 'shoes&bags 연결 완료';
+      next();
+    }
+  });
+}
 module.exports = app;

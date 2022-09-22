@@ -1,11 +1,13 @@
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 dotenv.config();
+
 module.exports = {
   authenticateToken: function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
-    if (token == null) return res.sendStatus(401);
+    if (token == null) return res.send('로그인을 하지 않은 상태입니다.');
+    //return res.sendStatus(401);
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
       //accesstoken 받고 .env에 있는 토큰 암호값 계산해서 token에 맞는 사용자 정보 가져오기
@@ -17,11 +19,12 @@ module.exports = {
 
   generateAccessToken: function generateAccessToken(user) {
     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: '20s',
+      expiresIn: '1h',
     });
   },
 
   checkAccessTokenExpiresIn: function checkAccessTokenExpiresIn(accessToken) {
+    // accessToken 생명주기 가져오기
     let result = 0;
     jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
       if (err) return res.sendStatus(403);
@@ -31,6 +34,7 @@ module.exports = {
   },
 
   checkRefreshTokenExpiresIn: function checkRefreshTokenExpiresIn(
+    // refreshToken 생명주기 가져오기
     refreshToken
   ) {
     let result = 0;

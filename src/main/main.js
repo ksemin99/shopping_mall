@@ -138,7 +138,7 @@ app.get(
   checkauthorization.authenticateToken,
   checkjwtid,
   (req, res, next) => {
-    const userstat = req.userstat.result;
+    const userstat = req.userstat.stat;
 
     console.log(id);
     console.log(userstat);
@@ -156,10 +156,11 @@ checkjwtid: function checkjwtid(req, res, next) {
     if (err) console.log(err);
     else {
       checkid = result[0].isChk;
-      if (checkid == 0) req.userstat.result = 'db안에 아이디 없음';
-      else req.userstat.result = 'shoes&bags 연결 완료';
+      if (checkid == 0) req.userstat.stat = 'db안에 아이디 없음';
+      else req.userstat.stat = 'shoes&bags 연결 완료';
       next();
     }
   });
 }
+
 module.exports = app;

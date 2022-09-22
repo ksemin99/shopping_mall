@@ -138,7 +138,8 @@ app.get(
   checkauthorization.authenticateToken,
   checkjwtid,
   (req, res, next) => {
-    const id = req.user.id;
+    console.log(req.user);
+    //const id = req.user.id;
     const userstat = req.userstat.result;
 
     console.log(id);

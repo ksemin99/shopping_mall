@@ -138,8 +138,6 @@ app.get(
   checkauthorization.authenticateToken,
   checkjwtid,
   (req, res, next) => {
-    console.log(req.user);
-    //const id = req.user.id;
     const userstat = req.userstat.result;
 
     console.log(id);
@@ -150,6 +148,8 @@ app.get(
 );
 
 checkjwtid: function checkjwtid(req, res, next) {
+  console.log(req.user);
+  const id = req.user.id;
   const checkidsql =
     "SELECT EXISTS (select * from users where id = '" + id + "') as isChk";
   db.query(checkidsql, (err, result) => {

@@ -3,10 +3,10 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const checkauthorization = require('../auth/checkauthorization');
-const mainfunction = require('./mainfunction');
+const checkauthorization = require('../../auth/checkauthorization');
+const mainfunction = require('../mainfunction');
 
-const mysqlConObj = require('../../config/mysql'); // #2
+const mysqlConObj = require('../../../config/mysql'); // #2
 const { request } = require('express');
 const db = mysqlConObj.init();
 
@@ -20,7 +20,7 @@ app.get(
   mainfunction.checkjwtid,
   (req, res, next) => {
     let userstat = '';
-    if (req.userstat == '') userstat = 'main 연결 완료';
+    if (req.userstat == '') userstat = 'shoesbags 연결 완료';
     else userstat = req.userstat;
 
     console.log(userstat);
@@ -28,5 +28,4 @@ app.get(
     res.send(userstat);
   }
 );
-
 module.exports = app;

@@ -18,6 +18,14 @@ const newidcheck = require('./src/auth/newidcheck');
 const checkauthorization = require('./src/auth/checkauthorization');
 const main = require('./src/main/main');
 
+const newdress = require('./src/main/maincategory/new');
+const best = require('./src/main/maincategory/best');
+const outer = require('./src/main/maincategory/outer');
+const pants = require('./src/main/maincategory/pants');
+const shoesbags = require('./src/main/maincategory/shoesbags');
+const skirt = require('./src/main/maincategory/skirt');
+const top = require('./src/main/maincategory/top');
+
 app.use(express.static(path.join(__dirname, 'src')));
 app.use('/auth/login', login);
 app.use('/auth/logout', logout);
@@ -25,6 +33,14 @@ app.use('/auth/newuser', newuser);
 app.use('/auth/token', token);
 app.use('/auth/newidcheck', newidcheck);
 app.use('/main', main);
+
+app.use('/main/new', newdress);
+app.use('/main/best', best);
+app.use('/main/outer', outer);
+app.use('/main/pants', pants);
+app.use('/main/shoesbags', shoesbags);
+app.use('/main/skirt', skirt);
+app.use('/main/top', top);
 
 //const dotenv = require('dotenv').config(); // #1
 const mysqlConObj = require('./config/mysql'); // #2

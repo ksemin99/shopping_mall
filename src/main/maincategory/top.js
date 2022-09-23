@@ -19,7 +19,7 @@ app.get(
   checkauthorization.authenticateToken,
   mainfunction.checkjwtid,
   (req, res, next) => {
-    const subcategory = req.params.subcategory;
+    const subcategory = parseInt(req.params.subcategory);
     console.log(subcategory);
     console.log(typeof subcategory);
     let userstat = '';

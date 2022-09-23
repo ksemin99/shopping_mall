@@ -20,6 +20,7 @@ app.get(
   mainfunction.checkjwtid,
   (req, res, next) => {
     const subcategory = req.params.subcategory;
+    console.log(subcategory);
     let userstat = '';
     switch (subcategory) {
       case '0':

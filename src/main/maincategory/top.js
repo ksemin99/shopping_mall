@@ -22,27 +22,27 @@ app.get(
     const subcategory = req.params.subcategory;
     let userstat = '';
     switch (subcategory) {
-      case 0:
+      case '0':
+        console.log('top');
         if (req.userstat == '') userstat = 'top 연결 완료';
         else userstat = req.userstat;
-        console.log(userstat);
-      case 1:
+      case '1':
         console.log('Tshirts');
         if (req.userstat == '') userstat = 'Tshirts 연결 완료';
         else userstat = req.userstat;
-      case 2:
+      case '2':
         console.log('mantoman');
         if (req.userstat == '') userstat = 'mantoman 연결 완료';
         else userstat = req.userstat;
-      case 3:
+      case '3':
         console.log('blous');
         if (req.userstat == '') userstat = 'blous 연결 완료';
         else userstat = req.userstat;
-      case 4:
+      case '4':
         console.log('neat');
         if (req.userstat == '') userstat = 'neat 연결 완료';
         else userstat = req.userstat;
-      case 5:
+      case '5':
         console.log('sleeveless');
         if (req.userstat == '') userstat = 'sleeveless 연결 완료';
         else userstat = req.userstat;

@@ -21,6 +21,7 @@ app.get(
   (req, res, next) => {
     const subcategory = req.params.subcategory;
     console.log(subcategory);
+    console.log(typeof subcategory);
     let userstat = '';
     switch (subcategory) {
       case '0':

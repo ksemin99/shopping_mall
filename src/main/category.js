@@ -41,11 +41,11 @@ app.get('/', (req, res, next) => {
     subcategory: [
       {
         subcategoryid: 0,
-        subcategoryname: '맨투맨 & 후디 /',
+        subcategoryname: '맨투맨 & 후디 / ',
       },
       {
         subcategoryid: 1,
-        subcategoryname: '블라우스 & 셔츠 /',
+        subcategoryname: '블라우스 & 셔츠 / ',
       },
       {
         subcategoryid: 2,
@@ -53,23 +53,23 @@ app.get('/', (req, res, next) => {
       },
       {
         subcategoryid: 3,
-        subcategoryname: '배기 /',
+        subcategoryname: '배기 / ',
       },
       {
         subcategoryid: 4,
-        subcategoryname: '세미와이드 /',
+        subcategoryname: '세미와이드 / ',
       },
       {
         subcategoryid: 5,
-        subcategoryname: '와이드 /',
+        subcategoryname: '와이드 / ',
       },
       {
         subcategoryid: 6,
-        subcategoryname: '스트레이트 /',
+        subcategoryname: '스트레이트 / ',
       },
       {
         subcategoryid: 7,
-        subcategoryname: '트레이닝 /',
+        subcategoryname: '트레이닝 / ',
       },
       {
         subcategoryid: 8,
@@ -77,19 +77,19 @@ app.get('/', (req, res, next) => {
       },
       {
         subcategoryid: 9,
-        subcategoryname: '코트 /',
+        subcategoryname: '코트 / ',
       },
       {
         subcategoryid: 10,
-        subcategoryname: '자켓 /',
+        subcategoryname: '자켓 / ',
       },
       {
         subcategoryid: 11,
-        subcategoryname: '점퍼 /',
+        subcategoryname: '점퍼 / ',
       },
       {
         subcategoryid: 12,
-        subcategoryname: '가디건 /',
+        subcategoryname: '가디건 / ',
       },
       {
         subcategoryid: 13,
@@ -97,7 +97,7 @@ app.get('/', (req, res, next) => {
       },
       {
         subcategoryid: 14,
-        subcategoryname: '치마 /',
+        subcategoryname: '치마 / ',
       },
       {
         subcategoryid: 15,
@@ -105,7 +105,7 @@ app.get('/', (req, res, next) => {
       },
       {
         subcategoryid: 16,
-        subcategoryname: '신발 /',
+        subcategoryname: '신발 / ',
       },
       {
         subcategoryid: 17,

@@ -18,6 +18,8 @@ const newidcheck = require('./src/auth/newidcheck');
 const checkauthorization = require('./src/auth/checkauthorization');
 const main = require('./src/main/main');
 
+const category = require('./src/main/category');
+
 const newdress = require('./src/main/maincategory/new');
 const best = require('./src/main/maincategory/best');
 const outer = require('./src/main/maincategory/outer');
@@ -34,6 +36,8 @@ app.use('/auth/token', token);
 app.use('/auth/newidcheck', newidcheck);
 
 app.use('/main', main);
+
+app.use('/category', category);
 
 app.use('/main/new', newdress);
 app.use('/main/best', best);

@@ -35,21 +35,26 @@ app.get(
         else userstat = req.userstat;
         break;
       case 2:
+        console.log('semiwide');
+        if (req.userstat == '') userstat = 'semiwide 연결 완료';
+        else userstat = req.userstat;
+        break;
+      case 3:
         console.log('wide');
         if (req.userstat == '') userstat = 'wide 연결 완료';
         else userstat = req.userstat;
         break;
-      case 3:
+      case 4:
         console.log('straight');
         if (req.userstat == '') userstat = 'straight 연결 완료';
         else userstat = req.userstat;
         break;
-      case 4:
+      case 5:
         console.log('training');
         if (req.userstat == '') userstat = 'training 연결 완료';
         else userstat = req.userstat;
         break;
-      case 5:
+      case 6:
         console.log('bootscut');
         if (req.userstat == '') userstat = 'bootscut 연결 완료';
         else userstat = req.userstat;

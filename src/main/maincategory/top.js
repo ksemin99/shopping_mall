@@ -31,53 +31,24 @@ app.get(
         res.send(userstat);
         break;
       case 1:
-<<<<<<< Updated upstream
-        console.log('Tshirts');
-        if (userstat == '') userstat = 'Tshirts 연결 완료';
-=======
         console.log('mantoman hood');
         if (req.userstat == '') userstat = 'mantoman hood 연결 완료';
->>>>>>> Stashed changes
         else userstat = req.userstat;
         res.send(userstat);
         break;
       case 2:
-<<<<<<< Updated upstream
-        console.log('mantoman');
-        if (userstat == '') userstat = 'mantoman 연결 완료';
-=======
         console.log('blous shirts');
         if (req.userstat == '') userstat = 'blous shirts 연결 완료';
->>>>>>> Stashed changes
         else userstat = req.userstat;
         res.send(userstat);
         break;
       case 3:
-<<<<<<< Updated upstream
-        console.log('blous');
-        if (userstat == '') userstat = 'blous 연결 완료';
-        else userstat = req.userstat;
-        res.send(userstat);
-        break;
-      case 4:
-=======
->>>>>>> Stashed changes
         console.log('neat');
         if (userstat == '') userstat = 'neat 연결 완료';
         else userstat = req.userstat;
         res.send(userstat);
         break;
-<<<<<<< Updated upstream
-      case 5:
-        console.log('sleeveless');
-        if (userstat == '') userstat = 'sleeveless 연결 완료';
-        else userstat = req.userstat;
-        res.send(userstat);
-        break;
-=======
->>>>>>> Stashed changes
     }
-
   }
 );
 

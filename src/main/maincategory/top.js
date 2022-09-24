@@ -28,34 +28,40 @@ app.get(
         console.log('top');
         if (req.userstat == '') userstat = 'top 연결 완료';
         else userstat = req.userstat;
+        res.send(userstat);
         break;
       case 1:
         console.log('Tshirts');
         if (req.userstat == '') userstat = 'Tshirts 연결 완료';
         else userstat = req.userstat;
+        res.send(userstat);
         break;
       case 2:
         console.log('mantoman');
         if (req.userstat == '') userstat = 'mantoman 연결 완료';
         else userstat = req.userstat;
+        res.send(userstat);
         break;
       case 3:
         console.log('blous');
         if (req.userstat == '') userstat = 'blous 연결 완료';
         else userstat = req.userstat;
+        res.send(userstat);
         break;
       case 4:
         console.log('neat');
         if (req.userstat == '') userstat = 'neat 연결 완료';
         else userstat = req.userstat;
+        res.send(userstat);
         break;
       case 5:
         console.log('sleeveless');
         if (req.userstat == '') userstat = 'sleeveless 연결 완료';
         else userstat = req.userstat;
+        res.send(userstat);
         break;
     }
-    res.send(userstat);
+
   }
 );
 

@@ -15,7 +15,7 @@ app.use(cors());
 dotenv.config();
 
 app.get('/', (req, res, next) => {
-  res.send([
+  res.send(
     {
       categoryid: 0,
       categoryname: 'new',
@@ -29,15 +29,12 @@ app.get('/', (req, res, next) => {
       categoryname: 'top',
       subcategory: [
         {
-          subcategoryid: 0,
           subcategoryname: '맨투맨 & 후디 /',
         },
         {
-          subcategoryid: 1,
           subcategoryname: '블라우스 & 셔츠 /',
         },
         {
-          subcategoryid: 2,
           subcategoryname: '니트',
         },
       ],
@@ -47,27 +44,21 @@ app.get('/', (req, res, next) => {
       categoryname: 'pants',
       subcategory: [
         {
-          subcategoryid: 0,
           subcategoryname: '배기 /',
         },
         {
-          subcategoryid: 1,
           subcategoryname: '세미와이드 /',
         },
         {
-          subcategoryid: 2,
           subcategoryname: '와이드 /',
         },
         {
-          subcategoryid: 3,
           subcategoryname: '스트레이트 /',
         },
         {
-          subcategoryid: 4,
           subcategoryname: '트레이닝 /',
         },
         {
-          subcategoryid: 5,
           subcategoryname: '부츠',
         },
       ],
@@ -77,23 +68,18 @@ app.get('/', (req, res, next) => {
       categoryname: 'outer',
       subcategory: [
         {
-          subcategoryid: 0,
           subcategoryname: '코트 /',
         },
         {
-          subcategoryid: 1,
           subcategoryname: '자켓 /',
         },
         {
-          subcategoryid: 2,
           subcategoryname: '점퍼 /',
         },
         {
-          subcategoryid: 3,
           subcategoryname: '가디건 /',
         },
         {
-          subcategoryid: 4,
           subcategoryname: '조끼',
         },
       ],
@@ -103,11 +89,9 @@ app.get('/', (req, res, next) => {
       categoryname: 'skirt',
       subcategory: [
         {
-          subcategoryid: 0,
           subcategoryname: '치마 /',
         },
         {
-          subcategoryid: 1,
           subcategoryname: '원피스',
         },
       ],
@@ -117,16 +101,14 @@ app.get('/', (req, res, next) => {
       categoryname: 'shoes&bags',
       subcategory: [
         {
-          subcategoryid: 0,
           subcategoryname: '신발 /',
         },
         {
-          subcategoryid: 1,
           subcategoryname: '가방 /',
         },
       ],
-    },
-  ]);
+    }
+  );
 });
 
 module.exports = app;

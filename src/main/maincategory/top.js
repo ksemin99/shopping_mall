@@ -16,8 +16,8 @@ dotenv.config();
 
 app.get(
   '/:subcategory',
-  checkauthorization.authenticateToken,
-  mainfunction.checkjwtid,
+  //checkauthorization.authenticateToken,
+  //mainfunction.checkjwtid,
   (req, res, next) => {
     const subcategory = parseInt(req.params.subcategory);
     console.log(subcategory);

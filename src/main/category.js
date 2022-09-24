@@ -15,7 +15,7 @@ app.use(cors());
 dotenv.config();
 
 app.get('/', (req, res, next) => {
-  res.send(
+  res.send([
     {
       categoryid: 0,
       categoryname: 'new',
@@ -107,8 +107,8 @@ app.get('/', (req, res, next) => {
           subcategoryname: '가방 /',
         },
       ],
-    }
-  );
+    },
+  ]);
 });
 
 module.exports = app;

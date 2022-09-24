@@ -19,6 +19,7 @@ app.get(
   //checkauthorization.authenticateToken,
   //mainfunction.checkjwtid,
   (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
     // let userstat = '';
     // if (req.userstat == '') userstat = 'main 연결 완료';
     // else userstat = req.userstat;

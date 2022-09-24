@@ -20,86 +20,34 @@ app.get('/', (req, res, next) => {
       {
         categoryid: 0,
         categoryname: 'TOP',
-        subcategory: [
-          {
-            subcategoryname: '맨투맨 & 후디 / ',
-          },
-          {
-            subcategoryname: '블라우스 & 셔츠 / ',
-          },
-          {
-            subcategoryname: '니트',
-          },
-        ],
+        subcategory: ['맨투맨 & 후디 / ', '블라우스 & 셔츠 / ', '니트'],
       },
       {
         categoryid: 1,
         categoryname: 'PANTS',
         subcategory: [
-          {
-            subcategoryname: '배기 / ',
-          },
-          {
-            subcategoryname: '세미와이드 / ',
-          },
-          {
-            subcategoryname: '와이드 / ',
-          },
-          {
-            subcategoryname: '스트레이트 / ',
-          },
-          {
-            subcategoryname: '트레이닝 / ',
-          },
-          {
-            subcategoryname: '부츠',
-          },
+          '배기 / ',
+          '세미와이드 / ',
+          '와이드 / ',
+          '스트레이트 / ',
+          '트레이닝 / ',
+          '부츠',
         ],
       },
       {
         categoryid: 2,
         categoryname: 'OUTER',
-        subcategory: [
-          {
-            subcategoryname: '코트 / ',
-          },
-          {
-            subcategoryname: '자켓 / ',
-          },
-          {
-            subcategoryname: '점퍼 / ',
-          },
-          {
-            subcategoryname: '가디건 / ',
-          },
-          {
-            subcategoryname: '조끼',
-          },
-        ],
+        subcategory: ['코트 / ', '자켓 / ', '점퍼 / ', '가디건 / ', '조끼'],
       },
       {
         categoryid: 3,
         categoryname: 'SKIRT',
-        subcategory: [
-          {
-            subcategoryname: '치마 / ',
-          },
-          {
-            subcategoryname: '원피스',
-          },
-        ],
+        subcategory: ['치마 / ', '원피스'],
       },
       {
         categoryid: 4,
         categoryname: 'SHOES&BAGS',
-        subcategory: [
-          {
-            subcategoryname: '신발 / ',
-          },
-          {
-            subcategoryname: '가방',
-          },
-        ],
+        subcategory: ['신발 / ', '가방'],
       },
     ],
   });

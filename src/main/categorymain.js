@@ -14,18 +14,40 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/:categoryid/:page', (req, res, next) => {
+app.get('/:categoryid', (req, res, next) => {
   // DB로 categoryid 별 애들 불러오기
-  const categoryid = req.params.categoryid; // 0: top, 1: pants, 2:outer, 3: skirt, 4: shoes&bags
-  const page = req.params.page;
-  categorysql = '';
+  const categoryid = req.params.categoryid;
+  //const page = req.params.page;
+  switch (categoryid) {
+    case 0: //top
+      categorysql = '';
+      break;
+    case 1: //pants
+      categorysql = '';
+      break;
+    case 2: //outer
+      categorysql = '';
+      break;
+    case 3: //skirt
+      categorysql = '';
+      break;
+    case 4: //shoes&bags
+      categorysql = '';
+      break;
+  }
 
   db.query(categorysql, (err, result) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
   });
 
-  res.send();
+  res.send({
+    picture: '',
+    color: '',
+    dressname: '',
+    dressprice: '',
+    views: '',
+  });
 });
 
 module.exports = app;

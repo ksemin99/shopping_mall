@@ -15,104 +15,92 @@ app.use(cors());
 dotenv.config();
 
 app.get('/', (req, res, next) => {
-  res.send({
-    maincategory: [
-      {
-        categoryid: 0,
-        categoryname: 'TOP',
-      },
-      {
-        categoryid: 1,
-        categoryname: 'PANTS',
-      },
-      {
-        categoryid: 2,
-        categoryname: 'OUTER',
-      },
-      {
-        categoryid: 3,
-        categoryname: 'SKIRT',
-      },
-      {
-        categoryid: 4,
-        categoryname: 'SHOES&BAGS',
-      },
-    ],
-    subcategory: [
-      {
-        subcategoryid: 0,
-        subcategoryname: '맨투맨 & 후디 / ',
-      },
-      {
-        subcategoryid: 1,
-        subcategoryname: '블라우스 & 셔츠 / ',
-      },
-      {
-        subcategoryid: 2,
-        subcategoryname: '니트',
-      },
-      {
-        subcategoryid: 3,
-        subcategoryname: '배기 / ',
-      },
-      {
-        subcategoryid: 4,
-        subcategoryname: '세미와이드 / ',
-      },
-      {
-        subcategoryid: 5,
-        subcategoryname: '와이드 / ',
-      },
-      {
-        subcategoryid: 6,
-        subcategoryname: '스트레이트 / ',
-      },
-      {
-        subcategoryid: 7,
-        subcategoryname: '트레이닝 / ',
-      },
-      {
-        subcategoryid: 8,
-        subcategoryname: '부츠',
-      },
-      {
-        subcategoryid: 9,
-        subcategoryname: '코트 / ',
-      },
-      {
-        subcategoryid: 10,
-        subcategoryname: '자켓 / ',
-      },
-      {
-        subcategoryid: 11,
-        subcategoryname: '점퍼 / ',
-      },
-      {
-        subcategoryid: 12,
-        subcategoryname: '가디건 / ',
-      },
-      {
-        subcategoryid: 13,
-        subcategoryname: '조끼',
-      },
-      {
-        subcategoryid: 14,
-        subcategoryname: '치마 / ',
-      },
-      {
-        subcategoryid: 15,
-        subcategoryname: '원피스',
-      },
-      {
-        subcategoryid: 16,
-        subcategoryname: '신발 / ',
-      },
-      {
-        subcategoryid: 17,
-        subcategoryname: '가방',
-      },
-    ],
-  });
+  res.send([
+    {
+      categoryid: 0,
+      categoryname: 'TOP',
+      subcategory: [
+        {
+          subcategoryname: '맨투맨 & 후디 / ',
+        },
+        {
+          subcategoryname: '블라우스 & 셔츠 / ',
+        },
+        {
+          subcategoryname: '니트',
+        },
+      ],
+    },
+    {
+      categoryid: 1,
+      categoryname: 'PANTS',
+      subcategory: [
+        {
+          subcategoryname: '배기 / ',
+        },
+        {
+          subcategoryname: '세미와이드 / ',
+        },
+        {
+          subcategoryname: '와이드 / ',
+        },
+        {
+          subcategoryname: '스트레이트 / ',
+        },
+        {
+          subcategoryname: '트레이닝 / ',
+        },
+        {
+          subcategoryname: '부츠',
+        },
+      ],
+    },
+    {
+      categoryid: 2,
+      categoryname: 'OUTER',
+      subcategory: [
+        {
+          subcategoryname: '코트 / ',
+        },
+        {
+          subcategoryname: '자켓 / ',
+        },
+        {
+          subcategoryname: '점퍼 / ',
+        },
+        {
+          subcategoryname: '가디건 / ',
+        },
+        {
+          subcategoryname: '조끼',
+        },
+      ],
+    },
+    {
+      categoryid: 3,
+      categoryname: 'SKIRT',
+      subcategory: [
+        {
+          subcategoryname: '치마 / ',
+        },
+        {
+          subcategoryname: '원피스',
+        },
+      ],
+    },
+    {
+      categoryid: 4,
+      categoryname: 'SHOES&BAGS',
+      subcategory: [
+        {
+          subcategoryname: '신발 / ',
+        },
+        {
+          subcategoryname: '가방',
+        },
+      ],
+    },
+  ]);
 });
 
 module.exports = app;

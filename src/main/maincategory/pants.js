@@ -15,16 +15,46 @@ app.use(cors());
 dotenv.config();
 
 app.get(
-  '/',
+  '/:subcategory',
   checkauthorization.authenticateToken,
   mainfunction.checkjwtid,
   (req, res, next) => {
+    const subcategory = parseInt(req.params.subcategory);
+    console.log(subcategory);
+    console.log(typeof subcategory);
     let userstat = '';
-    if (req.userstat == '') userstat = 'pants 연결 완료';
-    else userstat = req.userstat;
-
-    console.log(userstat);
-
+    switch (subcategory) {
+      case 0:
+        console.log('pants');
+        if (req.userstat == '') userstat = 'pants 연결 완료';
+        else userstat = req.userstat;
+        break;
+      case 1:
+        console.log('semiwide');
+        if (req.userstat == '') userstat = 'semiwide 연결 완료';
+        else userstat = req.userstat;
+        break;
+      case 2:
+        console.log('wide');
+        if (req.userstat == '') userstat = 'wide 연결 완료';
+        else userstat = req.userstat;
+        break;
+      case 3:
+        console.log('straight');
+        if (req.userstat == '') userstat = 'straight 연결 완료';
+        else userstat = req.userstat;
+        break;
+      case 4:
+        console.log('training');
+        if (req.userstat == '') userstat = 'training 연결 완료';
+        else userstat = req.userstat;
+        break;
+      case 5:
+        console.log('bootscut');
+        if (req.userstat == '') userstat = 'bootscut 연결 완료';
+        else userstat = req.userstat;
+        break;
+    }
     res.send(userstat);
   }
 );

@@ -18,15 +18,7 @@ app.get('/', (req, res, next) => {
   res.send([
     {
       categoryid: 0,
-      categoryname: 'new',
-    },
-    {
-      categoryid: 1,
-      categoryname: 'best',
-    },
-    {
-      categoryid: 2,
-      categoryname: 'top',
+      categoryname: 'TOP',
       subcategory: [
         {
           subcategoryname: '맨투맨 & 후디 /',
@@ -40,8 +32,8 @@ app.get('/', (req, res, next) => {
       ],
     },
     {
-      categoryid: 3,
-      categoryname: 'pants',
+      categoryid: 1,
+      categoryname: 'PANTS',
       subcategory: [
         {
           subcategoryname: '배기 /',
@@ -64,8 +56,8 @@ app.get('/', (req, res, next) => {
       ],
     },
     {
-      categoryid: 4,
-      categoryname: 'outer',
+      categoryid: 2,
+      categoryname: 'OUTER',
       subcategory: [
         {
           subcategoryname: '코트 /',
@@ -85,8 +77,8 @@ app.get('/', (req, res, next) => {
       ],
     },
     {
-      categoryid: 5,
-      categoryname: 'skirt',
+      categoryid: 3,
+      categoryname: 'SKIRT',
       subcategory: [
         {
           subcategoryname: '치마 /',
@@ -97,14 +89,14 @@ app.get('/', (req, res, next) => {
       ],
     },
     {
-      categoryid: 6,
-      categoryname: 'shoes&bags',
+      categoryid: 4,
+      categoryname: 'SHOES&BAGS',
       subcategory: [
         {
           subcategoryname: '신발 /',
         },
         {
-          subcategoryname: '가방 /',
+          subcategoryname: '가방',
         },
       ],
     },

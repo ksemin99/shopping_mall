@@ -16,7 +16,7 @@ dotenv.config();
 
 app.get('/', (req, res, next) => {
   res.send({
-    data: [
+    data1: [
       {
         categoryid: 0,
         categoryname: 'NEW',
@@ -27,6 +27,8 @@ app.get('/', (req, res, next) => {
         categoryname: 'BEST',
         subcategory: ['가장 많이 조회한 상품'],
       },
+    ],
+    data2: [
       {
         categoryid: 2,
         categoryname: 'TOP',

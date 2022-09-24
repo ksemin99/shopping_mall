@@ -3,10 +3,10 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const checkauthorization = require('../../auth/checkauthorization');
-const mainfunction = require('../mainfunction');
+const checkauthorization = require('../auth/checkauthorization');
+const mainfunction = require('./mainfunction');
 
-const mysqlConObj = require('../../../config/mysql'); // #2
+const mysqlConObj = require('../../config/mysql'); // #2
 const { request } = require('express');
 const db = mysqlConObj.init();
 

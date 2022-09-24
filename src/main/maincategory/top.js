@@ -25,7 +25,7 @@ app.get(
     let userstat = '';
     switch (subcategory) {
       case 0:
-        console.log('top');
+        console.log('top'); 1
         if (req.userstat == '') userstat = 'top 연결 완료';
         else userstat = req.userstat;
         break;

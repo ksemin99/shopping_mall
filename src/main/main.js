@@ -16,8 +16,8 @@ dotenv.config();
 
 app.get(
   '/',
-  checkauthorization.authenticateToken,
-  mainfunction.checkjwtid,
+  //checkauthorization.authenticateToken,
+  //mainfunction.checkjwtid,
   (req, res, next) => {
     let userstat = '';
     if (req.userstat == '') userstat = 'main 연결 완료';

@@ -32,6 +32,7 @@ app.use('/auth/logout', logout);
 app.use('/auth/newuser', newuser);
 app.use('/auth/token', token);
 app.use('/auth/newidcheck', newidcheck);
+
 app.use('/main', main);
 
 app.use('/main/new', newdress);
@@ -77,11 +78,11 @@ dotenv.config();
 //   //res.send({ users: users });
 // });
 
-app.post('/', function (req, res) {
-  //console.log(req.body);
-  users.push({ name: req.body.name, age: req.body.age });
-  return res.send({ sucess: true });
-});
+// app.post('/', function (req, res) {
+//   //console.log(req.body);
+//   users.push({ name: req.body.name, age: req.body.age });
+//   return res.send({ sucess: true });
+// });
 
 app.listen(PORT, function () {
   console.log('server listening on port 3000');

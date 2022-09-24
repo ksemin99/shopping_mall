@@ -18,7 +18,7 @@ const newidcheck = require('./src/auth/newidcheck');
 const checkauthorization = require('./src/auth/checkauthorization');
 
 const category = require('./src/main/category');
-const categorymain = require('./src/main/categorymain');
+const categoryrecent = require('./src/main/categoryrecent');
 
 const recent = require('./src/main/recent');
 
@@ -31,7 +31,7 @@ app.use('/auth/newidcheck', newidcheck);
 
 app.use('/category', category);
 
-//app.use('/main', categorymain);
+app.use('/categoryrecent', categoryrecent);
 app.use('/recent', recent);
 
 //const dotenv = require('dotenv').config(); // #1
@@ -43,23 +43,6 @@ https: app.use(express.json());
 app.use(cors());
 
 dotenv.config();
-
-// app.get('/', (req, res, next) => {
-//   mainsql = ''; //카테고리별 4개씩 들고오기
-
-//   db.query(mainsql, (err, result) => {
-//     if (err) console.log(err);
-//     else console.log(result, 'sql 성공');
-//   });
-
-//   res.send({
-//     picture: '',
-//     color: '',
-//     dressname: '',
-//     dressprice: '',
-//     views: '',
-//   });
-// });
 
 app.listen(PORT, function () {
   console.log('server listening on port 3000');

@@ -19,13 +19,14 @@ app.get(
   //checkauthorization.authenticateToken,
   //mainfunction.checkjwtid,
   (req, res, next) => {
-    let userstat = '';
-    if (req.userstat == '') userstat = 'main 연결 완료';
-    else userstat = req.userstat;
+    // let userstat = '';
+    // if (req.userstat == '') userstat = 'main 연결 완료';
+    // else userstat = req.userstat;
 
-    console.log(userstat);
+    // console.log(userstat);
 
-    res.send(userstat);
+    // res.send(userstat);
+    res.send('메인 화면입니다.')
   }
 );
 

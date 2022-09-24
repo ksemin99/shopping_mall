@@ -19,19 +19,25 @@ app.get('/:categoryid', (req, res, next) => {
   const categoryid = req.params.categoryid;
   //const page = req.params.page;
   switch (categoryid) {
-    case 0: //top
+    case 0: //new
       categorysql = '';
       break;
-    case 1: //pants
+    case 1: //best
       categorysql = '';
       break;
-    case 2: //outer
+    case 2: //top
       categorysql = '';
       break;
-    case 3: //skirt
+    case 3: //pants
       categorysql = '';
       break;
-    case 4: //shoes&bags
+    case 4: //outer
+      categorysql = '';
+      break;
+    case 5: //skirt
+      categorysql = '';
+      break;
+    case 6: //shoes&bags
       categorysql = '';
       break;
   }

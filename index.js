@@ -31,6 +31,8 @@ app.use('/auth/newidcheck', newidcheck);
 
 app.use('/main', main);
 
+app.use('/category', category);
+
 app.use('/categorymain', categorymain);
 
 //const dotenv = require('dotenv').config(); // #1

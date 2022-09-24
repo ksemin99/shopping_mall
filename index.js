@@ -33,7 +33,7 @@ app.use('/main', main);
 
 app.use('/category', category);
 
-app.use('/categorymain', categorymain);
+app.use('/main', categorymain);
 
 //const dotenv = require('dotenv').config(); // #1
 const mysqlConObj = require('./config/mysql'); // #2

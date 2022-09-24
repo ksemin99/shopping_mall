@@ -14,9 +14,18 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/:categoryid', (req, res, next) => {
+app.get('/:categoryid/:page', (req, res, next) => {
   // DB로 categoryid 별 애들 불러오기
-  res.send(userstat);
+  const categoryid = req.params.categoryid;
+  const page = req.params.page;
+  categorysql = '';
+
+  db.query(categorysql, (err, result) => {
+    if (err) console.log(err);
+    else console.log(result, 'sql 성공');
+  });
+
+  res.send();
 });
 
 module.exports = app;

@@ -16,7 +16,7 @@ dotenv.config();
 
 app.get('/:categoryid/:page', (req, res, next) => {
   // DB로 categoryid 별 애들 불러오기
-  const categoryid = req.params.categoryid;
+  const categoryid = req.params.categoryid; // 0: top, 1: pants, 2:outer, 3: skirt, 4: shoes&bags
   const page = req.params.page;
   categorysql = '';
 

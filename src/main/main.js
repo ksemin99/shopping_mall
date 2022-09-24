@@ -14,21 +14,24 @@ app.use(cors());
 
 dotenv.config();
 
-app.get(
-  '/',
-  //checkauthorization.authenticateToken,
-  //mainfunction.checkjwtid,
-  (req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    // let userstat = '';
-    // if (req.userstat == '') userstat = 'main 연결 완료';
-    // else userstat = req.userstat;
+// app.get(
+//   '/',
+//   //checkauthorization.authenticateToken,
+//   //mainfunction.checkjwtid,
+//   (req, res, next) => {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     // let userstat = '';
+//     // if (req.userstat == '') userstat = 'main 연결 완료';
+//     // else userstat = req.userstat;
 
-    // console.log(userstat);
+//     // console.log(userstat);
 
-    // res.send(userstat);
-    res.send('메인 화면입니다.')
-  }
-);
+//     // res.send(userstat);
+//     res.send('메인 화면입니다.')
+//   }
+// );
+app.get('/', (req, res, next) => {
+  res.send('메인 화면입니다.');
+})
 
 module.exports = app;

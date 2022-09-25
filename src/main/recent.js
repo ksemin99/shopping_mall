@@ -16,7 +16,8 @@ dotenv.config();
 
 app.get('/', (req, res, next) => {
   //new랑 best랑 카테고리별 4개씩
-  mainsql = 'SELECT * FROM board ORDER BY b_time DESC limit 4';
+  mainsql =
+    'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num order by b.b_time desc limit 12';
   mainsql = 'select * from board order by b_views desc limit 4';
   mainsql = 'select * from board where c_num = 1 limit 4';
   mainsql = 'select * from board where c_num = 2 limit 4';

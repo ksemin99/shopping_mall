@@ -26,22 +26,28 @@ app.get('/:categoryid', (req, res, next) => {
         'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num order by b.b_time desc';
       break;
     case 1: //best 조회수 높은 순
-      categorysql = 'select * from board order by b_views desc';
+      categorysql =
+        'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num order by b.b_views desc';
       break;
     case 2: //top 탑 명시 되어있는 거
-      categorysql = 'select * from board where c_num = 1';
+      categorysql =
+        'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num and b.c_num = 1';
       break;
     case 3: //pants
-      categorysql = 'select * from board where c_num = 2';
+      categorysql =
+        'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num and b.c_num = 2';
       break;
     case 4: //outer
-      categorysql = 'select * from board where c_num = 3';
+      categorysql =
+        'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num and b.c_num = 3';
       break;
     case 5: //skirt
-      categorysql = 'select * from board where c_num = 4';
+      categorysql =
+        'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num and b.c_num = 4';
       break;
     case 6: //shoes&bags
-      categorysql = 'select * from board where c_num = 5';
+      categorysql =
+        'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num and b.c_num = 5';
       break;
   }
 

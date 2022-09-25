@@ -65,6 +65,7 @@ app.get('/', (req, res, next) => {
       sqlresult.data1[3].id = 4;
     }
   });
+
   db.query(testsql2, (err, result) => {
     if (err) console.log(err);
     else {

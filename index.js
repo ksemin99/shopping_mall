@@ -45,7 +45,7 @@ app.use(cors());
 dotenv.config();
 
 app.get('/', (req, res, next) => {
-  let sqlresult = { data1: [], data2: [] };
+  let sqlresult = { data1: {}, data2: {} };
   let semi = [];
   testsql =
     'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, board_detail bd WHERE b.b_num = bd.b_num ORDER BY b.b_views desc limit 4';

@@ -15,7 +15,7 @@ app.use(cors());
 dotenv.config();
 
 app.get('/:categoryid', (req, res, next) => {
-  let categorysql;
+  let categorysql = '';
   // DB로 categoryid 별 애들 불러오기
   const categoryid = req.params.categoryid;
   //const page = req.params.page;

@@ -37,18 +37,18 @@ app.get('/', (req, res, next) => {
     else console.log(result, 'sql 성공');
 
     recentresult.data1.push(...result);
-    recentresult.data1[0].id = '1';
-    recentresult.data1[1].id = '1';
-    recentresult.data1[2].id = '1';
-    recentresult.data1[3].id = '2';
-    recentresult.data1[4].id = '2';
-    recentresult.data1[5].id = '2';
-    recentresult.data1[6].id = '3';
-    recentresult.data1[7].id = '3';
-    recentresult.data1[8].id = '3';
-    recentresult.data1[9].id = '4';
-    recentresult.data1[10].id = '4';
-    recentresult.data1[11].id = '4';
+    recentresult.data1[0].id = 1;
+    recentresult.data1[1].id = 1;
+    recentresult.data1[2].id = 1;
+    recentresult.data1[3].id = 2;
+    recentresult.data1[4].id = 2;
+    recentresult.data1[5].id = 2;
+    recentresult.data1[6].id = 3;
+    recentresult.data1[7].id = 3;
+    recentresult.data1[8].id = 3;
+    recentresult.data1[9].id = 4;
+    recentresult.data1[10].id = 4;
+    recentresult.data1[11].id = 4;
     //res.send(result);
   });
 

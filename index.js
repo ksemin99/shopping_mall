@@ -36,7 +36,7 @@ app.use('/recent', recent);
 
 //const dotenv = require('dotenv').config(); // #1
 const mysqlConObj = require('./config/mysql'); // #2
-const { request } = require('express');
+const { request, json } = require('express');
 const db = mysqlConObj.init();
 
 https: app.use(express.json());
@@ -59,10 +59,10 @@ app.get('/', (req, res, next) => {
       sqlresult.data1.push(...result);
     }
   });
-
   db.query(testsql2, (err, result) => {
     if (err) console.log(err);
     else {
+      console.log(JSON.parse(JSON.stringify(result)));
       console.log(typeof result);
       console.log(result.b_color);
       console.log(Object.values(...result));

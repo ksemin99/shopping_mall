@@ -19,33 +19,26 @@ app.get('/:categoryid', (req, res, next) => {
   const categoryid = req.params.categoryid;
   //const page = req.params.page;
   switch (categoryid) {
-    case 0: //new
-      categorysql =
-        'SELECT * FROM category JOIN board on category.c_num = board.c_num AND ORDER BY ';
+    case 0: //new 카테고리 별로 제일 최근꺼 그냥 쫙
+      categorysql = 'SELECT * FROM board ORDER BY b_time DESC';
       break;
-    case 1: //best
-      categorysql =
-        'SELECT * FROM category JOIN board on category.c_num = board.c_num AND ORDER BY views(DESC)';
+    case 1: //best 조회수 높은 순
+      categorysql = 'select * from board order by b_views desc';
       break;
-    case 2: //top
-      categorysql =
-        'SELECT * FROM category JOIN board on category.c_num = board.c_num AND c_name = top';
+    case 2: //top 탑 명시 되어있는 거
+      categorysql = 'select * from board where c_num = 1';
       break;
     case 3: //pants
-      categorysql =
-        'SELECT * FROM category JOIN board on category.c_num = board.c_num AND c_name = pants';
+      categorysql = 'select * from board where c_num = 2';
       break;
     case 4: //outer
-      categorysql =
-        'SELECT * FROM category JOIN board on category.c_num = board.c_num AND c_name = outer';
+      categorysql = 'select * from board where c_num = 3';
       break;
     case 5: //skirt
-      categorysql =
-        'SELECT * FROM category JOIN board on category.c_num = board.c_num AND c_name = skirt';
+      categorysql = 'select * from board where c_num = 4';
       break;
     case 6: //shoes&bags
-      categorysql =
-        'SELECT * FROM category JOIN board on category.c_num = board.c_num AND c_name = shoesbags';
+      categorysql = 'select * from board where c_num = 5';
       break;
   }
 
@@ -56,7 +49,6 @@ app.get('/:categoryid', (req, res, next) => {
 
   res.send({
     picture: '',
-    color: '',
     dressname: '',
     dressprice: '',
     views: '',

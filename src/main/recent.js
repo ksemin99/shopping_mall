@@ -15,21 +15,14 @@ app.use(cors());
 dotenv.config();
 
 app.get('/', (req, res, next) => {
-  maintopsql =
-    'SELECT category.c_name, board.b_name, board.b_price, board.b_color, board.b_size FROM category JOIN board on category.c_num = board.c_num AND ROWNUM < 5 AND c_name = top'; //카테고리별 4개씩 들고오기
-
-  mainpantssql =
-    'SELECT category.c_name, board.b_name, board.b_price, board.b_color, board.b_size FROM category JOIN board on category.c_num = board.c_num AND ROWNUM < 5 AND c_name = pants'; //카테고리별 4개씩 들고오기
-
-  mainoutersql =
-    'SELECT category.c_name, board.b_name, board.b_price, board.b_color, board.b_size FROM category JOIN board on category.c_num = board.c_num AND ROWNUM < 5 AND c_name = outer'; //카테고리별 4개씩 들고오기
-
-  mainskirtsql =
-    'SELECT category.c_name, board.b_name, board.b_price, board.b_color, board.b_size FROM category JOIN board on category.c_num = board.c_num AND ROWNUM < 5 AND c_name = skirt'; //카테고리별 4개씩 들고오기
-
-  mainshoesbagssql =
-    'SELECT category.c_name, board.b_name, board.b_price, board.b_color, board.b_size FROM category JOIN board on category.c_num = board.c_num AND ROWNUM < 5 AND c_name = shoesbags'; //카테고리별 4개씩 들고오기
-
+  //new랑 best랑 카테고리별 4개씩
+  categorysql = 'SELECT * FROM board ORDER BY b_time DESC limit 4';
+  categorysql = 'select * from board order by b_views desc limit 4';
+  categorysql = 'select * from board where c_num = 1 limit 4';
+  categorysql = 'select * from board where c_num = 2 limit 4';
+  categorysql = 'select * from board where c_num = 3 limit 4';
+  categorysql = 'select * from board where c_num = 4 limit 4';
+  categorysql = 'select * from board where c_num = 5 limit 4';
   db.query(mainsql, (err, result) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');

@@ -53,7 +53,7 @@ app.get('/', (req, res, next) => {
     if (err) console.log(err);
     else {
       console.log(result);
-      res.send({ result });
+      res.send(...result);
     }
   });
 });

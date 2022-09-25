@@ -35,7 +35,7 @@ app.get('/', (req, res, next) => {
   db.query(bestsql, (err, result) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
-    recentresult.data1.push(result);
+    recentresult.data1.push(...result);
     //res.send(result);
   });
 

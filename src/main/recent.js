@@ -37,12 +37,7 @@ app.get('/', (req, res, next) => {
     recentresult.push(result);
     //res.send(result);
   });
-  db.query(bestsql, (err, result) => {
-    if (err) console.log(err);
-    else console.log(result, 'sql 성공');
-    recentresult.push(result);
-    //res.send(result);
-  });
+
   db.query(topsql, (err, result) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
@@ -71,7 +66,7 @@ app.get('/', (req, res, next) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
     recentresult.push(result);
-    res.send(result);
+    res.send(recentresult);
   });
 });
 

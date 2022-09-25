@@ -17,7 +17,8 @@ dotenv.config();
 app.get('/:categoryid', (req, res, next) => {
   let categorysql = '';
   // DB로 categoryid 별 애들 불러오기
-  const categoryid = req.params.categoryid;
+  console.log(req.params.categoryid);
+  const categoryid = Number(req.params.categoryid);
   //const page = req.params.page;
   switch (categoryid) {
     case 0: //new 카테고리 별로 제일 최근꺼 그냥 쫙

@@ -20,25 +20,32 @@ app.get('/:categoryid', (req, res, next) => {
   //const page = req.params.page;
   switch (categoryid) {
     case 0: //new
-      categorysql = '';
+      categorysql =
+        'SELECT * FROM category JOIN board on category.c_num = board.c_num AND ORDER BY ';
       break;
     case 1: //best
-      categorysql = '';
+      categorysql =
+        'SELECT * FROM category JOIN board on category.c_num = board.c_num AND ORDER BY views(DESC)';
       break;
     case 2: //top
-      categorysql = '';
+      categorysql =
+        'SELECT * FROM category JOIN board on category.c_num = board.c_num AND c_name = top';
       break;
     case 3: //pants
-      categorysql = '';
+      categorysql =
+        'SELECT * FROM category JOIN board on category.c_num = board.c_num AND c_name = pants';
       break;
     case 4: //outer
-      categorysql = '';
+      categorysql =
+        'SELECT * FROM category JOIN board on category.c_num = board.c_num AND c_name = outer';
       break;
     case 5: //skirt
-      categorysql = '';
+      categorysql =
+        'SELECT * FROM category JOIN board on category.c_num = board.c_num AND c_name = skirt';
       break;
     case 6: //shoes&bags
-      categorysql = '';
+      categorysql =
+        'SELECT * FROM category JOIN board on category.c_num = board.c_num AND c_name = shoesbags';
       break;
   }
 

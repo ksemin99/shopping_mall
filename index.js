@@ -63,6 +63,7 @@ app.get('/', (req, res, next) => {
   db.query(testsql2, (err, result) => {
     if (err) console.log(err);
     else {
+      console.log(typeof result);
       console.log(result);
       console.log(Object.values(...result));
       semi = Object.values(result);

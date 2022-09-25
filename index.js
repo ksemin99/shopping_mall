@@ -47,6 +47,7 @@ dotenv.config();
 app.get('/', (req, res, next) => {
   let sqlresult = { data1: [], data2: [] };
   let semi = [];
+  let test = [{ ss: 'q', ss: 'w', ss: 'e' }];
   testsql =
     'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, board_detail bd WHERE b.b_num = bd.b_num ORDER BY b.b_views desc limit 4';
   testsql2 =
@@ -57,6 +58,10 @@ app.get('/', (req, res, next) => {
       //console.log(result);
       //res.send(result);
       sqlresult.data1.push(...result);
+      sqlresult.data1[0].id = 1;
+      sqlresult.data1[1].id = 2;
+      sqlresult.data1[2].id = 3;
+      sqlresult.data1[3].id = 4;
     }
   });
   db.query(testsql2, (err, result) => {

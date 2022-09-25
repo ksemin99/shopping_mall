@@ -17,10 +17,8 @@ dotenv.config();
 app.get('/', (req, res, next) => {
   //new랑 best랑 카테고리별 4개씩
   let recentresult = [];
-  let data1 = { data: [] };
-  let data2 = [];
-  // newsql =
-  //   'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num order by b.b_time desc limit 12';
+  newsql =
+    'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num order by b.b_time desc limit 12';
   bestsql =
     'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num order by b.b_views desc limit 12';
   topsql =
@@ -33,18 +31,18 @@ app.get('/', (req, res, next) => {
     'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num and b.c_num = 4 limit 12';
   shoesbagssql =
     'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num and b.c_num = 5 limit 12';
-  // db.query(newsql, (err, result) => {
-  //   if (err) console.log(err);
-  //   else console.log(result, 'sql 성공');
-  //   recentresult.push(result);
-  //   //res.send(result);
-  // });
+  db.query(newsql, (err, result) => {
+    if (err) console.log(err);
+    else console.log(result, 'sql 성공');
+    recentresult.push(result);
+    //res.send(result);
+  });
 
   db.query(topsql, (err, result) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
-    data1.data.push(result);
-    res.send(data1);
+    recentresult.push(result);
+    //res.send(result);
   });
   db.query(pantssql, (err, result) => {
     if (err) console.log(err);
@@ -68,7 +66,7 @@ app.get('/', (req, res, next) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
     recentresult.push(result);
-    //res.send(recentresult);
+    res.send(recentresult);
   });
 });
 

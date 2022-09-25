@@ -46,6 +46,7 @@ dotenv.config();
 
 app.get('/', (req, res, next) => {
   let sqlresult = { data1: [], data2: [] };
+  let semi = [];
   testsql =
     'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, board_detail bd WHERE b.b_num = bd.b_num ORDER BY b.b_views desc limit 4';
   testsql2 =
@@ -63,7 +64,8 @@ app.get('/', (req, res, next) => {
     else {
       console.log(result);
       console.log(Object.values(result));
-      sqlresult.data1[0].b_color = Object.values(...result);
+      semi = Object.values(...result);
+      sqlresult.data1[0].b_color = semi;
       res.send(sqlresult);
     }
   });

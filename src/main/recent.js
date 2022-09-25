@@ -69,7 +69,7 @@ app.get('/', (req, res, next) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
     recentresult.data2.push(result);
-    res.send(recentresult);
+    //res.send(recentresult);
   });
 });
 

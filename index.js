@@ -45,7 +45,7 @@ app.use(cors());
 dotenv.config();
 
 app.get('/', (req, res, next) => {
-  sqlresult = [];
+  let sqlresult = [];
   testsql =
     'SELECT b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views FROM board b, board_detail bd WHERE b.b_num = bd.b_num ORDER BY b.b_views desc limit 12';
   testsql2 =
@@ -62,7 +62,7 @@ app.get('/', (req, res, next) => {
     if (err) console.log(err);
     else {
       console.log(result);
-      res.send(result);
+      res.send(sqlresult);
     }
   });
 });

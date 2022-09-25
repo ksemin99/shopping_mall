@@ -62,6 +62,7 @@ app.get('/', (req, res, next) => {
   db.query(testsql2, (err, result) => {
     if (err) console.log(err);
     else {
+      console.log(result);
       console.log(result.b_color);
       sqlresult.data1[0].b_color = result.b_color;
       //res.send(sqlresult);

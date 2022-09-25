@@ -63,7 +63,7 @@ app.get('/', (req, res, next) => {
     if (err) console.log(err);
     else {
       console.log(typeof result);
-      console.log(result);
+      console.log(result.b_color);
       console.log(Object.values(...result));
       semi = Object.values(result);
       console.log(semi);

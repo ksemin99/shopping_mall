@@ -68,7 +68,8 @@ app.get('/', (req, res, next) => {
       // console.log(semi);
       // sqlresult.data1[0].b_color = semi;
       sqlresult.data1[0].b_color = result;
-      res.send(sqlresult);
+
+      res.send(...sqlresult.data1);
     }
   });
 });

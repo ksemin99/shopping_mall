@@ -59,7 +59,6 @@ app.get('/', (req, res, next) => {
       sqlresult.data1.push(...result);
     }
   });
-
   db.query(testsql2, (err, result) => {
     if (err) console.log(err);
     else {
@@ -70,7 +69,7 @@ app.get('/', (req, res, next) => {
       // sqlresult.data1[0].b_color = semi;
       sqlresult.data1[0].b_color = result;
 
-      res.send(...sqlresult.data1);
+      res.send(sqlresult);
     }
   });
 });

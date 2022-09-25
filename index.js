@@ -49,7 +49,7 @@ app.get('/', (req, res, next) => {
   testsql =
     'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, board_detail bd WHERE b.b_num = bd.b_num ORDER BY b.b_views desc limit 4';
   testsql2 =
-    'SELECT bd.b_color FROM board b, board_detail bd WHERE b.b_num = bd.b_num AND bd.b_num = (SELECT b_num FROM board ORDER BY b_views desc limit 1)';
+    'SELECT DISTINCT bd.b_color FROM board b, board_detail bd WHERE b.b_num = bd.b_num AND bd.b_num = (SELECT b_num FROM board ORDER BY b_views desc limit 1)';
   db.query(testsql, (err, result) => {
     if (err) console.log(err);
     else {
@@ -62,7 +62,7 @@ app.get('/', (req, res, next) => {
     if (err) console.log(err);
     else {
       console.log(result);
-      sqlresult.data1[0].b_color = result;
+      sqlresult.data1[0].b_color = result.join('');
       res.send(sqlresult);
     }
   });

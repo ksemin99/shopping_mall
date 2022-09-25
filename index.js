@@ -63,8 +63,8 @@ app.get('/', (req, res, next) => {
     else {
       console.log(result);
       console.log(result.b_color);
-      sqlresult.data1[0].b_color = result.b_color;
-      //res.send(sqlresult);
+      sqlresult.data1[0].b_color = Object.values(result);
+      res.send(sqlresult);
     }
   });
 });

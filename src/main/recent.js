@@ -41,31 +41,36 @@ app.get('/', (req, res, next) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
     recentresult.push(result);
-    res.send(result);
+    //res.send(result);
   });
   db.query(topsql, (err, result) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
-    res.send(result);
+    recentresult.push(result);
+    //res.send(result);
   });
   db.query(pantssql, (err, result) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
-    res.send(result);
+    recentresult.push(result);
+    //res.send(result);
   });
   db.query(outersql, (err, result) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
-    res.send(result);
+    recentresult.push(result);
+    //res.send(result);
   });
   db.query(skirtsql, (err, result) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
-    res.send(result);
+    recentresult.push(result);
+    //res.send(result);
   });
   db.query(shoesbagssql, (err, result) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
+    recentresult.push(result);
     res.send(result);
   });
 });

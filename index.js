@@ -47,7 +47,7 @@ dotenv.config();
 app.get('/', (req, res, next) => {
   let sqlresult = { data1: [], data2: [] };
   testsql =
-    'SELECT b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views FROM board b, board_detail bd WHERE b.b_num = bd.b_num ORDER BY b.b_views desc limit 12';
+    'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, board_detail bd WHERE b.b_num = bd.b_num ORDER BY b.b_views desc limit 12';
   testsql2 =
     'SELECT bd.b_color FROM board b, board_detail bd WHERE b.b_num = bd.b_num AND bd.b_num = (SELECT b_num FROM board ORDER BY b_views desc limit 1)';
   db.query(testsql, (err, result) => {

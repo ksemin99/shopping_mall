@@ -17,7 +17,7 @@ dotenv.config();
 app.get('/', (req, res, next) => {
   maintopsql =
     'SELECT category.c_name, board.b_name, board.b_price FROM category JOIN board on category.c_num = board.c_num AND ROWNUM < 5 AND c_name = top'; //카테고리별 4개씩 들고오기
-
+  testsql = 'select * from board ';
   mainpantssql =
     'SELECT category.c_name, board.b_name, board.b_price, board.b_color, board.b_size FROM category JOIN board on category.c_num = board.c_num AND ROWNUM < 5 AND c_name = pants'; //카테고리별 4개씩 들고오기
 
@@ -30,7 +30,7 @@ app.get('/', (req, res, next) => {
   mainshoesbagssql =
     'SELECT category.c_name, board.b_name, board.b_price, board.b_color, board.b_size FROM category JOIN board on category.c_num = board.c_num AND ROWNUM < 5 AND c_name = shoesbags'; //카테고리별 4개씩 들고오기
 
-  db.query(maintopsql, (err, result) => {
+  db.query(testsql, (err, result) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
     res.send(result);

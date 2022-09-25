@@ -21,9 +21,8 @@ app.get('/', (req, res, next) => {
   db.query(mainsql, (err, result) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
+    res.send(result);
   });
-
-  res.send(result);
 
   // res.send({
   //   picture: '',

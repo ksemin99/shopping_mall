@@ -48,7 +48,7 @@ app.get('/', (req, res, next) => {
   testsql =
     'SELECT b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views FROM board b, board_detail bd WHERE b.b_num = bd.b_num ORDER BY b.b_views desc';
   testsql2 =
-    'SELECT bd.b_color FROM board b, board_detail bd WHERE b.b_num = bd.b_num AND bd.b_num = (SELECT b_num FROM board ORDER BY b_views desc limit 4)';
+    'SELECT bd.b_color FROM board b, board_detail bd WHERE b.b_num = bd.b_num AND bd.b_num = (SELECT b_num FROM board ORDER BY b_views desc limit 1)';
   db.query(testsql2, (err, result) => {
     if (err) console.log(err);
     else {

@@ -37,6 +37,7 @@ app.get('/', (req, res, next) => {
     else console.log(result, 'sql 성공');
 
     recentresult.data1.push(...result);
+    recentresult.data1[0].id = '1';
     //res.send(result);
   });
 

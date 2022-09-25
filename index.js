@@ -44,6 +44,8 @@ app.use(cors());
 
 dotenv.config();
 
+app.get('/', (req, res, next) => {});
+
 app.listen(PORT, function () {
   console.log('server listening on port 3000');
 });

@@ -45,10 +45,19 @@ app.use(cors());
 dotenv.config();
 
 app.get('/', (req, res, next) => {
+  sqlresult = [];
   testsql =
-    'SELECT b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views FROM board b, board_detail bd WHERE b.b_num = bd.b_num ORDER BY b.b_views desc';
+    'SELECT b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views FROM board b, board_detail bd WHERE b.b_num = bd.b_num ORDER BY b.b_views desc limit 12';
   testsql2 =
     'SELECT bd.b_color FROM board b, board_detail bd WHERE b.b_num = bd.b_num AND bd.b_num = (SELECT b_num FROM board ORDER BY b_views desc limit 1)';
+  db.query(testsql, (err, result) => {
+    if (err) console.log(err);
+    else {
+      //console.log(result);
+      //res.send(result);
+      sqlresult.push(result);
+    }
+  });
   db.query(testsql2, (err, result) => {
     if (err) console.log(err);
     else {

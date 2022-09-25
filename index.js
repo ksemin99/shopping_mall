@@ -59,12 +59,14 @@ app.get('/', (req, res, next) => {
       sqlresult.data1.push(...result);
     }
   });
+
   db.query(testsql2, (err, result) => {
     if (err) console.log(err);
     else {
-      sqlresult.data1[0].b_color = Object.values(
-        JSON.parse(JSON.stringify(result))
-      );
+      console.log(JSON.parse(JSON.stringify(result)));
+      semi = Object.values(JSON.parse(JSON.stringify(result)));
+      console.log(semi);
+      sqlresult.data1[0].b_color = semi;
       res.send(sqlresult);
     }
   });

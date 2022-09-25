@@ -17,7 +17,7 @@ dotenv.config();
 app.get('/', (req, res, next) => {
   //new랑 best랑 카테고리별 4개씩
   let recentresult = [];
-  let data1 = [];
+  let data1 = { data: [] };
   let data2 = [];
   // newsql =
   //   'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num order by b.b_time desc limit 12';
@@ -43,8 +43,8 @@ app.get('/', (req, res, next) => {
   db.query(topsql, (err, result) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
-    //data1.push(result);
-    res.send(result);
+    data1.push(result);
+    res.send(data1);
   });
   db.query(pantssql, (err, result) => {
     if (err) console.log(err);

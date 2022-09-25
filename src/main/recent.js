@@ -43,7 +43,7 @@ app.get('/', (req, res, next) => {
   db.query(topsql, (err, result) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
-    data1.push(result);
+    data1.data.push(result);
     res.send(data1);
   });
   db.query(pantssql, (err, result) => {

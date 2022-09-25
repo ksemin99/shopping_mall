@@ -62,7 +62,7 @@ app.get('/', (req, res, next) => {
     if (err) console.log(err);
     else {
       console.log(result);
-      sqlresult.data1[0].b_color = result[0];
+      sqlresult.data1[0].b_color = result[key];
       res.send(sqlresult);
     }
   });

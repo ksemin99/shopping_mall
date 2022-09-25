@@ -63,13 +63,9 @@ app.get('/', (req, res, next) => {
   db.query(testsql2, (err, result) => {
     if (err) console.log(err);
     else {
-      console.log(JSON.parse(JSON.stringify(result)));
-      console.log(typeof result);
-      console.log(result.b_color);
-      console.log(Object.values(...result));
-      semi = Object.values(result);
-      console.log(semi);
-      sqlresult.data1[0].b_color = semi;
+      sqlresult.data1[0].b_color = Object.values(
+        JSON.parse(JSON.stringify(result))
+      );
       res.send(sqlresult);
     }
   });

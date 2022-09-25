@@ -30,7 +30,7 @@ app.get('/', (req, res, next) => {
   mainshoesbagssql =
     'SELECT category.c_name, board.b_name, board.b_price, board.b_color, board.b_size FROM category JOIN board on category.c_num = board.c_num AND ROWNUM < 5 AND c_name = shoesbags'; //카테고리별 4개씩 들고오기
 
-  db.query(testsql, (err, result) => {
+  db.query(maintopsql, (err, result) => {
     if (err) console.log(err);
     else console.log(result, 'sql 성공');
     res.send(result);

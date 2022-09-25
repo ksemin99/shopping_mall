@@ -44,7 +44,19 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/', (req, res, next) => {});
+app.get('/', (req, res, next) => {
+  testsql =
+    'SELECT b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views FROM board b, board_detail bd WHERE b.b_num = bd.b_num ORDER BY b.b_views desc';
+  testsql2 =
+    'SELECT bd.b_color FROM board b, board_detail bd WHERE b.b_num = bd.b_num AND (SELECT b_name FROM board ORDER BY b_views desc limit 4)';
+  db.query(testsql2, (err, result) => {
+    if (err) console.log(err);
+    else {
+      console.log(result);
+      res.send({ result });
+    }
+  });
+});
 
 app.listen(PORT, function () {
   console.log('server listening on port 3000');

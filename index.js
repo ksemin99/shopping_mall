@@ -58,7 +58,6 @@ app.get('/', (req, res, next) => {
       sqlresult.data1.push(...result);
     }
   });
-
   db.query(testsql2, (err, result) => {
     if (err) console.log(err);
     else {

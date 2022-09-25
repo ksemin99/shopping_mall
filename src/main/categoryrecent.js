@@ -23,7 +23,7 @@ app.get('/:categoryid', (req, res, next) => {
   switch (categoryid) {
     case 0: //new 카테고리 별로 제일 최근꺼 그냥 쫙
       categorysql =
-        'select b.b_name, b.b_url, b.b_price, bd.b_color from board b, board_detail bd where b.b_num = bd.b_num order by b.b_time desc';
+        'select b.b_name, b.b_url, b.b_price, bd.b_color b.b_views from board b, board_detail bd where b.b_num = bd.b_num order by b.b_time desc';
       break;
     case 1: //best 조회수 높은 순
       categorysql = 'select * from board order by b_views desc';
@@ -47,14 +47,12 @@ app.get('/:categoryid', (req, res, next) => {
 
   db.query(categorysql, (err, result) => {
     if (err) console.log(err);
-    else console.log(result, 'sql 성공');
-  });
-
-  res.send({
-    picture: '',
-    dressname: '',
-    dressprice: '',
-    views: '',
+    else {
+      console.log(result);
+      res.send({
+        result,
+      });
+    }
   });
 });
 

@@ -64,7 +64,7 @@ app.get('/', (req, res, next) => {
       console.log(result);
       console.log(Object.values(result));
       sqlresult.data1[0].b_color = Object.values(result);
-      res.send(sqlresult);
+      res.send(Object.values(result));
     }
   });
 });

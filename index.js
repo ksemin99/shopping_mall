@@ -48,7 +48,7 @@ app.get('/', (req, res, next) => {
   let sqlresult = { data1: [], data2: [] };
 
   testsql =
-    'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, test bc WHERE b.b_num = bc.bc_num ORDER BY b.b_views desc limit 4';
+    'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.b_views desc limit 4';
 
   db.query(testsql, (err, result) => {
     if (err) console.log(err);
@@ -56,6 +56,7 @@ app.get('/', (req, res, next) => {
       sqlresult.data1.push(...result);
     }
   });
+
   for (let k = 0; k < 4; k++) {
     let semi = [];
     let test = [];

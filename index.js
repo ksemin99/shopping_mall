@@ -63,7 +63,7 @@ app.get('/', (req, res, next) => {
     else {
       sqlresult.data1.push(...result);
       // test.data1.push(...result);
-      // console.log(test);
+      console.log(sqlresult);
       // test.data1.push(...result);
       // res.send(test);
     }

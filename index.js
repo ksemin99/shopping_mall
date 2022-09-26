@@ -75,7 +75,9 @@ app.get('/', (req, res, next) => {
       // for (let data of result) {
       //   semi.push(data.b_color);
       // }
+      console.log('result');
       console.log(result);
+      console.log('result');
       // for (let data of result) {
       //   test1.push(Object.values(data));
       // }

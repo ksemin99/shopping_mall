@@ -38,23 +38,23 @@ app.get('/', (req, res, next) => {
 
   db.query(topsql, (err, result) => {
     if (err) console.log(err);
-    else sqlresult.data2.push(result);
+    else sqlresult.data2.push(...result);
   });
   db.query(pantssql, (err, result) => {
     if (err) console.log(err);
-    else sqlresult.data2.push(result);
+    else sqlresult.data2.push(...result);
   });
   db.query(outersql, (err, result) => {
     if (err) console.log(err);
-    else sqlresult.data2.push(result);
+    else sqlresult.data2.push(...result);
   });
   db.query(skirtsql, (err, result) => {
     if (err) console.log(err);
-    else sqlresult.data2.push(result);
+    else sqlresult.data2.push(...result);
   });
   db.query(shoesbagssql, (err, result) => {
     if (err) console.log(err);
-    else sqlresult.data2.push(result);
+    else sqlresult.data2.push(...result);
     //res.send(sqlresult);
   });
 

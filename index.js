@@ -73,7 +73,7 @@ app.get('/', (req, res, next) => {
     if (err) console.log(err);
     else {
       for (let data of result) {
-        semi.push(data.b_color);
+        semi.push(data);
       }
       console.log('result');
       console.log(result);

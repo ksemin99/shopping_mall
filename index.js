@@ -71,14 +71,10 @@ app.get('/', (req, res, next) => {
           semi.push(data);
         }
         sqlresult.data1[k].b_color = test.concat(...semi);
-        console.log(sqlresult + '1');
       }
-      console.log(sqlresult + '2');
+      if (k == 3) res.send(sqlresult);
     });
-    console.log(sqlresult + '3');
   }
-  console.log(sqlresult + '4');
-  res.send(sqlresult);
 });
 
 app.listen(PORT, function () {

@@ -47,38 +47,39 @@ dotenv.config();
 app.get('/', (req, res, next) => {
   let sqlresult = { data1: [], data2: [] };
   let semi = [];
-  let test = '';
-  let test1 = '';
+  let test = { data1: [], data2: [] };
+  let test1 = [];
   testsql =
     'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, board_detail bd WHERE b.b_num = bd.b_num ORDER BY b.b_views desc limit 4';
   testsql2 =
     'SELECT DISTINCT bd.b_color FROM board b, board_detail bd WHERE b.b_num = bd.b_num AND bd.b_num = (SELECT b_num FROM board ORDER BY b_views desc limit 1)';
+  testsql3 =
+    'SELECT bc.b_color FROM board b, board_color bc WHERE b.bc_num = bc.bc_num AND bc.bc_num = (SELECT DISTINCT bc_num FROM board ORDER BY b_views desc limit 1)';
   db.query(testsql, (err, result) => {
     if (err) console.log(err);
     else {
-      //console.log(result);
-      //res.send(result);
-      sqlresult.data1.push(...result);
-      sqlresult.data1[0].id = 1;
-      sqlresult.data1[1].id = 2;
-      sqlresult.data1[2].id = 3;
-      sqlresult.data1[3].id = 4;
+      //sqlresult.data1.push(...result);
+      test.data1.push(...result);
+      console.log(test);
     }
   });
 
   db.query(testsql2, (err, result) => {
     if (err) console.log(err);
     else {
+      // for (let data of result) {
+      //   semi.push(data.b_color);
+      // }
+
       for (let data of result) {
-        semi.push(data.b_color);
+        test1.push(data.b_color);
       }
+
       console.log(...semi);
+      console.log(...test1);
+
       //test1 = test.concat(...semi);
       // sqlresult.data1[0].b_color = test1;
-      sqlresult.data1[0].b_color = semi;
-      sqlresult.data1[1].b_color = semi;
-      sqlresult.data1[2].b_color = semi;
-      sqlresult.data1[3].b_color = semi;
       // sqlresult.data1[0].b_color = result;
 
       res.send(sqlresult);

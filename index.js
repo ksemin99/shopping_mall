@@ -44,39 +44,6 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/', (req, res, next) => {
-  let sqlresult = { data1: [], data2: [] };
-
-  testsql =
-    'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.b_views desc limit 4';
-
-  db.query(testsql, (err, result) => {
-    if (err) console.log(err);
-    else {
-      sqlresult.data1.push(...result);
-    }
-  });
-
-  for (let k = 0; k < 4; k++) {
-    let semi = [];
-    let test = [];
-    testsql2 =
-      'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc limit ' +
-      k +
-      ', 1)';
-    db.query(testsql2, (err, result) => {
-      if (err) console.log(err);
-      else {
-        for (let data of result) {
-          semi.push(data);
-        }
-        sqlresult.data1[k].b_color = test.concat(...semi);
-      }
-      if (k == 3) res.send(sqlresult);
-    });
-  }
-});
-
 app.listen(PORT, function () {
   console.log('server listening on port 3000');
 });

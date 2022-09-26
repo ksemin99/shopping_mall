@@ -56,7 +56,7 @@ app.get('/', (req, res, next) => {
   testsql3 =
     'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc) limit 4';
   qwe =
-    'SELECT bc.* FROM board_color bc, board_best bb WHERE bc.bc_num = bb.b_num';
+    'SELECT bc.* FROM board_color bc, board_best bb WHERE bc.bc_num = bb.b_num limit 4';
 
   db.query(qwe, (err, result) => {
     if (err) console.log(err);
@@ -64,7 +64,8 @@ app.get('/', (req, res, next) => {
       //sqlresult.data1.push(...result);
       //test.data1.push(...result);
       console.log(test);
-      res.send(result);
+      test.data1.push(...result);
+      //res.send(result);
     }
   });
 
@@ -74,7 +75,7 @@ app.get('/', (req, res, next) => {
       // for (let data of result) {
       //   semi.push(data.b_color);
       // }
-
+      Object.values();
       for (let data of result) {
         test1.push(data.b_color);
       }

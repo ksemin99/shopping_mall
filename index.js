@@ -72,9 +72,9 @@ app.get('/', (req, res, next) => {
   db.query(testsql2, (err, result) => {
     if (err) console.log(err);
     else {
-      // for (let data of result) {
-      //   semi.push(data.b_color);
-      // }
+      for (let data of result) {
+        semi.push(data.b_color);
+      }
       console.log('result');
       console.log(result);
       console.log('result');

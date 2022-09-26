@@ -56,7 +56,7 @@ app.get('/', (req, res, next) => {
   testsql3 =
     'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc) limit 4';
   qwe =
-    'SELECT bc.* FROM board_best bb, board_color bc WHERE bb.b_num = bc.bc_num limit 4';
+    'SELECT bc.* IS NOT NULL FROM board_best bb, board_color bc WHERE bb.b_num = bc.bc_num limit 4';
 
   db.query(qwe, (err, result) => {
     if (err) console.log(err);

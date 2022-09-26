@@ -82,7 +82,7 @@ app.get('/', (req, res, next) => {
       // sqlresult.data1[0].b_color = test1;
       // sqlresult.data1[0].b_color = result;
 
-      res.send(sqlresult);
+      res.send(test1);
     }
   });
 });

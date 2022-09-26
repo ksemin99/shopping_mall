@@ -46,9 +46,7 @@ dotenv.config();
 
 app.get('/', (req, res, next) => {
   let sqlresult = { data1: [], data2: [] };
-  let semi = [];
-  let test = [];
-  let test1 = [];
+
   testsql =
     'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, test bc WHERE b.b_num = bc.bc_num ORDER BY b.b_views desc limit 4';
 
@@ -68,6 +66,9 @@ app.get('/', (req, res, next) => {
     }
   });
   for (let k = 0; k < 4; k++) {
+    let semi = [];
+    let test = [];
+    let test1 = [];
     testsql2 =
       'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc limit ' +
       k +

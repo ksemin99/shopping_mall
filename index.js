@@ -74,6 +74,7 @@ app.get('/', (req, res, next) => {
       for (let data of result) {
         test1.push(data.b_color);
       }
+      test.data1[0].b_color = test1;
 
       console.log(...semi);
       console.log(...test1);

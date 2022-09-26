@@ -90,7 +90,7 @@ app.get('/', (req, res, next) => {
       console.log(...test1);
 
       test1 = test.concat(...semi);
-      console.lot(sqlresult.data1[0]);
+      console.log(sqlresult.data1[0]);
       sqlresult.data1[0].b_color = test1;
       // sqlresult.data1[0].b_color = result;
 

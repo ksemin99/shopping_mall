@@ -69,7 +69,7 @@ app.get('/', (req, res, next) => {
     }
   });
 
-  db.query(testsql3, (err, result) => {
+  db.query(testsql2, (err, result) => {
     if (err) console.log(err);
     else {
       for (let data of result) {

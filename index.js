@@ -82,18 +82,18 @@ app.get('/', (req, res, next) => {
 
       console.log(test.data1.length);
 
-      for (let i = 0; i < test.data1.length; i++) {
-        test.data1[i].b_color = test1;
-      }
+      // for (let i = 0; i < test.data1.length; i++) {
+      //   test.data1[i].b_color = test1;
+      // }
 
       console.log(...semi);
       console.log(...test1);
 
-      //test1 = test.concat(...semi);
-      // sqlresult.data1[0].b_color = test1;
+      test1 = test.concat(...semi);
+      sqlresult.data1[0].b_color = test1;
       // sqlresult.data1[0].b_color = result;
 
-      //res.send(test);
+      res.send(sqlresult);
     }
   });
 });

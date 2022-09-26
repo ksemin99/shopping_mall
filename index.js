@@ -65,7 +65,7 @@ app.get('/', (req, res, next) => {
       //test.data1.push(...result);
       console.log(test);
       test.data1.push(...result);
-      //res.send(result);
+      res.send(test);
     }
   });
 

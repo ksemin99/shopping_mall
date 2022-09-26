@@ -80,7 +80,7 @@ app.get('/', (req, res, next) => {
       //   test1.push(Object.values(data));
       // }
 
-      console.log(test.data1.length);
+      //console.log(test.data1.length);
 
       // for (let i = 0; i < test.data1.length; i++) {
       //   test.data1[i].b_color = test1;

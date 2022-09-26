@@ -73,11 +73,10 @@ app.get('/', (req, res, next) => {
         }
         test1 = test.concat(...semi);
         sqlresult.data1[k].b_color = test1;
-
-        res.send(sqlresult);
       }
     });
   }
+  res.send(sqlresult);
 });
 
 app.listen(PORT, function () {

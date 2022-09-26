@@ -75,9 +75,7 @@ app.get('/', (req, res, next) => {
       for (let data of result) {
         semi.push(data);
       }
-      console.log('result');
-      console.log(result);
-      console.log('result');
+
       // for (let data of result) {
       //   test1.push(Object.values(data));
       // }
@@ -88,11 +86,11 @@ app.get('/', (req, res, next) => {
       //   test.data1[i].b_color = test1;
       // }
 
-      console.log(...semi);
-      console.log(...test1);
+      // console.log(...semi);
+      // console.log(...test1);
 
       test1 = test.concat(...semi);
-      console.log(sqlresult.data1[0]);
+      //console.log(sqlresult.data1[0]);
       sqlresult.data1[0].b_color = test1;
       // sqlresult.data1[0].b_color = result;
 

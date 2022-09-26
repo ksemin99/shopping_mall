@@ -21,15 +21,15 @@ app.get('/', (req, res, next) => {
   bestsql =
     'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.b_views desc limit 4';
   topsql =
-    'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.b_num and b.c_num = 1 limit 4';
+    'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 1 limit 4';
   pantssql =
-    'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.b_num and b.c_num = 2 limit 4';
+    'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 2 limit 4';
   outersql =
-    'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.b_num and b.c_num = 3 limit 4';
+    'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 3 limit 4';
   skirtsql =
-    'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.b_num and b.c_num = 4 limit 4';
+    'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 4 limit 4';
   shoesbagssql =
-    'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.b_num and b.c_num = 5 limit 4';
+    'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 5 limit 4';
 
   db.query(bestsql, (err, result) => {
     if (err) console.log(err);
@@ -55,7 +55,7 @@ app.get('/', (req, res, next) => {
   db.query(shoesbagssql, (err, result) => {
     if (err) console.log(err);
     else sqlresult.data2.push(...result);
-    res.send(sqlresult);
+    //res.send(sqlresult);
   });
 
   for (let k = 0; k < 4; k++) {
@@ -73,7 +73,7 @@ app.get('/', (req, res, next) => {
         }
         sqlresult.data1[k].b_color = test.concat(...semi);
       }
-      //if (k == 3) res.send(sqlresult);
+      if (k == 3) res.send(sqlresult);
     });
   }
 });

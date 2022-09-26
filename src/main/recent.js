@@ -55,7 +55,7 @@ app.get('/', (req, res, next) => {
   db.query(shoesbagssql, (err, result) => {
     if (err) console.log(err);
     else sqlresult.data2.push(...result);
-    //res.send(sqlresult);
+    res.send(sqlresult);
   });
 
   for (let k = 0; k < 4; k++) {
@@ -73,7 +73,7 @@ app.get('/', (req, res, next) => {
         }
         sqlresult.data1[k].b_color = test.concat(...semi);
       }
-      if (k == 3) res.send(sqlresult);
+      //if (k == 3) res.send(sqlresult);
     });
   }
 });

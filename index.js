@@ -51,8 +51,7 @@ app.get('/', (req, res, next) => {
   let test1 = [];
   testsql =
     'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, test bc WHERE b.b_num = bc.bc_num ORDER BY b.b_views desc limit 4';
-  testsql2 =
-    'SELECT bc.b_color FROM board b, test bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc limit 1)';
+
   testsql3 =
     'SELECT bc.b_color FROM board b, test bc WHERE bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc) limit 4';
   qwe =
@@ -68,35 +67,24 @@ app.get('/', (req, res, next) => {
       // res.send(test);
     }
   });
+  for (let k = 0; k < 4; k++) {
+    testsql2 =
+      'SELECT bc.b_color FROM board b, test bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc limit ' +
+      k +
+      ', 1)';
+    db.query(testsql2, (err, result) => {
+      if (err) console.log(err);
+      else {
+        for (let data of result) {
+          semi.push(data);
+        }
+        test1 = test.concat(...semi);
+        sqlresult.data1[k].b_color = test1;
 
-  db.query(testsql2, (err, result) => {
-    if (err) console.log(err);
-    else {
-      for (let data of result) {
-        semi.push(data);
+        res.send(sqlresult);
       }
-
-      // for (let data of result) {
-      //   test1.push(Object.values(data));
-      // }
-
-      //console.log(test.data1.length);
-
-      // for (let i = 0; i < test.data1.length; i++) {
-      //   test.data1[i].b_color = test1;
-      // }
-
-      // console.log(...semi);
-      // console.log(...test1);
-
-      test1 = test.concat(...semi);
-      //console.log(sqlresult.data1[0]);
-      sqlresult.data1[0].b_color = test1;
-      // sqlresult.data1[0].b_color = result;
-
-      res.send(sqlresult);
-    }
-  });
+    });
+  }
 });
 
 app.listen(PORT, function () {

@@ -69,7 +69,7 @@ app.get('/', (req, res, next) => {
   });
   for (let k = 0; k < 4; k++) {
     testsql2 =
-      'SELECT bc.b_color FROM board b, test bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc limit ' +
+      'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc limit ' +
       k +
       ', 1)';
     db.query(testsql2, (err, result) => {

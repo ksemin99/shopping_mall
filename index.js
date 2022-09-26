@@ -50,19 +50,10 @@ app.get('/', (req, res, next) => {
   testsql =
     'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, test bc WHERE b.b_num = bc.bc_num ORDER BY b.b_views desc limit 4';
 
-  testsql3 =
-    'SELECT bc.b_color FROM board b, test bc WHERE bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc) limit 4';
-  qwe =
-    'SELECT bc.* FROM board_best bb, board_color bc WHERE bb.b_num = bc.bc_num limit 4';
-
   db.query(testsql, (err, result) => {
     if (err) console.log(err);
     else {
       sqlresult.data1.push(...result);
-      // test.data1.push(...result);
-      // console.log(sqlresult);
-      // test.data1.push(...result);
-      // res.send(test);
     }
   });
   for (let k = 0; k < 4; k++) {

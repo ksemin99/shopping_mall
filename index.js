@@ -54,17 +54,21 @@ app.get('/', (req, res, next) => {
   testsql2 =
     'SELECT DISTINCT bd.b_color FROM board b, board_detail bd WHERE b.b_num = bd.b_num AND bd.b_num = (SELECT b_num FROM board ORDER BY b_views desc limit 1)';
   testsql3 =
-    'SELECT bc.b_color FROM board b, board_color bc WHERE b.bc_num = bc.bc_num AND bc.bc_num = (SELECT DISTINCT bc_num FROM board ORDER BY b_views desc limit 1)';
-  db.query(testsql, (err, result) => {
+    'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc) limit 4';
+  qwe =
+    'SELECT * FROM board_color bc, board_best bb WHERE bc.bc_num = bb.b_num';
+
+  db.query(qwe, (err, result) => {
     if (err) console.log(err);
     else {
       //sqlresult.data1.push(...result);
-      test.data1.push(...result);
+      //test.data1.push(...result);
       console.log(test);
+      res.send(result);
     }
   });
 
-  db.query(testsql2, (err, result) => {
+  db.query(testsql3, (err, result) => {
     if (err) console.log(err);
     else {
       // for (let data of result) {
@@ -80,6 +84,7 @@ app.get('/', (req, res, next) => {
       for (let i = 0; i < test.data1.length; i++) {
         test.data1[i].b_color = test1;
       }
+
       console.log(...semi);
       console.log(...test1);
 
@@ -87,7 +92,7 @@ app.get('/', (req, res, next) => {
       // sqlresult.data1[0].b_color = test1;
       // sqlresult.data1[0].b_color = result;
 
-      res.send(test);
+      //res.send(test);
     }
   });
 });

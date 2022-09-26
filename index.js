@@ -56,7 +56,7 @@ app.get('/', (req, res, next) => {
   testsql3 =
     'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc) limit 4';
   qwe =
-    'SELECT * FROM board_color bc, board_best bb WHERE bc.bc_num = bb.b_num';
+    'SELECT bc.* FROM board_color bc, board_best bb WHERE bc.bc_num = bb.b_num';
 
   db.query(qwe, (err, result) => {
     if (err) console.log(err);

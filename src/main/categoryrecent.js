@@ -73,6 +73,7 @@ app.get('/:categoryid', (req, res, next) => {
       console.log(kcount);
     }
   });
+  console.log(kcount + 'ww');
   for (k = 0; k < kcount; k++) {
     let semi = [];
     let dummy = [];

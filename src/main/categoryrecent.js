@@ -19,7 +19,7 @@ app.get('/:categoryid', (req, res, next) => {
   // DB로 categoryid 별 애들 불러오기
   const categoryid = Number(req.params.categoryid);
   //const page = req.params.page;
-
+  console.log(categoryid);
   let j = 0;
   switch (categoryid) {
     case 0: //new 카테고리 별로 제일 최근꺼 그냥 쫙

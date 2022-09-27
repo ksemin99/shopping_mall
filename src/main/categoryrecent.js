@@ -69,27 +69,23 @@ app.get('/:categoryid', (req, res, next) => {
     if (err) console.log(err);
     else {
       sqlresult.data1.push(...result);
-      kcount = result.length;
-      console.log(kcount);
+      for (k = 0; k < result.length; k++) {
+        let semi = [];
+        let dummy = [];
+        db.query(colorsql, (err, result) => {
+          if (err) console.log(err);
+          else {
+            for (let data of result) {
+              semi.push(data);
+            }
+            sqlresult.data1[k].b_color = dummy.concat(...semi);
+          }
+          console.log(kcount + ' 두번');
+          if (k == kcount - 1) res.send(sqlresult);
+        });
+      }
     }
   });
-  console.log(kcount + 'ww');
-  for (k = 0; k < kcount; k++) {
-    console.log(kcount + 'wwz');
-    let semi = [];
-    let dummy = [];
-    db.query(colorsql, (err, result) => {
-      if (err) console.log(err);
-      else {
-        for (let data of result) {
-          semi.push(data);
-        }
-        sqlresult.data1[k].b_color = dummy.concat(...semi);
-      }
-      console.log(kcount + ' 두번');
-      if (k == kcount - 1) res.send(sqlresult);
-    });
-  }
 });
 
 module.exports = app;

@@ -88,28 +88,28 @@ app.get('/:categoryid', (req, res, next) => {
     else {
       sqlresult.data1.push(...result);
       jcount = result.length;
+
       console.log(result);
+      for (let j = 0; j < jcount; j++) {
+        console.log(j);
+        let semi = [];
+        let dummy = [];
+        db.query(colorsql, (err, secondresult) => {
+          if (err) console.log(err);
+          else {
+            for (let data of secondresult) {
+              semi.push(data);
+            }
+            console.log(secondresult);
+            console.log(j);
+            sqlresult.data1[j].b_color = dummy.concat(...semi);
+          }
+          console.log(jcount + ' 두번');
+          if (j == jcount) res.send(sqlresult);
+        });
+      }
     }
   });
-
-  for (let j = 0; j < jcount; j++) {
-    console.log(j);
-    let semi = [];
-    let dummy = [];
-    db.query(colorsql, (err, secondresult) => {
-      if (err) console.log(err);
-      else {
-        for (let data of secondresult) {
-          semi.push(data);
-        }
-        console.log(secondresult);
-        console.log(j);
-        sqlresult.data1[j].b_color = dummy.concat(...semi);
-      }
-      console.log(jcount + ' 두번');
-      if (j == jcount) res.send(sqlresult);
-    });
-  }
 });
 
 module.exports = app;

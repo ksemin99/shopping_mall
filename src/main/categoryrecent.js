@@ -93,6 +93,7 @@ app.get('/:categoryid', (req, res, next) => {
             for (let data of secondresult) {
               semi.push(data);
             }
+            console.log(sqlresult.data1);
             sqlresult.data1[k].b_color = dummy.concat(...semi);
           }
           console.log(kcount + ' 두번');

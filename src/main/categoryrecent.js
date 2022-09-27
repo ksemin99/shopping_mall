@@ -99,7 +99,7 @@ app.get('/:categoryid', (req, res, next) => {
           }
           console.log(secondresult);
           console.log(j);
-          sqlresult.data1[j].b_color = dummy.concat(...semi);
+          sqlresult.data1[j - 1].b_color = dummy.concat(...semi);
         }
         console.log(jcount + ' 두번');
         if (k == jcount - 1) res.send(sqlresult);

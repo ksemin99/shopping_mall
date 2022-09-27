@@ -98,7 +98,7 @@ app.get('/', (req, res, next) => {
   for (let k = 0; k < 4; k++) {
     let semi = [];
     let test = [];
-    topcolorsql =
+    pantscolorsql =
       'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 2 ORDER BY b_views desc limit ' +
       k +
       ', 1)';
@@ -116,7 +116,7 @@ app.get('/', (req, res, next) => {
   for (let k = 0; k < 4; k++) {
     let semi = [];
     let test = [];
-    topcolorsql =
+    outercolorsql =
       'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 3 ORDER BY b_views desc limit ' +
       k +
       ', 1)';
@@ -134,7 +134,7 @@ app.get('/', (req, res, next) => {
   for (let k = 0; k < 4; k++) {
     let semi = [];
     let test = [];
-    topcolorsql =
+    skirtcolorsql =
       'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 4 ORDER BY b_views desc limit ' +
       k +
       ', 1)';
@@ -152,7 +152,7 @@ app.get('/', (req, res, next) => {
   for (let k = 0; k < 4; k++) {
     let semi = [];
     let test = [];
-    topcolorsql =
+    shoesbagscolorsql =
       'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 5 ORDER BY b_views desc limit ' +
       k +
       ', 1)';

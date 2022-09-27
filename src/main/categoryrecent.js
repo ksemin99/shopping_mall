@@ -79,6 +79,7 @@ app.get('/:categoryid', (req, res, next) => {
         ', 1)';
       break;
   }
+
   let sqlresult = { data1: [] };
   let jcount = 0;
 

@@ -74,7 +74,7 @@ app.get('/', (req, res, next) => {
     let shoesbagsdummy = [];
 
     bestcolorsql =
-      'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND b.c_num = 1 AND bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc limit ' +
+      'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc limit ' +
       k +
       ', 1)';
     topcolorsql =
@@ -104,9 +104,7 @@ app.get('/', (req, res, next) => {
           bestsemi.push(data);
         }
         sqlresult.data1[k].b_color = bestdummy.concat(...bestsemi);
-        console.log('1-1');
       }
-      console.log('1-2');
       // if (k == 3) res.send(sqlresult);
     });
     db.query(topcolorsql, (err, result) => {
@@ -116,9 +114,7 @@ app.get('/', (req, res, next) => {
           topsemi.push(data);
         }
         sqlresult.data2[k].b_color = topdummy.concat(...topsemi);
-        console.log('2-1');
       }
-      console.log('2-2');
       // if (k == 3) res.send(sqlresult);
     });
     db.query(pantscolorsql, (err, result) => {
@@ -128,9 +124,7 @@ app.get('/', (req, res, next) => {
           pantssemi.push(data);
         }
         sqlresult.data2[k + 4].b_color = pantsdummy.concat(...pantssemi);
-        console.log('3-1');
       }
-      console.log('3-2');
       // if (k == 3) res.send(sqlresult);
     });
     db.query(outercolorsql, (err, result) => {

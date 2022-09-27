@@ -20,7 +20,7 @@ app.get('/:categoryid', (req, res, next) => {
   const categoryid = Number(req.params.categoryid);
   //const page = req.params.page;
   console.log(categoryid);
-  let j = 0;
+  let j = 19;
   switch (categoryid) {
     case 0: //new 카테고리 별로 제일 최근꺼 그냥 쫙
       categorysql =

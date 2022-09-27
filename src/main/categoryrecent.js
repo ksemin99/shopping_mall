@@ -80,15 +80,16 @@ app.get('/:categoryid', (req, res, next) => {
   }
   let sqlresult = { data1: [] };
   let jcount = 0;
+
   db.query(categorysql, (err, result) => {
     if (err) console.log(err);
     else {
       sqlresult.data1.push(...result);
       jcount = result.length;
-      console.log(result.length);
     }
   });
-  for (let j = 0; j < jcount; j++) {
+
+  for (let j = 0; j < 61; j++) {
     console.log(j);
     let semi = [];
     let dummy = [];

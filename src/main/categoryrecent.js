@@ -87,10 +87,10 @@ app.get('/:categoryid', (req, res, next) => {
       for (k = 0; k < result.length; k++) {
         let semi = [];
         let dummy = [];
-        db.query(colorsql, (err, result) => {
+        db.query(colorsql, (err, secondresult) => {
           if (err) console.log(err);
           else {
-            for (let data of result) {
+            for (let data of secondresult) {
               semi.push(data);
             }
             sqlresult.data1[k].b_color = dummy.concat(...semi);

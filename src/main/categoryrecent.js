@@ -23,43 +23,68 @@ app.get('/:categoryid', (req, res, next) => {
   switch (categoryid) {
     case 0: //new 카테고리 별로 제일 최근꺼 그냥 쫙
       categorysql =
-        'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num order by b.b_time desc';
+        'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.b_time desc';
+      colorsql =
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY b_time desc)';
       break;
     case 1: //best 조회수 높은 순
       categorysql =
-        'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num order by b.b_views desc';
+        'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.b_views desc';
+      colorsql =
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc)';
       break;
     case 2: //top 탑 명시 되어있는 거
       categorysql =
-        'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num and b.c_num = 1';
+        'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 1';
+      colorsql =
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 1 ORDER BY b_views desc)';
       break;
     case 3: //pants
       categorysql =
-        'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num and b.c_num = 2';
+        'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 2';
+      colorsql =
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 2 ORDER BY b_views desc)';
       break;
     case 4: //outer
       categorysql =
-        'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num and b.c_num = 3';
+        'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 3';
+      colorsql =
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 3 ORDER BY b_views desc)';
       break;
     case 5: //skirt
       categorysql =
-        'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num and b.c_num = 4';
+        'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 4';
+      colorsql =
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 4 ORDER BY b_views desc)';
       break;
     case 6: //shoes&bags
       categorysql =
-        'select b.b_name, b.b_url, b.b_price, bd.b_color, b.b_views from board b, board_detail bd where b.b_num = bd.b_num and b.c_num = 5';
+        'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 5';
+      colorsql =
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 5 ORDER BY b_views desc)';
       break;
   }
-
+  let sqlresult = { data1: [] };
+  let kcount = 0;
   db.query(categorysql, (err, result) => {
     if (err) console.log(err);
     else {
-      console.log(result);
-      res.send({
-        result,
-      });
+      sqlresult.data1.push(...result);
+      kcount = result.length;
     }
   });
+  for (k = 0; k < kcount; k++) {
+    db.query(colorsql, (err, result) => {
+      if (err) console.log(err);
+      else {
+        for (let data of result) {
+          bestsemi.push(data);
+        }
+        sqlresult.data1[k].b_color = bestdummy.concat(...bestsemi);
+      }
+      if (k == kcount - 1) res.send(sqlresult);
+    });
+  }
 });
 
 module.exports = app;

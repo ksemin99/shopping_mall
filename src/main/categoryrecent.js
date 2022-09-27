@@ -87,7 +87,7 @@ app.get('/:categoryid', (req, res, next) => {
       //jcount = result.length;
       console.log(result.length);
     }
-    for (j = 0; j < result.length; j++) {
+    for (let j = 0; j < result.length; j++) {
       console.log(j);
       let semi = [];
       let dummy = [];

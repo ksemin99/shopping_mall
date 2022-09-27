@@ -23,7 +23,7 @@ app.get('/:categoryid', (req, res, next) => {
   switch (categoryid) {
     case 0: //new 카테고리 별로 제일 최근꺼 그냥 쫙
       categorysql =
-        'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.b_time desc';
+        'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.b_time desc';
       colorsql =
         'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY b_time desc limit ' +
         j +

@@ -75,6 +75,7 @@ app.get('/:categoryid', (req, res, next) => {
   });
   console.log(kcount + 'ww');
   for (k = 0; k < kcount; k++) {
+    console.log(kcount + 'wwz');
     let semi = [];
     let dummy = [];
     db.query(colorsql, (err, result) => {

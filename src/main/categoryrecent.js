@@ -85,6 +85,7 @@ app.get('/:categoryid', (req, res, next) => {
     else {
       sqlresult.data1.push(...result);
       //jcount = result.length;
+      console.log(result.length);
     }
     for (j = 0; j < result.length; j++) {
       console.log(j);

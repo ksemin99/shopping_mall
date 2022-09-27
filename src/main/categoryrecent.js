@@ -24,43 +24,57 @@ app.get('/:categoryid', (req, res, next) => {
       categorysql =
         'SELECT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.b_time desc';
       colorsql =
-        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY b_time desc)';
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY b_time desc limit ' +
+        k +
+        ', 1)';
       break;
     case 1: //best 조회수 높은 순
       categorysql =
         'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.b_views desc';
       colorsql =
-        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc)';
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc limit ' +
+        k +
+        ', 1)';
       break;
     case 2: //top 탑 명시 되어있는 거
       categorysql =
-        'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 1';
+        'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 1 ORDER BY b_time';
       colorsql =
-        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 1 ORDER BY b_views desc)';
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 1 ORDER BY b_time desc limit ' +
+        k +
+        ', 1)';
       break;
     case 3: //pants
       categorysql =
-        'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 2';
+        'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 2 ORDER BY b_time';
       colorsql =
-        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 2 ORDER BY b_views desc)';
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 2 ORDER BY b_time desc limit ' +
+        k +
+        ', 1)';
       break;
     case 4: //outer
       categorysql =
-        'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 3';
+        'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 3 ORDER BY b_time';
       colorsql =
-        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 3 ORDER BY b_views desc)';
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 3 ORDER BY b_time desc limit ' +
+        k +
+        ', 1)';
       break;
     case 5: //skirt
       categorysql =
-        'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 4';
+        'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 4 ORDER BY b_time';
       colorsql =
-        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 4 ORDER BY b_views desc)';
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 4 ORDER BY b_time desc limit ' +
+        k +
+        ', 1)';
       break;
     case 6: //shoes&bags
       categorysql =
-        'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 5';
+        'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = 5 ORDER BY b_time';
       colorsql =
-        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 5 ORDER BY b_views desc)';
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 5 ORDER BY b_time desc limit ' +
+        k +
+        ', 1)';
       break;
   }
   let sqlresult = { data1: [] };
@@ -86,6 +100,36 @@ app.get('/:categoryid', (req, res, next) => {
       }
     }
   });
+  switch (categoryid) {
+    case 0: //new 카테고리 별로 제일 최근꺼 그냥 쫙
+      colorsql =
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY b_time desc)';
+      break;
+    case 1: //best 조회수 높은 순
+      colorsql =
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY b_views desc)';
+      break;
+    case 2: //top 탑 명시 되어있는 거
+      colorsql =
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 1 ORDER BY b_views desc)';
+      break;
+    case 3: //pants
+      colorsql =
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 2 ORDER BY b_views desc)';
+      break;
+    case 4: //outer
+      colorsql =
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 3 ORDER BY b_views desc)';
+      break;
+    case 5: //skirt
+      colorsql =
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 4 ORDER BY b_views desc)';
+      break;
+    case 6: //shoes&bags
+      colorsql =
+        'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = 5 ORDER BY b_views desc)';
+      break;
+  }
 });
 
 module.exports = app;

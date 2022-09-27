@@ -74,13 +74,15 @@ app.get('/:categoryid', (req, res, next) => {
     }
   });
   for (k = 0; k < kcount; k++) {
+    let semi = [];
+    let dummy = [];
     db.query(colorsql, (err, result) => {
       if (err) console.log(err);
       else {
         for (let data of result) {
-          bestsemi.push(data);
+          semi.push(data);
         }
-        sqlresult.data1[k].b_color = bestdummy.concat(...bestsemi);
+        sqlresult.data1[k].b_color = dummy.concat(...semi);
       }
       console.log(kcount + ' 두번');
       if (k == kcount - 1) res.send(sqlresult);

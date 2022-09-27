@@ -17,7 +17,6 @@ dotenv.config();
 app.get('/:categoryid', (req, res, next) => {
   let categorysql = '';
   // DB로 categoryid 별 애들 불러오기
-  console.log(req.params.categoryid);
   const categoryid = Number(req.params.categoryid);
   //const page = req.params.page;
   switch (categoryid) {
@@ -71,6 +70,7 @@ app.get('/:categoryid', (req, res, next) => {
     else {
       sqlresult.data1.push(...result);
       kcount = result.length;
+      console.log(kcount);
     }
   });
   for (k = 0; k < kcount; k++) {
@@ -82,6 +82,7 @@ app.get('/:categoryid', (req, res, next) => {
         }
         sqlresult.data1[k].b_color = bestdummy.concat(...bestsemi);
       }
+      console.log(kcount + ' 두번');
       if (k == kcount - 1) res.send(sqlresult);
     });
   }

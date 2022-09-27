@@ -85,6 +85,7 @@ app.get('/:categoryid', (req, res, next) => {
     else {
       sqlresult.data1.push(...result);
       for (j = 0; j < result.length; j++) {
+        console.log(j);
         let semi = [];
         let dummy = [];
         db.query(colorsql, (err, secondresult) => {

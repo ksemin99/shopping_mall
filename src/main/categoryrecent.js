@@ -33,7 +33,7 @@ app.get('/', (req, res, next) => {
   // DB로 categoryid 별 애들 불러오기
 
   let category = 0;
-  let categorysql = '';
+  let categorysql = '초기';
   switch (categoryid) {
     case 2:
       category = 1;
@@ -69,8 +69,8 @@ app.get('/', (req, res, next) => {
       (page - 1) * size +
       ', ' +
       size;
-    console.log(categorysql);
   }
+  console.log(categorysql);
 
   let sqlresult = { data1: [] };
 

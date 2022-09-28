@@ -126,7 +126,7 @@ app.get('/', (req, res, next) => {
         console.log(...semi);
         sqlresult.data1[count].b_color = dummy.concat(...semi);
       }
-      if (q == size) res.send(sqlresult);
+      if (q == size - 1) res.send(sqlresult);
     });
     count++;
   }

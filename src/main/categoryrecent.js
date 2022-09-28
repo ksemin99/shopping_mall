@@ -85,6 +85,7 @@ app.get('/', (req, res, next) => {
       console.log(sqlresult + '1');
     }
   });
+
   console.log(sqlresult + '2');
   let count = 0;
   for (let q = (page - 1) * size; q <= size; q++) {
@@ -121,6 +122,7 @@ app.get('/', (req, res, next) => {
         for (let data of secondresult) {
           semi.push(data);
         }
+        console.log(sqlresult + '4');
         console.log(...semi);
         sqlresult.data1[count].b_color = dummy.concat(...semi);
       }

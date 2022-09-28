@@ -16,7 +16,7 @@ dotenv.config();
 
 app.get('/', (req, res, next) => {
   const categoryid = Number(req.query.categoryid); // 카테고리 ID //
-  const search = req.query.search;
+  //const search = req.query.search;
   const page = req.query.page; //limit ( (page - 1) * size  , 1 )
   const size = req.query.size; //limit ( (page - 1) * size  , 1 )
   const pullsort = req.query.sort;

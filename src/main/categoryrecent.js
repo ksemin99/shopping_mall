@@ -107,6 +107,7 @@ app.get('/', (req, res, next) => {
             ', 1)';
         }
         console.log(colorsql);
+        console.log(count);
         let semi = [];
         let dummy = [];
         console.log(sqlresult);

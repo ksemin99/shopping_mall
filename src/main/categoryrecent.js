@@ -85,7 +85,7 @@ app.get('/', (req, res, next) => {
       sqlresult.data1.push(...result);
       let count = 0;
       for (let q = (page - 1) * size; q <= size; q++) {
-        if (categoryid == 0 || 1) {
+        if (categoryid == 0 || categoryid == 1) {
           colorsql =
             'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY ' +
             sort +
@@ -106,6 +106,7 @@ app.get('/', (req, res, next) => {
             q +
             ', 1)';
         }
+        console.log(colorsql);
         let semi = [];
         let dummy = [];
         console.log(sqlresult);

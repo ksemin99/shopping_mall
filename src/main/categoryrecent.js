@@ -33,7 +33,8 @@ app.get('/', (req, res, next) => {
   // DB로 categoryid 별 애들 불러오기
 
   console.log(categoryid);
-
+  let category = 0;
+  let categorysql = '';
   switch (categoryid) {
     case 2:
       category = 1;

@@ -107,28 +107,19 @@ app.get('/', (req, res, next) => {
             q +
             ', 1)';
         }
-        console.log(colorsql);
-        console.log(count);
         let semi = [];
         let dummy = [];
-        console.log(sqlresult.data1[0] + '3');
-
         db.query(colorsql, (err, secondresult) => {
           if (err) console.log(err);
           else {
             for (let data of secondresult) {
               semi.push(data);
             }
-            console.log(sqlresult.data1[0].b_name + '4');
-            console.log(...semi);
-            const qqq = dummy.concat(...semi);
-            console.log(qqq);
-            console.log(count);
-            sqlresult.data1[0].b_color = qqq;
+            sqlresult.data1[count].b_color = dummy.concat(...semi);
+            count++;
           }
           if (q == size - 1) res.send(sqlresult);
         });
-        count++;
       }
     }
   });

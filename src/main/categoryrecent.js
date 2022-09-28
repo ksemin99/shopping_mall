@@ -37,14 +37,19 @@ app.get('/', (req, res, next) => {
   switch (categoryid) {
     case 2:
       category = 1;
+      break;
     case 3:
       category = 2;
+      break;
     case 4:
       category = 3;
+      break;
     case 5:
       category = 4;
+      break;
     case 6:
       category = 5;
+      break;
   }
 
   if (categoryid == 0 || categoryid == 1) {

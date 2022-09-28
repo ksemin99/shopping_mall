@@ -123,7 +123,7 @@ app.get('/', (req, res, next) => {
             console.log(...semi);
             const qqq = dummy.concat(...semi);
             console.log(qqq);
-            sqlresult.data1[count].b_color = dummy.concat(...semi);
+            sqlresult.data1[count].b_color = qqq;
           }
           if (q == size - 1) res.send(sqlresult);
         });

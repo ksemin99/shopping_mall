@@ -82,8 +82,8 @@ app.get('/', (req, res, next) => {
     if (err) console.log(err);
     else {
       sqlresult.data1.push(...result);
-      console.log(sqlresult.data1 + '1');
-      console.log(sqlresult.data1 + '2');
+      console.log(sqlresult.data1[0] + '1');
+      console.log(sqlresult.data1[0] + '2');
       let count = 0;
       for (let q = (page - 1) * size; q < size; q++) {
         if (categoryid == 0 || categoryid == 1) {
@@ -111,7 +111,7 @@ app.get('/', (req, res, next) => {
         console.log(count);
         let semi = [];
         let dummy = [];
-        console.log(sqlresult.data1 + '3');
+        console.log(sqlresult.data1[0] + '3');
 
         db.query(colorsql, (err, secondresult) => {
           if (err) console.log(err);
@@ -119,7 +119,7 @@ app.get('/', (req, res, next) => {
             for (let data of secondresult) {
               semi.push(data);
             }
-            console.log(sqlresult.data1 + '4');
+            console.log(sqlresult.data1[0] + '4');
             console.log(...semi);
             sqlresult.data1[count].b_color = dummy.concat(...semi);
           }

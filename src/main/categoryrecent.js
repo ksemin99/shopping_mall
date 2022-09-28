@@ -32,7 +32,6 @@ app.get('/', (req, res, next) => {
   console.log(pullsort);
   // DB로 categoryid 별 애들 불러오기
 
-  console.log(categoryid);
   let category = 0;
   let categorysql = '';
   switch (categoryid) {
@@ -70,6 +69,7 @@ app.get('/', (req, res, next) => {
       (page - 1) * size +
       ', ' +
       size;
+    console.log(categorysql);
   }
 
   let sqlresult = { data1: [] };

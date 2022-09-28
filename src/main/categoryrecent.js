@@ -15,6 +15,7 @@ app.use(cors());
 dotenv.config();
 
 app.get('/', (req, res, next) => {
+  let sqlresult = { data1: [] };
   const categoryid = Number(req.query.categoryid); // 카테고리 ID //
   //const search = req.query.search;
   const page = req.query.page; //limit ( (page - 1) * size  , 1 )
@@ -76,8 +77,6 @@ app.get('/', (req, res, next) => {
       size;
   }
   console.log(categorysql);
-
-  let sqlresult = { data1: [] };
 
   db.query(categorysql, (err, result) => {
     if (err) console.log(err);

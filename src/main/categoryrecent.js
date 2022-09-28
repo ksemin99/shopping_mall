@@ -82,8 +82,10 @@ app.get('/', (req, res, next) => {
     if (err) console.log(err);
     else {
       sqlresult.data1.push(...result);
+      console.log(sqlresult + '1');
     }
   });
+  console.log(sqlresult + '2');
   let count = 0;
   for (let q = (page - 1) * size; q <= size; q++) {
     if (categoryid == 0 || categoryid == 1) {
@@ -111,7 +113,7 @@ app.get('/', (req, res, next) => {
     console.log(count);
     let semi = [];
     let dummy = [];
-    console.log(sqlresult);
+    console.log(sqlresult + '3');
 
     db.query(colorsql, (err, secondresult) => {
       if (err) console.log(err);

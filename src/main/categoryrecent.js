@@ -110,8 +110,8 @@ app.get('/', (req, res, next) => {
         console.log(count);
         let semi = [];
         let dummy = [];
-        console.log(sqlresult.data1[0]);
-        console.log(typeof sqlresult.data1[0]);
+        console.log(sqlresult);
+
         db.query(colorsql, (err, secondresult) => {
           if (err) console.log(err);
           else {

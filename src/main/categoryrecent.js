@@ -119,7 +119,7 @@ app.get('/', (req, res, next) => {
             for (let data of secondresult) {
               semi.push(data);
             }
-            console.log(sqlresult.data1[0] + '4');
+            console.log(sqlresult.data1[0].b_name + '4');
             console.log(...semi);
             sqlresult.data1[count].b_color = dummy.concat(...semi);
           }

@@ -47,7 +47,7 @@ app.get('/', (req, res, next) => {
       category = 5;
   }
 
-  if (categoryid == 0 || 1) {
+  if (categoryid == 0 || categoryid == 1) {
     categorysql =
       'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.' +
       sort +

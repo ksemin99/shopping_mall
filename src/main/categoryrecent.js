@@ -54,7 +54,7 @@ app.get('/', (req, res, next) => {
   }
   // WHERE ename LIKE '%MI%'
   if (search != undefined) {
-    console.log('굳')
+    console.log('굳');
     categorysql =
       "SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
       search +
@@ -66,8 +66,9 @@ app.get('/', (req, res, next) => {
       (page - 1) * size +
       ', ' +
       size;
+    console.log(categorysql);
   } else {
-    console.log('ghkrdls')
+    console.log('ghkrdls');
     if (categoryid == 0 || categoryid == 1) {
       categorysql =
         'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.' +

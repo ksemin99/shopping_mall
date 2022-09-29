@@ -17,7 +17,8 @@ dotenv.config();
 app.get('/', (req, res, next) => {
   let sqlresult = { data1: [] };
   const categoryid = Number(req.query.categoryid); // 카테고리 ID //
-  //const search = req.query.search;
+  const search = req.query.search;
+  console.log(req.query.search);
   const page = req.query.page; //limit ( (page - 1) * size  , 1 )
   const size = req.query.size; //limit ( (page - 1) * size  , 1 )
   const pullsort = req.query.sort;
@@ -52,7 +53,20 @@ app.get('/', (req, res, next) => {
       category = 5;
       break;
   }
-
+  // WHERE ename LIKE '%MI%'
+  if (search != '') {
+    categorysql =
+      "SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
+      search +
+      "%' ORDER BY b." +
+      sort +
+      ' ' +
+      standard +
+      ' limit ' +
+      (page - 1) * size +
+      ', ' +
+      size;
+  }
   if (categoryid == 0 || categoryid == 1) {
     categorysql =
       'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.' +

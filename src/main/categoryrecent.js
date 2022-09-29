@@ -107,7 +107,7 @@ app.get('/', (req, res, next) => {
           colorsql =
             "SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND b.b_name LIKE '%" +
             search +
-            "%' AND bc.bc_num = (SELECT b_num FROM board WHERE b.b_name LIKE '%" +
+            "%' AND bc.bc_num = (SELECT b_num FROM board WHERE b_name LIKE '%" +
             search +
             "%' ORDER BY " +
             sort +

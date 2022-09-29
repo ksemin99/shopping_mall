@@ -18,7 +18,6 @@ app.get('/', (req, res, next) => {
   let sqlresult = { data1: [] };
   const categoryid = Number(req.query.categoryid); // 카테고리 ID //
   const search = req.query.search;
-  console.log(req.query.search);
   const page = req.query.page; //limit ( (page - 1) * size  , 1 )
   const size = req.query.size; //limit ( (page - 1) * size  , 1 )
   const pullsort = req.query.sort;
@@ -103,9 +102,11 @@ app.get('/', (req, res, next) => {
       console.log(sqlresult.data1[0] + '2');
       let count = 0;
       for (let q = (page - 1) * size; q < size; q++) {
-        if (categoryid == 0 || categoryid == 1) {
+        if (search != undefined) {
           colorsql =
-            'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY ' +
+            "SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND b.b_name LIKE '%" +
+            search +
+            "%' AND bc.bc_num = (SELECT b_num FROM board ORDER BY " +
             sort +
             ' ' +
             standard +
@@ -113,16 +114,27 @@ app.get('/', (req, res, next) => {
             q +
             ', 1)';
         } else {
-          colorsql =
-            'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = ' +
-            category +
-            ' ORDER BY ' +
-            sort +
-            ' ' +
-            standard +
-            ' limit ' +
-            q +
-            ', 1)';
+          if (categoryid == 0 || categoryid == 1) {
+            colorsql =
+              'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY ' +
+              sort +
+              ' ' +
+              standard +
+              ' limit ' +
+              q +
+              ', 1)';
+          } else {
+            colorsql =
+              'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = ' +
+              category +
+              ' ORDER BY ' +
+              sort +
+              ' ' +
+              standard +
+              ' limit ' +
+              q +
+              ', 1)';
+          }
         }
         let semi = [];
         let dummy = [];

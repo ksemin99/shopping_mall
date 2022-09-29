@@ -113,6 +113,7 @@ app.get('/', (req, res, next) => {
             ' limit ' +
             q +
             ', 1)';
+          console.log(colorsql);
         } else {
           if (categoryid == 0 || categoryid == 1) {
             colorsql =

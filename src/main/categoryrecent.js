@@ -62,8 +62,10 @@ app.get('/', (req, res, next) => {
     }
 
     db.query(countsql, (err, countresult) => {
-      if (err) console.log(err);
-      else {
+      if (err) {
+        console.log(err);
+        return err;
+      } else {
         for (var data of countresult) {
           sqlcount.push(data.title);
         }
@@ -72,13 +74,12 @@ app.get('/', (req, res, next) => {
         console.log(page * size);
       }
       if (page * size > sqlcount) {
-        size = sqlcount % size;
         console.log('언제해...?');
+        return (size = sqlcount % size);
       }
     });
   }
 
-  console.log(size);
   async function getsql() {
     await changesize();
     console.log('사이즈 ' + size);

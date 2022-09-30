@@ -19,8 +19,9 @@ app.get('/', (req, res, next) => {
   const categoryid = Number(req.query.categoryid); // 카테고리 ID //
   const search = req.query.search;
   const page = req.query.page; //limit ( (page - 1) * size  , 1 )
-  const size = req.query.size; //limit ( (page - 1) * size  , 1 )
+  let size = req.query.size; //limit ( (page - 1) * size  , 1 )
   const pullsort = req.query.sort;
+  let sqlcount = 0;
 
   const splitresult = pullsort.split(',');
 
@@ -52,7 +53,26 @@ app.get('/', (req, res, next) => {
       category = 5;
       break;
   }
-  // WHERE ename LIKE '%MI%'
+  /////////////////////////////////
+
+  if (search != undefined) {
+    countsql = "COUNT (DISTINCT b.*) FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
+      search +
+      "%'"
+  } else {
+    countsql = "COUNT (DISTINCT b.*) FROM board b, board_color bc WHERE b.b_num = bc.bc_num"
+  }
+
+  db.query(countsql, (err, countresult) => {
+    if (err) console.log(err);
+    else sqlcount = countresult;
+  });
+
+  if (page * size > sqlcount) {
+    size = sqlcount
+  }
+
+  /////////////////////////////////
   if (search != undefined) {
     console.log('굳');
     categorysql =

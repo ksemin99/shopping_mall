@@ -78,7 +78,7 @@ app.get('/', (req, res, next) => {
   console.log(size);
   async function getsql() {
     await changesize();
-    console.log(size);
+    console.log('사이즈 ' + size);
     if (search != undefined) {
       console.log('굳');
       categorysql =

@@ -55,20 +55,29 @@ app.get('/', (req, res, next) => {
   }
   /////////////////////////////////
 
-  if (search != undefined) {
-    countsql = "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
-      search +
-      "%'"
-  } else {
-    countsql = "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num"
-  }
-  console.log(countsql);
-  db.query(countsql, (err, countresult) => {
-    if (err) console.log(err);
-    else sqlcount = countresult;
-    if (page * size > sqlcount) {
-      size = sqlcount % size
+  function changesize() {
+    if (search != undefined) {
+      countsql =
+        "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
+        search +
+        "%'";
+    } else {
+      countsql =
+        'SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num';
     }
+    console.log(countsql);
+    db.query(countsql, (err, countresult) => {
+      if (err) console.log(err);
+      else sqlcount = countresult;
+      if (page * size > sqlcount) {
+        size = sqlcount % size;
+      }
+    });
+  }
+
+  console.log(size);
+  async function getsql() {
+    await changesize();
     if (search != undefined) {
       console.log('굳');
       categorysql =
@@ -109,71 +118,69 @@ app.get('/', (req, res, next) => {
           size;
       }
     }
-  });
 
-  console.log(size);
-
-  db.query(categorysql, (err, result) => {
-    if (err) console.log(err);
-    else {
-      sqlresult.data1.push(...result);
-      console.log(sqlresult.data1[0] + '1');
-      console.log(sqlresult.data1[0] + '2');
-      let count = 0;
-      for (let q = (page - 1) * size; q < size; q++) {
-        if (search != undefined) {
-          colorsql =
-            "SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND b.b_name LIKE '%" +
-            search +
-            "%' AND bc.bc_num = (SELECT b_num FROM board WHERE b_name LIKE '%" +
-            search +
-            "%' ORDER BY " +
-            sort +
-            ' ' +
-            standard +
-            ' limit ' +
-            q +
-            ', 1)';
-          console.log(colorsql);
-        } else {
-          if (categoryid == 0 || categoryid == 1) {
+    db.query(categorysql, (err, result) => {
+      if (err) console.log(err);
+      else {
+        sqlresult.data1.push(...result);
+        console.log(sqlresult.data1[0] + '1');
+        console.log(sqlresult.data1[0] + '2');
+        let count = 0;
+        for (let q = (page - 1) * size; q < size; q++) {
+          if (search != undefined) {
             colorsql =
-              'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY ' +
+              "SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND b.b_name LIKE '%" +
+              search +
+              "%' AND bc.bc_num = (SELECT b_num FROM board WHERE b_name LIKE '%" +
+              search +
+              "%' ORDER BY " +
               sort +
               ' ' +
               standard +
               ' limit ' +
               q +
               ', 1)';
+            console.log(colorsql);
           } else {
-            colorsql =
-              'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = ' +
-              category +
-              ' ORDER BY ' +
-              sort +
-              ' ' +
-              standard +
-              ' limit ' +
-              q +
-              ', 1)';
-          }
-        }
-        let semi = [];
-        let dummy = [];
-        db.query(colorsql, (err, secondresult) => {
-          if (err) console.log(err);
-          else {
-            for (let data of secondresult) {
-              semi.push(data);
+            if (categoryid == 0 || categoryid == 1) {
+              colorsql =
+                'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY ' +
+                sort +
+                ' ' +
+                standard +
+                ' limit ' +
+                q +
+                ', 1)';
+            } else {
+              colorsql =
+                'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = ' +
+                category +
+                ' ORDER BY ' +
+                sort +
+                ' ' +
+                standard +
+                ' limit ' +
+                q +
+                ', 1)';
             }
-            sqlresult.data1[count].b_color = dummy.concat(...semi);
-            count++;
           }
-          if (q == size - 1) res.send(sqlresult);
-        });
+          let semi = [];
+          let dummy = [];
+          db.query(colorsql, (err, secondresult) => {
+            if (err) console.log(err);
+            else {
+              for (let data of secondresult) {
+                semi.push(data);
+              }
+              sqlresult.data1[count].b_color = dummy.concat(...semi);
+              count++;
+            }
+            if (q == size - 1) res.send(sqlresult);
+          });
+        }
       }
-    }
-  });
+    });
+  }
 });
 
 module.exports = app;

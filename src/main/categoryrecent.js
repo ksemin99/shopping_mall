@@ -68,7 +68,7 @@ app.get('/', (req, res, next) => {
         for (var data of countresult) {
           sqlcount.push(data);
         }
-        console.log(sqlcount.title);
+        console.log(sqlcount.values);
         console.log('언제해');
         console.log(page * size);
       }

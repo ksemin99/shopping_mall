@@ -67,7 +67,7 @@ app.get('/', (req, res, next) => {
         return err;
       } else {
         for (var data of countresult) {
-          sqlcount.push(data.title);
+          sqlcount.push(data);
         }
         console.log(sqlcount.title);
         console.log('언제해...?');

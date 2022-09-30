@@ -72,12 +72,11 @@ app.get('/', (req, res, next) => {
         console.log(sqlcount);
         console.log('언제해');
         console.log(page * size);
-        if (page * size > sqlcount) {
-          console.log('언제해...?');
-          size = sqlcount % size;
-        }
       }
-
+      if (page * size > sqlcount) {
+        console.log('언제해...?');
+        size = sqlcount % size;
+      }
 
     });
   }
@@ -121,7 +120,7 @@ app.get('/', (req, res, next) => {
           size;
       }
     }
-
+    console.log(categorysql);
     db.query(categorysql, (err, result) => {
       if (err) console.log(err);
       else {

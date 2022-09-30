@@ -52,12 +52,12 @@ app.get('/', (req, res, next) => {
   function getcount() {
     if (search != undefined) {
       countsql =
-        "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
+        "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) as total FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
         search +
         "%'";
     } else {
       countsql =
-        'SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num';
+        'SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) as total FROM board b, board_color bc WHERE b.b_num = bc.bc_num';
     }
 
     db.query(countsql, (err, countresult) => {
@@ -68,7 +68,7 @@ app.get('/', (req, res, next) => {
         for (var data of countresult) {
           sqlcount.push(data);
         }
-        console.log(sqlcount.value);
+        console.log(sqlcount.total);
         console.log('언제해');
         console.log(page * size);
       }

@@ -62,7 +62,7 @@ app.get('/', (req, res, next) => {
   } else {
     countsql = "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num"
   }
-
+  console.log(countsql);
   db.query(countsql, (err, countresult) => {
     if (err) console.log(err);
     else sqlcount = countresult;
@@ -71,6 +71,7 @@ app.get('/', (req, res, next) => {
   if (page * size > sqlcount) {
     size = sqlcount
   }
+  console.log(size);
 
   /////////////////////////////////
   if (search != undefined) {

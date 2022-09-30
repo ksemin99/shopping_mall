@@ -189,7 +189,7 @@ app.get('/', (req, res, next) => {
       }
     });
   }
-  async function start() {
+  function start() {
     getcount();
 
     const promise1 = getcolor();

@@ -193,9 +193,9 @@ app.get('/', (req, res, next) => {
     });
   }
   async function start() {
-    getcount();
+    await getcount();
 
-    await getcolor();
+    getcolor();
 
   }
   start();

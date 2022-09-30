@@ -28,10 +28,6 @@ app.get('/', (req, res, next) => {
   const sort = splitresult[0]; //낮은가격, 높은가격, 최신순, 조회순//
   const standard = splitresult[1]; //
 
-  console.log(categoryid);
-  console.log(page);
-  console.log(size);
-  console.log(pullsort);
   // DB로 categoryid 별 애들 불러오기
 
   let category = 0;

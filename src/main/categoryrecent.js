@@ -71,6 +71,7 @@ app.get('/', (req, res, next) => {
       else sqlcount = countresult;
       if (page * size > sqlcount) {
         size = sqlcount % size;
+        console.log('언제해...?');
       }
     });
   }

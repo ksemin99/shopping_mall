@@ -181,7 +181,7 @@ app.get('/', (req, res, next) => {
 
               return new Promise((resolve) => {
 
-                resolve();
+                resolve(sqlresult);
               })
             }
           });
@@ -194,7 +194,7 @@ app.get('/', (req, res, next) => {
 
     const promise1 = getcolor();
     promise1
-      .then(() => {
+      .then((sqlresult) => {
         res.send(sqlresult);
       })
 

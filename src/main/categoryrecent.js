@@ -65,7 +65,7 @@ app.get('/', (req, res, next) => {
       countsql =
         'SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num';
     }
-    console.log(countsql);
+
     db.query(countsql, (err, countresult) => {
       if (err) console.log(err);
       else sqlcount = countresult;
@@ -81,7 +81,6 @@ app.get('/', (req, res, next) => {
     await changesize();
     console.log('사이즈 ' + size);
     if (search != undefined) {
-      console.log('굳');
       categorysql =
         "SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
         search +
@@ -93,9 +92,7 @@ app.get('/', (req, res, next) => {
         (page - 1) * size +
         ', ' +
         size;
-      console.log(categorysql);
     } else {
-      console.log('ghkrdls');
       if (categoryid == 0 || categoryid == 1) {
         categorysql =
           'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.' +
@@ -125,8 +122,6 @@ app.get('/', (req, res, next) => {
       if (err) console.log(err);
       else {
         sqlresult.data1.push(...result);
-        console.log(sqlresult.data1[0] + '1');
-        console.log(sqlresult.data1[0] + '2');
         let count = 0;
         for (let q = (page - 1) * size; q < size; q++) {
           if (search != undefined) {
@@ -142,7 +137,6 @@ app.get('/', (req, res, next) => {
               ' limit ' +
               q +
               ', 1)';
-            console.log(colorsql);
           } else {
             if (categoryid == 0 || categoryid == 1) {
               colorsql =

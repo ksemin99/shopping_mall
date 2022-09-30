@@ -72,11 +72,12 @@ app.get('/', (req, res, next) => {
         console.log(sqlcount);
         console.log('언제해');
         console.log(page * size);
+        if (page * size > sqlcount) {
+          console.log('언제해...?');
+          size = sqlcount % size;
+        }
       }
-      if (page * size > sqlcount) {
-        console.log('언제해...?');
-        size = sqlcount % size;
-      }
+
 
     });
   }
@@ -181,12 +182,6 @@ app.get('/', (req, res, next) => {
     });
   }
 
-  function start() {
-    getcount();
-    setTimeout(getcolor, 2000);
-  }
-
-  start();
 });
 
 module.exports = app;

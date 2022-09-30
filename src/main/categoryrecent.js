@@ -85,6 +85,7 @@ app.get('/', (req, res, next) => {
 
   console.log('사이즈 ' + size);
   async function getcolor() {
+    await getcount();
     if (search != undefined) {
       categorysql =
         "SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
@@ -192,13 +193,15 @@ app.get('/', (req, res, next) => {
       }
     });
   }
-  async function start() {
-    await getcount();
+  // async function start() {
+  //   await getcount();
 
-    getcolor();
+  //   getcolor();
 
-  }
-  start();
+  // }
+  // start();
+
+  getcolor()
 });
 
 module.exports = app;

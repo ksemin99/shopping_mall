@@ -181,6 +181,7 @@ app.get('/', (req, res, next) => {
       }
     });
   }
+  getsql();
 });
 
 module.exports = app;

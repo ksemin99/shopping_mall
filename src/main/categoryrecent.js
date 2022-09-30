@@ -64,7 +64,11 @@ app.get('/', (req, res, next) => {
 
     db.query(countsql, (err, countresult) => {
       if (err) console.log(err);
-      else sqlcount = countresult;
+      else {
+        sqlcount = countresult;
+        console.log(sqlcount);
+        console.log('언제해...?');
+      }
       if (page * size > sqlcount) {
         size = sqlcount % size;
         console.log('언제해...?');

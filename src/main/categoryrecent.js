@@ -53,26 +53,7 @@ app.get('/', (req, res, next) => {
       category = 5;
       break;
   }
-  /////////////////////////////////
 
-  if (search != undefined) {
-    countsql = "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
-      search +
-      "%'"
-  } else {
-    countsql = "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num"
-  }
-  console.log(countsql);
-  db.query(countsql, (err, countresult) => {
-    if (err) console.log(err);
-    else sqlcount = countresult;
-    if (page * size > sqlcount) {
-      size = sqlcount
-    }
-  });
-
-  console.log(size);
-  /////////////////////////////////
   if (search != undefined) {
     console.log('굳');
     categorysql =
@@ -86,8 +67,12 @@ app.get('/', (req, res, next) => {
       (page - 1) * size +
       ', ' +
       size;
+    countsql = "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
+      search +
+      "%'";
     console.log(categorysql);
   } else {
+    countsql = "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num"
     console.log('ghkrdls');
     if (categoryid == 0 || categoryid == 1) {
       categorysql =
@@ -115,7 +100,16 @@ app.get('/', (req, res, next) => {
   }
   console.log(categorysql);
 
+  db.query(countsql, (err, countresult) => {
+    if (err) console.log(err);
+    else sqlcount = countresult;
+    if (page * size > sqlcount) {
+      size = sqlcount
+    }
+  });
+
   db.query(categorysql, (err, result) => {
+
     if (err) console.log(err);
     else {
       sqlresult.data1.push(...result);

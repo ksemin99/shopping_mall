@@ -52,12 +52,12 @@ app.get('/', (req, res, next) => {
   function getcount() {
     if (search != undefined) {
       countsql =
-        "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
+        "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) as total FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
         search +
         "%'";
     } else {
       countsql =
-        'SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num';
+        'SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) as total FROM board b, board_color bc WHERE b.b_num = bc.bc_num';
     }
 
     db.query(countsql, (err, countresult) => {
@@ -68,19 +68,25 @@ app.get('/', (req, res, next) => {
         for (var data of countresult) {
           sqlcount.push(data);
         }
-        console.log(sqlcount.title);
+        console.log(sqlcount[0].total);
+        console.log(sqlcount);
         console.log('언제해');
         console.log(page * size);
       }
       if (page * size > sqlcount) {
         console.log('언제해...?');
         size = sqlcount % size;
+
       }
+      return new Promise((resolve, reject) => {
+        size;
+      });
     });
   }
 
   console.log('사이즈 ' + size);
-  function getcolor() {
+  async function getcolor() {
+    await getcount();
     if (search != undefined) {
       categorysql =
         "SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
@@ -118,9 +124,12 @@ app.get('/', (req, res, next) => {
           size;
       }
     }
-
+    console.log(categorysql);
     db.query(categorysql, (err, result) => {
-      if (err) console.log(err);
+      if (err) {
+        console.log(err);
+        return err;
+      }
       else {
         sqlresult.data1.push(...result);
         let count = 0;
@@ -173,30 +182,42 @@ app.get('/', (req, res, next) => {
               count++;
             }
             if (q == size - 1) {
+<<<<<<< HEAD
               return new Promise((resolve, reject) => {
                 resolve(sqlresult);
               });
+=======
+
+
+
+              return sqlresult;
+
+
+>>>>>>> ab78684eadf7256ccd7f203eae455ea98cbd48b7
             }
           });
         }
       }
     });
   }
+  // async function start() {
+  //   await getcount();
 
-  function delay() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => resolve(), 1);
-    });
-  }
+  //   getcolor();
 
+<<<<<<< HEAD
   async function start() {
     getcount();
     await delay();
     getcolor();
     res.send(sqlresult);
   }
+=======
+  // }
+  // start();
+>>>>>>> ab78684eadf7256ccd7f203eae455ea98cbd48b7
 
-  start();
+  getcolor()
 });
 
 module.exports = app;

@@ -82,7 +82,7 @@ app.get('/', (req, res, next) => {
   }
 
   console.log('사이즈 ' + size);
-  function getcolor() {
+  async function getcolor() {
     if (search != undefined) {
       categorysql =
         "SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
@@ -179,10 +179,11 @@ app.get('/', (req, res, next) => {
             }
             if (q == size - 1) {
 
-              return new Promise((resolve) => {
 
-                resolve(sqlresult);
-              })
+
+              return sqlresult;
+
+
             }
           });
         }
@@ -194,8 +195,8 @@ app.get('/', (req, res, next) => {
 
     const promise1 = getcolor();
     promise1
-      .then((sqlresult) => {
-        res.send(sqlresult);
+      .then((value) => {
+        res.send(value);
       })
 
   }

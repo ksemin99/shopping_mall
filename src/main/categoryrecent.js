@@ -196,7 +196,7 @@ app.get('/', (req, res, next) => {
     const promise1 = getcolor();
     promise1
       .then((value) => {
-        console.log(value)
+        console.log(value + 'ddd')
         res.send(value);
       })
 

@@ -180,7 +180,8 @@ app.get('/', (req, res, next) => {
             if (q == size - 1) {
 
               return new Promise((resolve) => {
-                res.send(sqlresult);
+
+                resolve();
               })
             }
           });
@@ -191,6 +192,10 @@ app.get('/', (req, res, next) => {
   async function start() {
     getcount();
     await getcolor();
+    Promise
+      .then(() => {
+        res.send(sqlresult);
+      })
 
   }
   start();

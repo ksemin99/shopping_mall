@@ -53,63 +53,67 @@ app.get('/', (req, res, next) => {
       category = 5;
       break;
   }
+  /////////////////////////////////
 
   if (search != undefined) {
-    console.log('굳');
-    categorysql =
-      "SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
-      search +
-      "%' ORDER BY b." +
-      sort +
-      ' ' +
-      standard +
-      ' limit ' +
-      (page - 1) * size +
-      ', ' +
-      size;
     countsql = "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
       search +
-      "%'";
-    console.log(categorysql);
+      "%'"
   } else {
     countsql = "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num"
-    console.log('ghkrdls');
-    if (categoryid == 0 || categoryid == 1) {
-      categorysql =
-        'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.' +
-        sort +
-        ' ' +
-        standard +
-        ' limit ' +
-        (page - 1) * size +
-        ', ' +
-        size;
-    } else {
-      categorysql =
-        'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = ' +
-        category +
-        ' ORDER BY b.' +
-        sort +
-        ' ' +
-        standard +
-        ' limit ' +
-        (page - 1) * size +
-        ', ' +
-        size;
-    }
   }
-  console.log(categorysql);
-
+  console.log(countsql);
   db.query(countsql, (err, countresult) => {
     if (err) console.log(err);
     else sqlcount = countresult;
     if (page * size > sqlcount) {
-      size = sqlcount
+      size = sqlcount % size
+    }
+    if (search != undefined) {
+      console.log('굳');
+      categorysql =
+        "SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
+        search +
+        "%' ORDER BY b." +
+        sort +
+        ' ' +
+        standard +
+        ' limit ' +
+        (page - 1) * size +
+        ', ' +
+        size;
+      console.log(categorysql);
+    } else {
+      console.log('ghkrdls');
+      if (categoryid == 0 || categoryid == 1) {
+        categorysql =
+          'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.' +
+          sort +
+          ' ' +
+          standard +
+          ' limit ' +
+          (page - 1) * size +
+          ', ' +
+          size;
+      } else {
+        categorysql =
+          'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = ' +
+          category +
+          ' ORDER BY b.' +
+          sort +
+          ' ' +
+          standard +
+          ' limit ' +
+          (page - 1) * size +
+          ', ' +
+          size;
+      }
     }
   });
 
-  db.query(categorysql, (err, result) => {
+  console.log(size);
 
+  db.query(categorysql, (err, result) => {
     if (err) console.log(err);
     else {
       sqlresult.data1.push(...result);

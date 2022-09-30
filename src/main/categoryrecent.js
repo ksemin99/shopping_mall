@@ -183,7 +183,7 @@ app.get('/', (req, res, next) => {
 
   function start() {
     getcount();
-    setTimeout(getcolor, 500);
+    setTimeout(getcolor, 2000);
   }
 
   start();

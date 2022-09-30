@@ -49,7 +49,7 @@ app.get('/', (req, res, next) => {
       category = 5;
       break;
   }
-  function getcount() {
+  async function getcount() {
     if (search != undefined) {
       countsql =
         "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) as total FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
@@ -76,6 +76,7 @@ app.get('/', (req, res, next) => {
       if (page * size > sqlcount) {
         console.log('언제해...?');
         size = sqlcount % size;
+        return size;
       }
 
     });
@@ -190,15 +191,10 @@ app.get('/', (req, res, next) => {
       }
     });
   }
-  function start() {
+  async function start() {
     getcount();
 
-    const promise1 = getcolor();
-    promise1
-      .then((value) => {
-        console.log(value + 'ddd')
-        res.send(value);
-      })
+    await getcolor();
 
   }
   start();

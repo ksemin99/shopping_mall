@@ -66,13 +66,12 @@ app.get('/', (req, res, next) => {
   db.query(countsql, (err, countresult) => {
     if (err) console.log(err);
     else sqlcount = countresult;
+    if (page * size > sqlcount) {
+      size = sqlcount
+    }
   });
 
-  if (page * size > sqlcount) {
-    size = sqlcount
-  }
   console.log(size);
-
   /////////////////////////////////
   if (search != undefined) {
     console.log('굳');

@@ -172,7 +172,11 @@ app.get('/', (req, res, next) => {
               sqlresult.data1[count].b_color = dummy.concat(...semi);
               count++;
             }
-            if (q == size - 1) res.send(sqlresult);
+            if (q == size - 1) {
+              return new Promise((resolve, reject) => {
+                resolve(sqlresult);
+              });
+            }
           });
         }
       }
@@ -189,6 +193,7 @@ app.get('/', (req, res, next) => {
     getcount();
     await delay();
     getcolor();
+    res.send(sqlresult);
   }
 
   start();

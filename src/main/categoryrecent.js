@@ -64,7 +64,7 @@ app.get('/', (req, res, next) => {
     db.query(countsql, (err, countresult) => {
       if (err) console.log(err);
       else {
-        for (var data of result) {
+        for (var data of countresult) {
           sqlcount.push(data.title);
         }
         console.log(sqlcount.title);

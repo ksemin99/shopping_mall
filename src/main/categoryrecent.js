@@ -49,7 +49,6 @@ app.get('/', (req, res, next) => {
       category = 5;
       break;
   }
-  /////////////////////////////////
 
   function changesize() {
     if (search != undefined) {
@@ -65,9 +64,12 @@ app.get('/', (req, res, next) => {
     db.query(countsql, (err, countresult) => {
       if (err) console.log(err);
       else {
-        sqlcount = countresult[0];
+        for (var data of result) {
+          sqlcount.push(data.title);
+        }
         console.log(sqlcount);
         console.log('언제해...?');
+        console.log(page * size);
       }
       if (page * size > sqlcount) {
         size = sqlcount % size;

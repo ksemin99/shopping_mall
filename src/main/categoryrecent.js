@@ -49,8 +49,7 @@ app.get('/', (req, res, next) => {
       category = 5;
       break;
   }
-
-  function changesize() {
+  function getcount() {
     if (search != undefined) {
       countsql =
         "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
@@ -70,19 +69,18 @@ app.get('/', (req, res, next) => {
           sqlcount.push(data);
         }
         console.log(sqlcount.title);
-        console.log('언제해...?');
+        console.log('언제해');
         console.log(page * size);
       }
       if (page * size > sqlcount) {
         console.log('언제해...?');
-        return (size = sqlcount % size);
+        size = sqlcount % size;
       }
     });
   }
 
-  async function getsql() {
-    await changesize();
-    console.log('사이즈 ' + size);
+  console.log('사이즈 ' + size);
+  function getcolor() {
     if (search != undefined) {
       categorysql =
         "SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
@@ -180,7 +178,20 @@ app.get('/', (req, res, next) => {
       }
     });
   }
-  getsql();
+
+  function delay() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => resolve(), 1);
+    });
+  }
+
+  async function start() {
+    getcount();
+    await delay();
+    getcolor();
+  }
+
+  start();
 });
 
 module.exports = app;

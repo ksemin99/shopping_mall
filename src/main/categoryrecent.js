@@ -122,7 +122,10 @@ app.get('/', (req, res, next) => {
     }
     console.log(categorysql);
     db.query(categorysql, (err, result) => {
-      if (err) console.log(err);
+      if (err) {
+        console.log(err);
+        return err;
+      }
       else {
         sqlresult.data1.push(...result);
         let count = 0;
@@ -174,15 +177,21 @@ app.get('/', (req, res, next) => {
               sqlresult.data1[count].b_color = dummy.concat(...semi);
               count++;
             }
-            if (q == size - 1) res.send(sqlresult);
+            if (q == size - 1) {
+
+              return new Promise((resolve) => {
+                res.send(sqlresult);
+              })
+            }
           });
         }
       }
     });
   }
-  function start() {
+  async function start() {
     getcount();
-    getcolor();
+    await getcolor();
+
   }
   start();
 });

@@ -65,7 +65,7 @@ app.get('/', (req, res, next) => {
     db.query(countsql, (err, countresult) => {
       if (err) console.log(err);
       else {
-        sqlcount = countresult.Value;
+        sqlcount = countresult[0].Value;
         console.log(sqlcount);
         console.log('언제해...?');
       }

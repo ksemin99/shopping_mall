@@ -192,7 +192,7 @@ app.get('/', (req, res, next) => {
   async function start() {
     getcount();
 
-    const promise1 = await getcolot();
+    const promise1 = getcolot();
     promise1
       .then(() => {
         res.send(sqlresult);

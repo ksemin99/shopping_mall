@@ -56,11 +56,11 @@ app.get('/', (req, res, next) => {
   /////////////////////////////////
 
   if (search != undefined) {
-    countsql = "COUNT (DISTINCT b.*) FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
+    countsql = "SELECT COUNT(DISTINCT b.*) FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
       search +
       "%'"
   } else {
-    countsql = "COUNT (DISTINCT b.*) FROM board b, board_color bc WHERE b.b_num = bc.bc_num"
+    countsql = "SELECT COUNT(DISTINCT b.*) FROM board b, board_color bc WHERE b.b_num = bc.bc_num"
   }
 
   db.query(countsql, (err, countresult) => {

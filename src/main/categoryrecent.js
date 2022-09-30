@@ -180,7 +180,11 @@ app.get('/', (req, res, next) => {
       }
     });
   }
-
+  function start() {
+    getcount();
+    getcolor();
+  }
+  start();
 });
 
 module.exports = app;

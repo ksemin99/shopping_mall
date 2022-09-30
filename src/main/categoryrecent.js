@@ -49,7 +49,7 @@ app.get('/', (req, res, next) => {
       category = 5;
       break;
   }
-  function getcount(next) {
+  function getcount() {
     if (search != undefined) {
       countsql =
         "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
@@ -76,7 +76,7 @@ app.get('/', (req, res, next) => {
         console.log('언제해...?');
         size = sqlcount % size;
       }
-      next();
+
     });
   }
 
@@ -180,9 +180,12 @@ app.get('/', (req, res, next) => {
     });
   }
 
+  function start() {
+    getcount();
+    setTimeout(getcolor, 500);
+  }
 
-  getcount(getcolor);
-
+  start();
 });
 
 module.exports = app;

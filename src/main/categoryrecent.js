@@ -111,10 +111,12 @@ app.get('/', (req, res, next) => {
       }
       console.log(categorysql);
       db.query(categorysql, (err, result) => {
+        console.log('1');
         if (err) {
           console.log(err);
           return err;
         } else {
+          console.log('2');
           sqlresult.data1.push(...result);
           let count = 0;
           for (
@@ -123,6 +125,7 @@ app.get('/', (req, res, next) => {
             q++
           ) {
             if (search != undefined) {
+              console.log('3');
               colorsql =
                 "SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND b.b_name LIKE '%" +
                 search +
@@ -137,6 +140,7 @@ app.get('/', (req, res, next) => {
                 ', 1)';
             } else {
               if (categoryid == 0 || categoryid == 1) {
+                console.log('4');
                 colorsql =
                   'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY ' +
                   sort +
@@ -146,6 +150,7 @@ app.get('/', (req, res, next) => {
                   q +
                   ', 1)';
               } else {
+                console.log('5');
                 colorsql =
                   'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = ' +
                   category +
@@ -161,8 +166,10 @@ app.get('/', (req, res, next) => {
             let semi = [];
             let dummy = [];
             db.query(colorsql, (err, secondresult) => {
+              console.log('6');
               if (err) console.log(err);
               else {
+                console.log('7');
                 for (let data of secondresult) {
                   semi.push(data);
                 }

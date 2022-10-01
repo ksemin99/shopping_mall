@@ -70,7 +70,7 @@ app.get('/', (req, res, next) => {
       }
       if (page * size > sqlcount[0].total) {
         console.log('언제해...?');
-        size = sqlcount[0].total % size;
+        newsize = sqlcount[0].total % size;
       }
       if (search != undefined) {
         categorysql =
@@ -83,7 +83,7 @@ app.get('/', (req, res, next) => {
           ' limit ' +
           (page - 1) * size +
           ', ' +
-          size;
+          newsize;
       } else {
         if (categoryid == 0 || categoryid == 1) {
           categorysql =
@@ -94,7 +94,7 @@ app.get('/', (req, res, next) => {
             ' limit ' +
             (page - 1) * size +
             ', ' +
-            size;
+            newsize;
         } else {
           categorysql =
             'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = ' +
@@ -106,7 +106,7 @@ app.get('/', (req, res, next) => {
             ' limit ' +
             (page - 1) * size +
             ', ' +
-            size;
+            newsize;
         }
       }
       console.log(categorysql);
@@ -117,7 +117,7 @@ app.get('/', (req, res, next) => {
         } else {
           sqlresult.data1.push(...result);
           let count = 0;
-          for (let q = (page - 1) * size; q < size; q++) {
+          for (let q = (page - 1) * size; q < newsize; q++) {
             if (search != undefined) {
               colorsql =
                 "SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND b.b_name LIKE '%" +

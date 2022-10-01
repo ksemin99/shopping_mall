@@ -62,6 +62,7 @@ app.get('/', (req, res, next) => {
   }
 
   db.query(countsql, (err, countresult) => {
+    let newsize = 0;
     if (err) {
       console.log(err);
       return err;

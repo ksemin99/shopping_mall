@@ -128,7 +128,6 @@ app.get('/', (req, res, next) => {
             q++
           ) {
             if (search != undefined) {
-              console.log('22222');
               colorsql =
                 "SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND b.b_name LIKE '%" +
                 search +
@@ -142,6 +141,7 @@ app.get('/', (req, res, next) => {
                 q +
                 ', 1)';
             } else {
+              console.log(categoryid + '화기ㅣㄴ');
               if (categoryid == 0 || categoryid == 1) {
                 colorsql =
                   'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY ' +

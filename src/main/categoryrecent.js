@@ -188,7 +188,43 @@ app.get('/', (req, res, next) => {
 
               if (q == (page - 1) * size + newsize - 1) {
                 console.log('완료');
-                res.send(sqlresult);
+                //res.send(sqlresult);
+                res.send({
+                  data1: [
+                    {
+                      b_name: '상의1',
+                      b_url: 'ㅇㅇ',
+                      b_price: '30000',
+                      b_views: 10,
+                      b_time: '2022-09-25T15:35:13.000Z',
+                      b_color: ['#FFFF00', '#00FF00', '#FF0000', '#0000FF'],
+                    },
+                    {
+                      b_name: '상의2',
+                      b_url: 'ㅇㅇ',
+                      b_price: '30000',
+                      b_views: 15,
+                      b_time: '2022-09-25T15:35:36.000Z',
+                      b_color: ['#FFFF00', '#00FF00', '#FF0000'],
+                    },
+                    {
+                      b_name: '상의3',
+                      b_url: 'ㅇㅇ',
+                      b_price: '30000',
+                      b_views: 20,
+                      b_time: '2022-09-25T15:35:58.000Z',
+                      b_color: ['#FFFF00', '#00FF00', '#FF0000'],
+                    },
+                    {
+                      b_name: '상의4',
+                      b_url: 'ㅇㅇ',
+                      b_price: '30000',
+                      b_views: 25,
+                      b_time: '2022-09-25T15:36:16.000Z',
+                      b_color: ['#FFFF00', '#00FF00', '#FF0000'],
+                    },
+                  ],
+                });
               }
             });
           }

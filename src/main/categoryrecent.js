@@ -124,7 +124,7 @@ app.get('/', (req, res, next) => {
           console.log('에러 아님');
           sqlresult.data1.push(...result);
           let count = 0;
-          console.log((page - 1) * size);
+          console.log((page - 1) * size + newsize);
           for (
             let q = (page - 1) * size;
             q < (page - 1) * size + newsize;

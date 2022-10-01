@@ -53,7 +53,9 @@ app.get('/', (req, res, next) => {
 
   if (search != undefined) {
     countsql =
-      "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) as total FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
+      'SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) as total FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.c_num = ' +
+      category +
+      " AND b.b_name LIKE '%" +
       search +
       "%'";
   } else {
@@ -63,10 +65,7 @@ app.get('/', (req, res, next) => {
     } else {
       countsql =
         'SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) as total FROM board b, board_color bc WHERE b.b_num = bc.bc_num and b.c_num = ' +
-        category +
-        " AND b.b_name LIKE '%" +
-        search +
-        "%'";
+        category;
       console.log(countsql);
     }
   }

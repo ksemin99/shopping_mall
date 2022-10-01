@@ -59,6 +59,7 @@ app.get('/', (req, res, next) => {
   } else {
     countsql =
       'SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) as total FROM board b, board_color bc WHERE b.b_num = bc.bc_num';
+    console.log('1');
   }
 
   db.query(countsql, (err, countresult) => {
@@ -97,6 +98,7 @@ app.get('/', (req, res, next) => {
             (page - 1) * size +
             ', ' +
             newsize;
+          console.log('2');
         } else {
           categorysql =
             'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = ' +
@@ -109,6 +111,7 @@ app.get('/', (req, res, next) => {
             (page - 1) * size +
             ', ' +
             newsize;
+          console.log('3');
         }
       }
 
@@ -147,6 +150,7 @@ app.get('/', (req, res, next) => {
                   ' limit ' +
                   q +
                   ', 1)';
+                console.log('4');
               } else {
                 colorsql =
                   'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = ' +
@@ -158,6 +162,7 @@ app.get('/', (req, res, next) => {
                   ' limit ' +
                   q +
                   ', 1)';
+                console.log('5');
               }
             }
             let semi = [];

@@ -179,13 +179,13 @@ app.get('/', (req, res, next) => {
       }
     });
   }
-  async function start() {
-    await getcount();
-    getcolor();
-  }
-  start();
+  // async function start() {
+  //   await getcount();
+  //   getcolor();
+  // }
+  // start();
 
-  // getcolor();
+  getcolor();
 });
 
 module.exports = app;

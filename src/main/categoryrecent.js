@@ -49,7 +49,7 @@ app.get('/', (req, res, next) => {
       category = 5;
       break;
   }
-  function getcount() {
+  async function getcount() {
     if (search != undefined) {
       countsql =
         "SELECT COUNT(DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time) as total FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
@@ -76,11 +76,8 @@ app.get('/', (req, res, next) => {
       if (page * size > sqlcount) {
         console.log('언제해...?');
         size = sqlcount % size;
-
       }
-      return new Promise((resolve, reject) => {
-        size;
-      });
+      return size;
     });
   }
 
@@ -129,8 +126,7 @@ app.get('/', (req, res, next) => {
       if (err) {
         console.log(err);
         return err;
-      }
-      else {
+      } else {
         sqlresult.data1.push(...result);
         let count = 0;
         for (let q = (page - 1) * size; q < size; q++) {
@@ -182,42 +178,20 @@ app.get('/', (req, res, next) => {
               count++;
             }
             if (q == size - 1) {
-<<<<<<< HEAD
-              return new Promise((resolve, reject) => {
-                resolve(sqlresult);
-              });
-=======
-
-
-
               return sqlresult;
-
-
->>>>>>> ab78684eadf7256ccd7f203eae455ea98cbd48b7
             }
           });
         }
       }
     });
   }
-  // async function start() {
-  //   await getcount();
-
-  //   getcolor();
-
-<<<<<<< HEAD
   async function start() {
-    getcount();
-    await delay();
+    await getcount();
     getcolor();
-    res.send(sqlresult);
   }
-=======
-  // }
-  // start();
->>>>>>> ab78684eadf7256ccd7f203eae455ea98cbd48b7
+  start();
 
-  getcolor()
+  // getcolor();
 });
 
 module.exports = app;

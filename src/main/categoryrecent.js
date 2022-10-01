@@ -171,7 +171,11 @@ app.get('/', (req, res, next) => {
                 sqlresult.data1[count].b_color = dummy.concat(...semi);
                 count++;
               }
-              if (q == (page - 1) * size + newsize - 1) res.send(sqlresult);
+
+              if (q == (page - 1) * size + newsize - 1) {
+                console.log('완료');
+                res.send(sqlresult);
+              }
             });
           }
         }

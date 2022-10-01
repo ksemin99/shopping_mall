@@ -76,7 +76,7 @@ app.get('/', (req, res, next) => {
         newsize = sqlcount[0].total % size;
       } else {
         newsize = size;
-        console.log(newsize);
+        console.log(newsize + 'd');
       }
       if (search != undefined) {
         categorysql =

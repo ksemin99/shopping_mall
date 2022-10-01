@@ -116,10 +116,12 @@ app.get('/', (req, res, next) => {
       }
 
       db.query(categorysql, (err, result) => {
+        console.log('디비 들어옴');
         if (err) {
           console.log(err);
           return err;
         } else {
+          console.log('에러 아님');
           sqlresult.data1.push(...result);
           let count = 0;
           for (
@@ -127,6 +129,7 @@ app.get('/', (req, res, next) => {
             q < (page - 1) * size + newsize;
             q++
           ) {
+            console.log('for문');
             if (search != undefined) {
               console.log(search);
               colorsql =

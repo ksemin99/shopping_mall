@@ -21,7 +21,6 @@ app.get('/', (req, res, next) => {
   const page = req.query.page; //limit ( (page - 1) * size  , 1 )
   let size = req.query.size; //limit ( (page - 1) * size  , 1 )
   const pullsort = req.query.sort;
-  let sqlcount = [];
 
   const splitresult = pullsort.split(',');
 
@@ -65,6 +64,7 @@ app.get('/', (req, res, next) => {
         console.log(err);
         return err;
       } else {
+        let sqlcount = [];
         for (var data of countresult) {
           sqlcount.push(data);
         }

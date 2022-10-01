@@ -117,7 +117,11 @@ app.get('/', (req, res, next) => {
         } else {
           sqlresult.data1.push(...result);
           let count = 0;
-          for (let q = (page - 1) * size; q < newsize; q++) {
+          for (
+            let q = (page - 1) * size;
+            q < (page - 1) * size + newsize;
+            q++
+          ) {
             if (search != undefined) {
               colorsql =
                 "SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND b.b_name LIKE '%" +

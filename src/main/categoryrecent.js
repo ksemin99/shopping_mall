@@ -81,7 +81,6 @@ app.get('/', (req, res, next) => {
     });
   }
 
-  console.log('사이즈 ' + size);
   async function getcolor() {
     await getcount();
     if (search != undefined) {

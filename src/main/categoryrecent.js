@@ -67,6 +67,7 @@ app.get('/', (req, res, next) => {
         " AND b.b_name LIKE '%" +
         search +
         "%'";
+      console.log(countsql);
     }
   }
 

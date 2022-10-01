@@ -72,112 +72,112 @@ app.get('/', (req, res, next) => {
           console.log('언제해...?');
           size = sqlcount[0].total % size;
         }
+        if (search != undefined) {
+          categorysql =
+            "SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
+            search +
+            "%' ORDER BY b." +
+            sort +
+            ' ' +
+            standard +
+            ' limit ' +
+            (page - 1) * size +
+            ', ' +
+            size;
+        } else {
+          if (categoryid == 0 || categoryid == 1) {
+            categorysql =
+              'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.' +
+              sort +
+              ' ' +
+              standard +
+              ' limit ' +
+              (page - 1) * size +
+              ', ' +
+              size;
+          } else {
+            categorysql =
+              'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = ' +
+              category +
+              ' ORDER BY b.' +
+              sort +
+              ' ' +
+              standard +
+              ' limit ' +
+              (page - 1) * size +
+              ', ' +
+              size;
+          }
+        }
+        console.log(categorysql);
+        db.query(categorysql, (err, result) => {
+          if (err) {
+            console.log(err);
+            return err;
+          } else {
+            sqlresult.data1.push(...result);
+            let count = 0;
+            for (let q = (page - 1) * size; q < size; q++) {
+              if (search != undefined) {
+                colorsql =
+                  "SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND b.b_name LIKE '%" +
+                  search +
+                  "%' AND bc.bc_num = (SELECT b_num FROM board WHERE b_name LIKE '%" +
+                  search +
+                  "%' ORDER BY " +
+                  sort +
+                  ' ' +
+                  standard +
+                  ' limit ' +
+                  q +
+                  ', 1)';
+              } else {
+                if (categoryid == 0 || categoryid == 1) {
+                  colorsql =
+                    'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY ' +
+                    sort +
+                    ' ' +
+                    standard +
+                    ' limit ' +
+                    q +
+                    ', 1)';
+                } else {
+                  colorsql =
+                    'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = ' +
+                    category +
+                    ' ORDER BY ' +
+                    sort +
+                    ' ' +
+                    standard +
+                    ' limit ' +
+                    q +
+                    ', 1)';
+                }
+              }
+              let semi = [];
+              let dummy = [];
+              db.query(colorsql, (err, secondresult) => {
+                if (err) console.log(err);
+                else {
+                  for (let data of secondresult) {
+                    semi.push(data);
+                  }
+                  sqlresult.data1[count].b_color = dummy.concat(...semi);
+                  count++;
+                }
+                if (q == size - 1) {
+                  return sqlresult;
+                }
+              });
+            }
+          }
+        });
       }
     });
   }
 
   async function getcolor() {
     await getcount();
-    if (search != undefined) {
-      categorysql =
-        "SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.b_name LIKE '%" +
-        search +
-        "%' ORDER BY b." +
-        sort +
-        ' ' +
-        standard +
-        ' limit ' +
-        (page - 1) * size +
-        ', ' +
-        size;
-    } else {
-      if (categoryid == 0 || categoryid == 1) {
-        categorysql =
-          'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.' +
-          sort +
-          ' ' +
-          standard +
-          ' limit ' +
-          (page - 1) * size +
-          ', ' +
-          size;
-      } else {
-        categorysql =
-          'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = ' +
-          category +
-          ' ORDER BY b.' +
-          sort +
-          ' ' +
-          standard +
-          ' limit ' +
-          (page - 1) * size +
-          ', ' +
-          size;
-      }
-    }
-    console.log(categorysql);
-    db.query(categorysql, (err, result) => {
-      if (err) {
-        console.log(err);
-        return err;
-      } else {
-        sqlresult.data1.push(...result);
-        let count = 0;
-        for (let q = (page - 1) * size; q < size; q++) {
-          if (search != undefined) {
-            colorsql =
-              "SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND b.b_name LIKE '%" +
-              search +
-              "%' AND bc.bc_num = (SELECT b_num FROM board WHERE b_name LIKE '%" +
-              search +
-              "%' ORDER BY " +
-              sort +
-              ' ' +
-              standard +
-              ' limit ' +
-              q +
-              ', 1)';
-          } else {
-            if (categoryid == 0 || categoryid == 1) {
-              colorsql =
-                'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board ORDER BY ' +
-                sort +
-                ' ' +
-                standard +
-                ' limit ' +
-                q +
-                ', 1)';
-            } else {
-              colorsql =
-                'SELECT bc.b_color FROM board b, board_color bc WHERE bc.bc_num = b.b_num AND bc.bc_num = (SELECT b_num FROM board where c_num = ' +
-                category +
-                ' ORDER BY ' +
-                sort +
-                ' ' +
-                standard +
-                ' limit ' +
-                q +
-                ', 1)';
-            }
-          }
-          let semi = [];
-          let dummy = [];
-          db.query(colorsql, (err, secondresult) => {
-            if (err) console.log(err);
-            else {
-              for (let data of secondresult) {
-                semi.push(data);
-              }
-              sqlresult.data1[count].b_color = dummy.concat(...semi);
-              count++;
-            }
-            if (q == size - 1) {
-              return sqlresult;
-            }
-          });
-        }
-      }
-    });
   }
   // async function start() {
   //   await getcount();

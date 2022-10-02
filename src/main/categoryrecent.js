@@ -81,8 +81,8 @@ app.get('/', (req, res, next) => {
         sqlcount.push(data);
       }
       sqlresult['totalresult'] = sqlcount[0].total;
-      sqlresult['totalsize'] = sqlcount[0].total / 12;
-      sqlresult['lastpage'] = sqlcount[0].total % 12;
+      sqlresult['totalpage'] = parseInt(sqlcount[0].total / 12) + 1;
+      sqlresult['lastsize'] = sqlcount[0].total % 12;
       console.log(sqlresult);
       if (page * size > sqlcount[0].total) {
         newsize = sqlcount[0].total % size;

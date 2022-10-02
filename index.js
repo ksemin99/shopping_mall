@@ -19,8 +19,14 @@ const checkauthorization = require('./src/auth/checkauthorization');
 
 const category = require('./src/main/category');
 const categoryrecent = require('./src/main/categoryrecent');
-
 const recent = require('./src/main/recent');
+
+const addcomment = require('./src/detail/addcomment');
+const basket = require('./src/detail/basket');
+const deletecomment = require('./src/detail/deletecomment');
+const detailpage = require('./src/detail/detailpage');
+const likecomment = require('./src/detail/likecomment');
+const updatecomment = require('./src/detail/updatecomment');
 
 app.use(express.static(path.join(__dirname, 'src')));
 app.use('/auth/login', login);
@@ -30,9 +36,15 @@ app.use('/auth/token', token);
 app.use('/auth/newidcheck', newidcheck);
 
 app.use('/category', category);
-
 app.use('/categoryrecent', categoryrecent);
 app.use('/recent', recent);
+
+app.use('/detail/addcomment', addcomment);
+app.use('/detail/basket', basket);
+app.use('/detail/deletecomment', deletecomment);
+app.use('/detail/detailpage', detailpage);
+app.use('/detail/likecomment', likecomment);
+app.use('/detail/updatecomment', updatecomment);
 
 //const dotenv = require('dotenv').config(); // #1
 const mysqlConObj = require('./config/mysql'); // #2

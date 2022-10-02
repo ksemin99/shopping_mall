@@ -80,7 +80,8 @@ app.get('/', (req, res, next) => {
       for (var data of countresult) {
         sqlcount.push(data);
       }
-      console.log(sqlcount + '카운트');
+      sqlresult.push(sqlcount[0].total);
+      console.log(sqlresult);
       if (page * size > sqlcount[0].total) {
         newsize = sqlcount[0].total % size;
       } else {

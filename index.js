@@ -21,12 +21,12 @@ const category = require('./src/main/category');
 const categoryrecent = require('./src/main/categoryrecent');
 const recent = require('./src/main/recent');
 
-const addcomment = require('./src/detail/addcomment');
-const basket = require('./src/detail/basket');
-const deletecomment = require('./src/detail/deletecomment');
-const detailpage = require('./src/detail/detailpage');
-const likecomment = require('./src/detail/likecomment');
-const updatecomment = require('./src/detail/updatecomment');
+// const addcomment = require('./src/detail/addcomment');
+// const basket = require('./src/detail/basket');
+// const deletecomment = require('./src/detail/deletecomment');
+// const detailpage = require('./src/detail/detailpage');
+// const likecomment = require('./src/detail/likecomment');
+// const updatecomment = require('./src/detail/updatecomment');
 
 app.use(express.static(path.join(__dirname, 'src')));
 app.use('/auth/login', login);

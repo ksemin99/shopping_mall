@@ -39,12 +39,12 @@ app.use('/category', category);
 app.use('/categoryrecent', categoryrecent);
 app.use('/recent', recent);
 
-app.use('/detail/addcomment', addcomment);
-app.use('/detail/basket', basket);
-app.use('/detail/deletecomment', deletecomment);
-app.use('/detail/detailpage', detailpage);
-app.use('/detail/likecomment', likecomment);
-app.use('/detail/updatecomment', updatecomment);
+// app.use('/detail/addcomment', addcomment);
+// app.use('/detail/basket', basket);
+// app.use('/detail/deletecomment', deletecomment);
+// app.use('/detail/detailpage', detailpage);
+// app.use('/detail/likecomment', likecomment);
+// app.use('/detail/updatecomment', updatecomment);
 
 //const dotenv = require('dotenv').config(); // #1
 const mysqlConObj = require('./config/mysql'); // #2

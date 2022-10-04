@@ -86,7 +86,7 @@ app.get('/', (req, res, next) => {
       }
       if (search != undefined) {
         categorysql =
-          'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.c_num = ' +
+          'SELECT DISTINCT b.b_num, b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num AND b.c_num = ' +
           category +
           " AND b.b_name LIKE '%" +
           search +
@@ -101,7 +101,7 @@ app.get('/', (req, res, next) => {
       } else {
         if (categoryid == 0 || categoryid == 1) {
           categorysql =
-            'SELECT DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.' +
+            'SELECT DISTINCT b.b_num, b.b_name, b.b_url, b.b_price, b.b_views, b.b_time FROM board b, board_color bc WHERE b.b_num = bc.bc_num ORDER BY b.' +
             sort +
             ' ' +
             standard +
@@ -111,7 +111,7 @@ app.get('/', (req, res, next) => {
             newsize;
         } else {
           categorysql =
-            'select DISTINCT b.b_name, b.b_url, b.b_price, b.b_views, b.b_time from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = ' +
+            'select DISTINCT b.b_num, b.b_name, b.b_url, b.b_price, b.b_views, b.b_time from board b, board_color bc where b.b_num = bc.bc_num and b.c_num = ' +
             category +
             ' ORDER BY b.' +
             sort +

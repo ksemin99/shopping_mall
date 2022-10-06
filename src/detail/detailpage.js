@@ -12,4 +12,15 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/', (req, res, next) => {});
+app.get('/:pagenum', (req, res, next) => {
+    const boardnum = req.params.pagenum;
+    detailresult = 'SELECT * FROM board WHERE b_num = ' + boardnum
+    db.query(detailsql, (err, detailresult) => {
+        if (err) console.log(err);
+        else {
+
+        }
+    });
+});
+
+module.exports = app;

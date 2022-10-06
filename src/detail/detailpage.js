@@ -18,7 +18,7 @@ app.get('/:pagenum', (req, res, next) => {
     db.query(detailsql, (err, detailresult) => {
         if (err) console.log(err);
         else {
-
+            res.send(detailresult);
         }
     });
 });

@@ -14,9 +14,10 @@ dotenv.config();
 
 app.get('/:pagenum', (req, res, next) => {
     const boardnum = req.params.pagenum;
-    detailsql = 'SELECT * FROM board WHERE b_num = ' + boardnum
+    b_numsql = 'SELECT * FROM board WHERE b_num = ' + boardnum
     detailpicturesql = 'SELECT b_detail_picture_url FROM board_detail_picture WHERE b_num = ' + boardnum
-    db.query(detailpicturesql, (err, detailresult) => {
+    detailsql = 'SELECT b_detail_url FROM board_detail WHERE b_num = ' + boardnum
+    db.query(detailsql, (err, detailresult) => {
         if (err) console.log(err);
         else {
             res.send(detailresult);

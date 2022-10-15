@@ -17,7 +17,7 @@ app.get('/:pagenum', (req, res, next) => {
     b_numsql = 'SELECT * FROM board WHERE b_num = ' + boardnum
     detailpicturesql = 'SELECT b_detail_picture_url FROM board_detail_picture WHERE b_num = ' + boardnum
     detailsql = 'SELECT b_detail_url FROM board_detail WHERE b_num = ' + boardnum
-    sizesql = 'SELECT * FROM board_size WHERE b_num = ' + boardnum
+    sizesql = 'SELECT * FROM board_size WHERE * is not null and b_num = ' + boardnum
     db.query(sizesql, (err, detailresult) => {
         if (err) console.log(err);
         else {

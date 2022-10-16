@@ -12,4 +12,13 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/', (req, res, next) => {});
+app.get('/', (req, res, next) => {
+  b_num = req.body.b_num;
+  u_num = req.body.u_num;
+  delete_commnet_sql =
+    "delete from comment where b_num ='" +
+    b_num +
+    "' and u_num ='" +
+    u_num +
+    "';";
+});

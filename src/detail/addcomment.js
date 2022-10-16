@@ -12,4 +12,6 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/', (req, res, next) => {});
+app.get('/', (req, res, next) => {
+  comment_sql = 'insert into ';
+});

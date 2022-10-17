@@ -42,17 +42,42 @@ app.get('/:pagenum', (req, res, next) => {
             case 5: sizesql = 'SELECT b_size, height, feet, heel FROM board_size WHERE b_num = ' + boardnum
                 break;
         }
-        db.query(sizesql, (err, sizeresult) => {
+        db.query(detailpicturesql, (err, detailpictureresult) => {
             if (err) console.log(err);
             else {
                 let semi = [];
                 let dummy = [];
-                for (let data of sizeresult) {
+                for (let data of detailpictureresult) {
                     semi.push(data);
                 }
-                sqlresult.data1[0].b_size = dummy.concat(...semi);
-                res.send(sqlresult);
+                sqlresult.data1[0].detailpicture_url = dummy.concat(...semi);
             }
+            db.query(detailsql, (err, detailresult) => {
+                if (err) console.log(err);
+                else {
+                    let semi = [];
+                    let dummy = [];
+                    sqlresult.data1[0].detail_url.push(detailresult)
+                    res.send(sqlresult);
+                    // for (let data of detailresult) {
+                    //     semi.push(data);
+                    // }
+                    // sqlresult.data1[0].detail_url = dummy.concat(...semi);
+                }
+                // db.query(sizesql, (err, sizeresult) => {
+                //     if (err) console.log(err);
+                //     else {
+                //         let semi = [];
+                //         let dummy = [];
+                //         for (let data of sizeresult) {
+                //             semi.push(data);
+                //         }
+                //         sqlresult.data1[0].b_size = dummy.concat(...semi);
+                //         res.send(sqlresult);
+                //     }
+                // });
+
+            });
         });
 
     });

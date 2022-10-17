@@ -45,37 +45,28 @@ app.get('/:pagenum', (req, res, next) => {
         db.query(detailpicturesql, (err, detailpictureresult) => {
             if (err) console.log(err);
             else {
-                let semi = [];
                 let dummy = [];
-                for (let data of detailpictureresult) {
-                    semi.push(data);
-                }
-                sqlresult.data1[0].detailpicture_url = dummy.concat(...semi);
+                sqlresult.data1[0].detailpicture_url = dummy.concat(Object.values(...detailpictureresult));
             }
             db.query(detailsql, (err, detailresult) => {
                 if (err) console.log(err);
                 else {
-                    let semi = [];
                     let dummy = [];
                     console.log(Object.values(...detailresult))
-                    for (let data of detailresult) {
-                        semi.push(data);
-                    }
                     sqlresult.data1[0].detail_url = dummy.concat(Object.values(...detailresult));
-                    res.send(sqlresult);
                 }
-                // db.query(sizesql, (err, sizeresult) => {
-                //     if (err) console.log(err);
-                //     else {
-                //         let semi = [];
-                //         let dummy = [];
-                //         for (let data of sizeresult) {
-                //             semi.push(data);
-                //         }
-                //         sqlresult.data1[0].b_size = dummy.concat(...semi);
-                //         res.send(sqlresult);
-                //     }
-                // });
+                db.query(sizesql, (err, sizeresult) => {
+                    if (err) console.log(err);
+                    else {
+                        let semi = [];
+                        let dummy = [];
+                        for (let data of sizeresult) {
+                            semi.push(data);
+                        }
+                        sqlresult.data1[0].b_size = dummy.concat(...semi);
+                        res.send(sqlresult);
+                    }
+                });
 
             });
         });

@@ -24,7 +24,7 @@ app.get('/:pagenum', (req, res, next) => {
     detailsql = 'SELECT b_detail_url FROM board_detail WHERE b_num = ' + boardnum
     db.query(b_numsql, (err, result) => {
         sqlresult.data1.push(...result);
-        console.log(sqlresult)
+        console.log(sqlresult.data1[0].c_num)
     });
     // db.query(c_numsql, (err, c_numresult) => {
     //     if (err) console.log(err);

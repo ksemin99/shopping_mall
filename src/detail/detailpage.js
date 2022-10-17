@@ -45,6 +45,7 @@ app.get('/:pagenum', (req, res, next) => {
         db.query(detailpicturesql, (err, detailpictureresult) => {
             if (err) console.log(err);
             else {
+                let semi = [];
                 let dummy = [];
                 console.log(detailpictureresult)
                 for (let data of detailpictureresult) {

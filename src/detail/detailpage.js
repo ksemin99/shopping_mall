@@ -46,13 +46,13 @@ app.get('/:pagenum', (req, res, next) => {
             if (err) console.log(err);
             else {
                 let dummy = [];
+                console.log(detailpictureresult)
                 sqlresult.data1[0].detailpicture_url = dummy.concat(Object.values(...detailpictureresult));
             }
             db.query(detailsql, (err, detailresult) => {
                 if (err) console.log(err);
                 else {
                     let dummy = [];
-                    console.log(Object.values(...detailresult))
                     sqlresult.data1[0].detail_url = dummy.concat(Object.values(...detailresult));
                 }
                 db.query(sizesql, (err, sizeresult) => {

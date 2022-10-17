@@ -52,7 +52,7 @@ app.get('/:pagenum', (req, res, next) => {
                     semi.push(...Object.values(data))
                 }
                 console.log(semi)
-                sqlresult.data1[0].detailpicture_url = dummy.concat(Object.values(...detailpictureresult));
+                sqlresult.data1[0].detailpicture_url = dummy.concat(semi);
             }
             db.query(detailsql, (err, detailresult) => {
                 if (err) console.log(err);

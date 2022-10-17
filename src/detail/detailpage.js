@@ -17,12 +17,12 @@ app.get('/:pagenum', (req, res, next) => {
     let sqlresult = { data1: [] };
     const boardnum = req.params.pagenum;
     let board_c_num;
-    c_numsql = 'SELECT c_num FROM board WHERE b_num = ' + boardnum
     let sizesql;
     b_numsql = 'SELECT * FROM board WHERE b_num = ' + boardnum
     detailpicturesql = 'SELECT b_detail_picture_url FROM board_detail_picture WHERE b_num = ' + boardnum
     detailsql = 'SELECT b_detail_url FROM board_detail WHERE b_num = ' + boardnum
     db.query(b_numsql, (err, result) => {
+
         sqlresult.data1.push(...result);
         board_c_num = parseInt(sqlresult.data1[0].c_num);
         console.log(board_c_num)
@@ -45,7 +45,13 @@ app.get('/:pagenum', (req, res, next) => {
         db.query(sizesql, (err, sizeresult) => {
             if (err) console.log(err);
             else {
-                res.send(sizeresult);
+                let semi = [];
+                let dummy = [];
+                for (let data of sizeresult) {
+                    semi.push(data);
+                }
+                sqlresult.data1[0].b_size = dummy.concat(...semi);
+                res.send(sqlresult);
             }
         });
 

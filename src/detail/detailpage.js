@@ -57,7 +57,7 @@ app.get('/:pagenum', (req, res, next) => {
                 else {
                     let semi = [];
                     let dummy = [];
-
+                    console.log(...detailresult)
                     for (let data of detailresult) {
                         semi.push(data);
                     }

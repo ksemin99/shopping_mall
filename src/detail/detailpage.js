@@ -20,6 +20,7 @@ app.get('/:pagenum', (req, res, next) => {
         if (err) console.log(err);
         else {
             console.log(detailresult)
+            console.log(detailresult.c_num)
             res.send(detailresult);
         }
     });

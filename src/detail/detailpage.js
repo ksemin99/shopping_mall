@@ -29,19 +29,19 @@ app.get('/:pagenum', (req, res, next) => {
 
             board_c_num = parseInt(c_numresult[0].c_num);
             switch (board_c_num) {
-                case 1: sizesql = 'SELECT outseam, shoulder, across, sleeve, muscle, hem FROM board_size WHERE b_num = ' + boardnum
+                case 1: sizesql = 'SELECT b_size, outseam, shoulder, across, sleeve, muscle, hem FROM board_size WHERE b_num = ' + boardnum
                     break;
 
-                case 2: sizesql = 'SELECT outseam, waist, hip, rise, thigh, hem FROM board_size WHERE b_num = ' + boardnum
+                case 2: sizesql = 'SELECT b_size, outseam, waist, hip, rise, thigh, hem FROM board_size WHERE b_num = ' + boardnum
                     break;
 
-                case 3: sizesql = 'SELECT outseam, shoulder, across, armhole, hem FROM board_size WHERE b_num = ' + boardnum
+                case 3: sizesql = 'SELECT b_size, outseam, shoulder, across, armhole, hem FROM board_size WHERE b_num = ' + boardnum
                     break;
 
-                case 4: sizesql = 'SELECT outseam, waist, hip, hem FROM board_size WHERE b_num = ' + boardnum
+                case 4: sizesql = 'SELECT b_size, outseam, waist, hip, hem FROM board_size WHERE b_num = ' + boardnum
                     break;
 
-                case 5: sizesql = 'SELECT height, feet, heel FROM board_size WHERE b_num = ' + boardnum
+                case 5: sizesql = 'SELECT b_size, height, feet, heel FROM board_size WHERE b_num = ' + boardnum
                     break;
             }
             db.query(sizesql, (err, sizeresult) => {

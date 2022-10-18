@@ -31,3 +31,5 @@ app.get('/', (req, res, next) => {
     comment +
     "');";
 });
+
+module.exports = app;

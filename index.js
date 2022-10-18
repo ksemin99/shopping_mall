@@ -23,6 +23,7 @@ const recent = require('./src/main/recent');
 
 // const addcomment = require('./src/detail/addcomment');
 // const basket = require('./src/detail/basket');
+const addbasket = require('./src/detail/addbasket');
 // const deletecomment = require('./src/detail/deletecomment');
 const detailpage = require('./src/detail/detailpage');
 // const likecomment = require('./src/detail/likecomment');
@@ -41,6 +42,7 @@ app.use('/recent', recent);
 
 // app.use('/detail/addcomment', addcomment);
 // app.use('/detail/basket', basket);
+app.use('/detail/addbasket', addbasket);
 // app.use('/detail/deletecomment', deletecomment);
 app.use('/detail/detailpage', detailpage);
 // app.use('/detail/likecomment', likecomment);

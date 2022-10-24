@@ -13,31 +13,28 @@ app.use(cors());
 dotenv.config();
 
 app.get('/', (req, res, next) => {
-
-
-
   res.send({
     data1: [
       {
         basketid: 0,
-        basketbutton: '쇼핑계속하기'
+        basketbutton: '쇼핑계속하기',
       },
       {
         basketid: 1,
-        basketbutton: '선택 상품 삭제'
+        basketbutton: '선택 상품 삭제',
       },
       {
         basketid: 2,
-        basketbutton: '장바구니 비우기'
+        basketbutton: '장바구니 비우기',
       },
       {
         basketid: 3,
-        basketbutton: '전체상품주문'
+        basketbutton: '전체상품주문',
       },
       {
         basketid: 4,
-        basketbutton: '선택상품주문'
-      }
+        basketbutton: '선택상품주문',
+      },
     ],
   });
 });

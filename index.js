@@ -28,6 +28,7 @@ const addbasket = require('./src/detail/addbasket');
 const detailpage = require('./src/detail/detailpage');
 // const likecomment = require('./src/detail/likecomment');
 // const updatecomment = require('./src/detail/updatecomment');
+const updatecomment = require('./src/detail/showcomment');
 
 app.use(express.static(path.join(__dirname, 'src')));
 app.use('/auth/login', login);
@@ -47,6 +48,7 @@ app.use('/detail/addbasket', addbasket);
 app.use('/detail/detailpage', detailpage);
 // app.use('/detail/likecomment', likecomment);
 // app.use('/detail/updatecomment', updatecomment);
+app.use('/detail/updatecomment', showcomment);
 
 //const dotenv = require('dotenv').config(); // #1
 const mysqlConObj = require('./config/mysql'); // #2

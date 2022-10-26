@@ -21,7 +21,7 @@ app.get('/', (req, res, next) => {
   comment = req.body.comment;
   c_img = req.body.c_img;
   comment_sql =
-    "insert into comment(b_num, u_num, id, u_img, comment, c_img) values('" +
+    "insert into comment(b_num, u_num, id, comment) values('" +
     b_num +
     "','" +
     u_num +

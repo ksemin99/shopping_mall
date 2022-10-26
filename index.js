@@ -29,7 +29,7 @@ const detailpage = require('./src/detail/detailpage');
 // const likecomment = require('./src/detail/likecomment');
 // const updatecomment = require('./src/detail/updatecomment');
 const showcomment = require('./src/detail/showcomment');
-const checklogin = require('./src/detail/showcocheckloginmment');
+const checklogin = require('./src/detail/checklogin');
 
 app.use(express.static(path.join(__dirname, 'src')));
 app.use('/auth/login', login);

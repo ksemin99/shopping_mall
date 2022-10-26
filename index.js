@@ -7,10 +7,6 @@ const PORT = 3000;
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 
-const http = require('http');
-var cookieParser = require('cookie-parser');
-app.use(cookieParser());
-
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 

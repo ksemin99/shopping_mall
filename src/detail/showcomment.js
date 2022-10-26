@@ -20,13 +20,14 @@ app.get('/:b_num', (req, res, next) => {
         addcommentb_num: b_num,
         addcommenname: '상품 리뷰 작성하기',
       }
-    ]
+    ],
+    data2: []
   };
   showcommentsql = 'SELECT * FROM comment WHERE b_num = ' + b_num;
   db.query(showcommentsql, (err, result) => {
     if (err) console.log(err);
     else {
-      sqlresult.data1.push(...result);
+      sqlresult.data2.push(...result);
       res.send(sqlresult);
     }
   });

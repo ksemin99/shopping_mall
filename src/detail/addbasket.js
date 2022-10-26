@@ -21,7 +21,8 @@ app.get('/', (req, res, next) => {
     res.cookie('json', {
         name: 'cookie',
         property: 'delicious'
-    })
+    });
+    res.send(cookies)
 });
 
 module.exports = app;

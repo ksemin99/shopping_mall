@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const http = require('http');
-const cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
 

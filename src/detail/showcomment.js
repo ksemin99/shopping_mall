@@ -14,11 +14,13 @@ dotenv.config();
 
 app.get('/:b_num', (req, res, next) => {
   const b_num = parseInt(req.params.b_num);
+  let sqlresult = { data1: [] };
   showcommentsql = 'SELECT * FROM comment WHERE b_num = ' + b_num;
   db.query(showcommentsql, (err, result) => {
     if (err) console.log(err);
     else {
-      res.send(result);
+      sqlresult.data1.push(...result);
+      res.send(sqlresult);
     }
   });
 });

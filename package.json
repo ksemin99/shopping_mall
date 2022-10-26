@@ -18,7 +18,7 @@
   "author": "",
   "dependencies": {
     "bearer-token": "^2.0.2",
-    "cookie-parser": "^1.4.6",
+    "cookie-parser": "*",
     "cors": "^2.8.5",
     "document": "^0.0.0",
     "dotenv": "^16.0.2",

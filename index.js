@@ -6,7 +6,7 @@ const path = require('path');
 const PORT = 3000;
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
-let cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
 const bodyParser = require('body-parser');

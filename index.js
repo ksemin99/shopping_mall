@@ -28,7 +28,7 @@ const addbasket = require('./src/detail/addbasket');
 const detailpage = require('./src/detail/detailpage');
 // const likecomment = require('./src/detail/likecomment');
 // const updatecomment = require('./src/detail/updatecomment');
-const updatecomment = require('./src/detail/showcomment');
+const showcomment = require('./src/detail/showcomment');
 
 app.use(express.static(path.join(__dirname, 'src')));
 app.use('/auth/login', login);

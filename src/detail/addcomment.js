@@ -12,14 +12,13 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/', (req, res, next) => {
+app.post('/', (req, res, next) => {
   console.log(req);
-  b_num = req.body.b_num;
-  u_num = req.body.u_num;
-  id = req.body.id;
-  u_img = req.body.u_img;
-  comment = req.body.comment;
-  c_img = req.body.c_img;
+  const b_num = Number(req.query.b_num);
+  const u_num = Number(req.query.u_num);
+  const id = Number(req.query.id);
+  const comment = Number(req.query.comment);
+
   comment_sql =
     "insert into comment(b_num, u_num, id, comment) values('" +
     b_num +

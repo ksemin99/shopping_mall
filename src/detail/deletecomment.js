@@ -12,13 +12,19 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/', (req, res, next) => {
-  b_num = req.body.b_num;
-  u_num = req.body.u_num;
-  delete_commnet_sql =
-    "delete from comment where b_num ='" +
+app.delete('/', (req, res, next) => {
+  const b_num = req.body.b_num;
+  const u_num = req.body.u_num;
+  deletesql =
+    "DELETE FROM comment WHERE b_num = '" +
     b_num +
-    "' and u_num ='" +
+    "' AND u_num = '" +
     u_num +
-    "';";
+    "'";
+  db.query(deletesql, (err, deleteresult) => {
+    if (err) console.log(err);
+    else {
+      console.log("삭제성공");
+    }
+  });
 });

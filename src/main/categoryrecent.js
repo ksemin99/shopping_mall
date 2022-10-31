@@ -18,9 +18,9 @@ app.get('/', (req, res, next) => {
   const search = req.query.search;
   const page = req.query.page; //limit ( (page - 1) * size  , 1 )
   let size = req.query.size; //limit ( (page - 1) * size  , 1 )
-  const pullsort = req.query.sort;
+  const fullsort = req.query.sort;
 
-  const splitresult = pullsort.split(',');
+  const splitresult = fullsort.split(',');
 
   const sort = splitresult[0]; //낮은가격, 높은가격, 최신순, 조회순//
   const standard = splitresult[1]; //
@@ -67,10 +67,8 @@ app.get('/', (req, res, next) => {
 
   db.query(countsql, (err, countresult) => {
     let newsize = 0;
-    if (err) {
-      console.log(err);
-      return err;
-    } else {
+    if (err) console.log(err);
+    else {
       let sqlcount = [];
       for (var data of countresult) {
         sqlcount.push(data);

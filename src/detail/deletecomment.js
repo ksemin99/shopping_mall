@@ -28,3 +28,5 @@ app.delete('/', (req, res, next) => {
     }
   });
 });
+
+module.exports = app;

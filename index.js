@@ -29,6 +29,7 @@ const detailpage = require('./src/detail/detailpage');
 // const likecomment = require('./src/detail/likecomment');
 const updatecomment = require('./src/detail/updatecomment');
 const showcomment = require('./src/detail/showcomment');
+const showbasket = require('./src/detail/showbasket');
 const checklogin = require('./src/detail/checklogin');
 
 app.use(express.static(path.join(__dirname, 'src')));
@@ -51,6 +52,7 @@ app.use('/detail/detailpage', detailpage);
 // app.use('/detail/likecomment', likecomment);
 app.use('/detail/updatecomment', updatecomment);
 app.use('/detail/showcomment', showcomment);
+app.use('/detail/showbasket', showbasket);
 app.use('/detail/checklogin', checklogin);
 
 // const dotenv = require('dotenv').config(); // #1

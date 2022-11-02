@@ -76,6 +76,7 @@ app.get('/', function (req, res) {
   res.send('<h1>Express Simple Server</h1>');
 });
 app.get('/getcookie', function (req, res) {
+  console.log(req.cookies)
   res.send(req.cookies);
 });
 app.get('/setcookie', function (req, res) {

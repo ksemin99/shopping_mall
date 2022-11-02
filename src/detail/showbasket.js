@@ -13,6 +13,9 @@ app.use(cors());
 dotenv.config();
 
 app.get('/', (req, res, next) => {
+    console.log("r + h + c : " + req.headers.cookie);
+    console.log("r + h : " + req.headers);
+    console.log("r : " + req);
     if (req.headers.cookie) {
         console.log(req.headers.cookie);
     }

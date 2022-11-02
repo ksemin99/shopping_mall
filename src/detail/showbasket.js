@@ -19,7 +19,7 @@ app.get('/', (req, res, next) => {
     if (req.headers.cookie) {
         console.log(req.headers.cookie);
     }
-    res.send("굳")
+    res.send(req.headers)
 });
 
 module.exports = app;

@@ -65,6 +65,10 @@ app.use(cors());
 
 dotenv.config();
 
+let cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
+
 app.listen(PORT, function () {
   console.log('server listening on port 3000');
 });

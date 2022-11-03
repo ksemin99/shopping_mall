@@ -10,6 +10,10 @@ const db = mysqlConObj.init();
 
 app.use(cors());
 
+let cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
+
 dotenv.config();
 
 app.get('/', (req, res, next) => {

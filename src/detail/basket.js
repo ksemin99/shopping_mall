@@ -13,7 +13,7 @@ app.use(cors());
 dotenv.config();
 
 app.get('/', (req, res, next) => {
-  res.send({
+  res.send(req.cookies, {
     data1: [
       {
         basketid: 0,

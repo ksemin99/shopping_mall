@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const http = require('http');
-// cookieParser = require('cookie-parser');
-// app.use(cookieParser());
+cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 
 const mysqlConObj = require('../../config/mysql'); // #2
@@ -16,13 +16,28 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/', (req, res, next) => {
-    res.cookie('string', 'cookie');
-    res.cookie('json', {
-        name: 'cookie',
-        property: 'delicious'
+app.post('/', (req, res, next) => {
+    const id = req.query.id;                        // 비로그인시 id는 "" 받기
+    const b_num = Number(req.query.b_num);
+    const opt_color = req.query.opt_color;
+    const opt_size = Number(req.query.opt_size);
+    const opt_count = req.query.opt_count;
+    const cookie = req.cookies;
+
+    addbasketsql = 'INSERT INTO basket VALUES (' +
+        id + ', ' +
+        b_num + ', ' +
+        opt_color + ', ' +
+        opt_size + ', ' +
+        opt_count + ', ' +
+        cookie + ')'
+
+    db.query(addbasketsql, (err, addbasketresult) => {
+        if (err) console.log(err);
+        else {
+            res.send(addbasketresult);
+        }
     });
-    res.send(cookies)
 });
 
 module.exports = app;

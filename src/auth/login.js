@@ -68,6 +68,14 @@ app.post('/', (req, res, next) => {
                   accessTokenexpiresIn: accessTokenExpiresIn,
                   refreshTokenexpiresIn: refreshTokenExpiresIn,
                 }); //이 부분이 로그인 시 accesstoken이랑 refreshtoken 나오는 곳
+                basketupdatesql = "UPDATE basket SET id = '" +
+                  req.query.id +
+                  "' WHERE cookie = " +
+                  req.cookies + // value값으로 수정
+                  " AND id = ''"
+                db.query(basketupdatesql, (err, basketupdateresult) => {
+                  if (err) console.log(err);
+                });
               }
             });
           }

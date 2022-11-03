@@ -13,6 +13,7 @@ app.use(cors());
 dotenv.config();
 
 app.get('/', (req, res, next) => {
+  console.log(req.cookies)
   res.send(req.cookies
     //   , {
     //   data1: [

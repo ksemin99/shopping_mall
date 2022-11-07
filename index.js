@@ -68,27 +68,23 @@ dotenv.config();
 let cookieParser = require('cookie-parser');
 
 app.use(cookieParser('secretKey'));
-
+// app.use(cookieParser());
+let count = 0;
 app.listen(PORT, function () {
   console.log('server listening on port 3000');
 });
 app.get('/', function (req, res) {
-  res.send('<h1>Express Simple Server</h1>');
-});
-app.get('/getcookie', function (req, res) {
-  console.log(req.signedCookies.key)
-  res.send(req.signedCookies.key);
-  console.log(req.cookies)
-  //res.send(req.cookies);
-});
-app.get('/setcookie', function (req, res) {
-  // 쿠키 생성.
   const cookieConfig = {
     httpOnly: true,
     maxAge: 100000,
     signed: true
   };
-  res.cookie('key', 'gg', cookieConfig);
-  res.redirect('/getcookie'); // 경로 이동.
+  if (req.signedCookies.key) {
+    console.log(req.signedCookies.key);
+  } else {
+    count++;
+    res.cookie('key', count, cookieConfig);
+    console.log(req.signedCookies.key);
+  }
+  res.send('<h1>Express Simple Server</h1>');
 });
-

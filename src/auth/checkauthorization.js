@@ -20,6 +20,7 @@ module.exports = {
   authenticaterefreshToken: function authenticaterefreshToken(req, res, next) {
     const authHeader = req.headers['authorization'];
     const refreshToken = authHeader && authHeader.split(' ')[1];
+    console.log(refreshToken);
     if (refreshToken == null) return res.send('로그인을 하지 않은 상태입니다.');
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
       if (err) return res.send('리프레쉬 토큰이 만료되었습니다.');

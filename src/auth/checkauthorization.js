@@ -17,6 +17,19 @@ module.exports = {
     });
   },
 
+  authenticaterefreshToken: function authenticaterefreshToken(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const refreshToken = authHeader && authHeader.split(' ')[1];
+    if (refreshToken == null) return res.send('로그인을 하지 않은 상태입니다.');
+    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+      if (err) return res.send('리프레쉬 토큰이 만료되었습니다.');
+      const accessToken = checkauthorization.generateAccessToken({
+        id: user.id,
+        pw: user.pw,
+      });
+    });
+  },
+
   generateAccessToken: function generateAccessToken(user) {
     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: '20s',

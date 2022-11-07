@@ -10,7 +10,7 @@ const db = mysqlConObj.init();
 
 app.use(cors());
 
-app.post('/', checkauthorization.authenticaterefreshToken, (req, res) => {
+app.post('/', (req, res) => {
   // const refreshToken = req.body.token;
   // if (refreshToken == null) return res.sendStatus(401);
   // // if (!refreshTokens.includes(refreshToken)) return res.sendStatus(403);
@@ -29,12 +29,22 @@ app.post('/', checkauthorization.authenticaterefreshToken, (req, res) => {
   //     accessTokenExpiresIn: accessTokenExpiresIn,
   //   });
   // });
-  const accessTokenExpiresIn =
-    checkauthorization.checkAccessTokenExpiresIn(accessToken);
-  res.json({
-    grantType: 'bearer',
-    accessToken: accessToken,
-    accessTokenExpiresIn: accessTokenExpiresIn,
+  const authHeader = req.headers['authorization'];
+  const refreshToken = authHeader && authHeader.split(' ')[1];
+  if (refreshToken == null) return res.send('로그인을 하지 않은 상태입니다.');
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+    if (err) return res.send('리프레쉬 토큰이 만료되었습니다.');
+    const accessToken = checkauthorization.generateAccessToken({
+      id: user.id,
+      pw: user.pw,
+    });
+    const accessTokenExpiresIn =
+      checkauthorization.checkAccessTokenExpiresIn(accessToken);
+    res.json({
+      grantType: 'bearer',
+      accessToken: accessToken,
+      accessTokenExpiresIn: accessTokenExpiresIn,
+    });
   });
 });
 

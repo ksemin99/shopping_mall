@@ -82,7 +82,7 @@ app.get('/:pagenum', (req, res, next) => {
         else {
           let dummy = [];
           sqlresult.data1[0].detail_url = dummy.concat(
-            Object.values(...detailresult)
+            { ...Object.values(detailresult) }
           );
         }
         db.query(sizesql, (err, sizeresult) => {

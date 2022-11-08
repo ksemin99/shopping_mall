@@ -10,7 +10,7 @@ const db = mysqlConObj.init();
 
 app.use(cors());
 
-app.post('/', (req, res) => {
+app.get('/', (req, res) => {
   const id = req.query.id
   const authHeader = req.headers['authorization'];
   const refreshToken = authHeader && authHeader.split(' ')[1];

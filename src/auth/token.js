@@ -29,7 +29,6 @@ app.get('/', (req, res) => {
           id: user.id,
           pw: user.pw,
         });
-        console.log(user)
         const accessTokenExpiresIn =
           checkauthorization.checkAccessTokenExpiresIn(accessToken);  // accessToken 생명주기 불러오기
         res.json({                                                    // accessToken 발급

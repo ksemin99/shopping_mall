@@ -21,11 +21,11 @@ const category = require('./src/main/category');
 const categoryrecent = require('./src/main/categoryrecent');
 const recent = require('./src/main/recent');
 // detail //
-const addcomment = require('./src/detail/addcomment');
+const addcomment = require('./src/detail/comment/addcomment');
 const basket = require('./src/detail/basket');
 const addbasket = require('./src/detail/addbasket');
 const deletecomment = require('./src/detail/comment/deletecomment');
-const detailpage = require('./src/detail/comment/detailpage');
+const detailpage = require('./src/detail/detailpage');
 // const likecomment = require('./src/detail/likecomment');
 const updatecomment = require('./src/detail/comment/updatecomment');
 const showcomment = require('./src/detail/comment/showcomment');

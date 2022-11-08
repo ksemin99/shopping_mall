@@ -66,11 +66,15 @@ app.get('/:pagenum', (req, res, next) => {
         let i = 0;
         console.log(detailpictureresult);
         for (let data of detailpictureresult) {
-          i++;
-          test[i] = (data.b_detail_picture_url);
+
+          semi.push({ ...Object.values(data) });
         }
-        console.log(semi);
-        semi.push(test);
+        // for (let data of detailpictureresult) {
+        //   i++;
+        //   test[i] = (data.b_detail_picture_url);
+        // }
+        // console.log(semi);
+        // semi.push(test);
         sqlresult.data1[0].detailpicture_url = dummy.concat(semi);
       }
       db.query(detailsql, (err, detailresult) => {

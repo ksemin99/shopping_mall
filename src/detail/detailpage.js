@@ -85,7 +85,7 @@ app.get('/:pagenum', (req, res, next) => {
           let semi = [];
           let test = {};
           sqlresult.data1[0].detail_url = dummy.concat(
-            semi.push(test['url'] = Object.values(...detailresult))
+            semi.push(test['url'] = Object.values(detailresult))
           );
         }
         db.query(sizesql, (err, sizeresult) => {

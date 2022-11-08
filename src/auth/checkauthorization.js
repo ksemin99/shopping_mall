@@ -11,7 +11,7 @@ module.exports = {
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
       //accesstoken 받고 .env에 있는 토큰 암호값 계산해서 token에 맞는 사용자 정보 가져오기
-      if (err) return res.send('토큰이 만료되었습니다.');
+      if (err) res.redirect('/auth/token');
       else req.user = user;
       next();
     });
@@ -51,31 +51,19 @@ module.exports = {
     return result;
   },
 
-  // accesstoken 받고 유효한지 확인 로그인 유무 상관없이
-  checkAccessToken: function checkAccessToken(req, res, next) { //access토큰 받기
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-    if (token == null) return console.log('로그인을 하지 않은 상태입니다.');
-    //return res.sendStatus(401);
+  // // accesstoken 받고 유효한지 확인 로그인 유무 상관없이
+  // checkAccessToken: function checkAccessToken(req, res, next) { //access토큰 받기
+  //   const authHeader = req.headers['authorization'];
+  //   const token = authHeader && authHeader.split(' ')[1];
+  //   if (token == null) return console.log('로그인을 하지 않은 상태입니다.');
+  //   //return res.sendStatus(401);
 
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-      //accesstoken 받고 .env에 있는 토큰 암호값 계산해서 token에 맞는 사용자 정보 가져오기
-      if (err) return res.send('토큰이 만료되었습니다.'); // 이 때 재발급 refreshtoken 요청
-      else req.user = user; // ? 이거 뭐야
-      next();
-    });
-  },
+  //   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+  //     //accesstoken 받고 .env에 있는 토큰 암호값 계산해서 token에 맞는 사용자 정보 가져오기
+  //     if (err) return res.send('토큰이 만료되었습니다.'); // 이 때 재발급 refreshtoken 요청
+  //     else req.user = user; // ? 이거 뭐야
+  //     next();
+  //   });
+  // },
 
-  checkRefreshToken: function checkRefreshToken(req, res, next) {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-    if (token == null) return res.sendStatus(401); // token이 안넘어옴
-
-    jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {   // refreshtoken 받고 확인하는 구역
-      if (err) return res.send('refreshtoken이 만료되었습니다. 다시 로그인');
-      else req.user = user;
-      next();
-    })
-
-  }
 };

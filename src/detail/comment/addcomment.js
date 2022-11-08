@@ -12,7 +12,7 @@ app.use(cors());
 
 dotenv.config();
 
-app.post('/', (req, res, next) => {
+app.post('/', checkauthorization.authenticateToken, (req, res, next) => {
   console.log(req);
   const b_num = Number(req.query.b_num);
   const u_num = Number(req.query.u_num);

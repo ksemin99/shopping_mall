@@ -11,18 +11,19 @@ const db = mysqlConObj.init();
 app.use(cors());
 
 app.post('/', (req, res) => {
+  const id = req.query.id
   const authHeader = req.headers['authorization'];
   const refreshToken = authHeader && authHeader.split(' ')[1];
   if (refreshToken == null) return res.send('로그인을 하지 않은 상태입니다.');
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
-    if (err) return res.send('리프레쉬 토큰이 만료되었습니다.');
-    const accessToken = checkauthorization.generateAccessToken({
+    if (err) return res.send('리프레쉬 토큰이 만료되었습니다. 다시 로그인');
+    const accessToken = checkauthorization.generateAccessToken({  // refreshToken이 살아있을 때
       id: user.id,
       pw: user.pw,
     });
     const accessTokenExpiresIn =
-      checkauthorization.checkAccessTokenExpiresIn(accessToken);
-    res.json({
+      checkauthorization.checkAccessTokenExpiresIn(accessToken);  // accessToken 생명주기 불러오기
+    res.json({                                                    // accessToken 발급
       grantType: 'bearer',
       accessToken: accessToken,
       accessTokenExpiresIn: accessTokenExpiresIn,

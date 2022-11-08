@@ -12,7 +12,7 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/:b_num', (req, res, next) => {
+app.get('/', (req, res, next) => {
   let sqlresult = { data1: [] };
   const b_num = Number(req.query.b_num); // 카테고리 ID //
   const page = req.query.page; //limit ( (page - 1) * size  , 1 )

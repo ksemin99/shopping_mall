@@ -46,7 +46,7 @@ module.exports = {
   },
 
   // accesstoken 받고 유효한지 확인 로그인 유무 상관없이
-  checkaccessToken: function checkaccessToken(req, res, next) { //로그아웃시 access토큰 받기
+  checkAccessToken: function checkAccessToken(req, res, next) { //access토큰 받기
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
     if (token == null) return console.log('로그인을 하지 않은 상태입니다.');
@@ -54,9 +54,14 @@ module.exports = {
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
       //accesstoken 받고 .env에 있는 토큰 암호값 계산해서 token에 맞는 사용자 정보 가져오기
-      if (err) return res.send('토큰이 만료되었습니다.'); // 이 때 재발급
+      if (err) return res.send('토큰이 만료되었습니다.'); // 이 때 재발급 refreshtoken 요청
       else req.user = user; // ? 이거 뭐야
       next();
     });
   },
+
+  checkRefreshToken: function checkRefreshToken(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader
+  }
 };

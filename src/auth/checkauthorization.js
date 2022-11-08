@@ -4,6 +4,7 @@ dotenv.config();
 
 module.exports = {
   authenticateToken: function authenticateToken(req, res, next) { //로그아웃시 access토큰 받기
+    const id = req.query.id
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
     if (token == null) return res.send('로그인을 하지 않은 상태입니다.');
@@ -11,7 +12,7 @@ module.exports = {
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
       //accesstoken 받고 .env에 있는 토큰 암호값 계산해서 token에 맞는 사용자 정보 가져오기
-      if (err) res.redirect('/auth/token');
+      if (err) res.redirect(`/auth/token/?id=${id}`);
       else req.user = user;
       next();
     });

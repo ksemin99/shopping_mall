@@ -17,9 +17,15 @@ module.exports = {
     });
   },
 
-  generateAccessToken: function generateAccessToken(user) {       // accesstoken 생명주기
+  generateAccessToken: function generateAccessToken(user) {       // accesstoken 생성
     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: '20s',
+    });
+  },
+
+  generateRefreshToken: function generateRefreshToken(user) {       // refreshtoken 생성
+    return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {
+      expiresIn: '1d',
     });
   },
 
@@ -62,6 +68,14 @@ module.exports = {
 
   checkRefreshToken: function checkRefreshToken(req, res, next) {
     const authHeader = req.headers['authorization'];
-    const token = authHeader
+    const token = authHeader && authHeader.split(' ')[1];
+    if (token == null) return res.sendStatus(401); // token이 안넘어옴
+
+    jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {   // refreshtoken 받고 확인하는 구역
+      if (err) return res.send('refreshtoken이 만료되었습니다. 다시 로그인');
+      else req.user = user;
+      next();
+    })
+
   }
 };

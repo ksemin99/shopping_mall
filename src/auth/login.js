@@ -26,9 +26,7 @@ app.post('/', (req, res, next) => {
   };
 
   const accessToken = checkauthorization.generateAccessToken(user);
-  const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {
-    expiresIn: '1d',
-  }); //이거는 DB에 저장
+  const refreshToken = checkauthorization.generateRefreshToken(user); //이거는 DB에 저장
 
   const accessTokenExpiresIn =
     checkauthorization.checkAccessTokenExpiresIn(accessToken);

@@ -66,8 +66,9 @@ app.get('/:pagenum', (req, res, next) => {
         let i = 0;
         console.log(detailpictureresult);
         for (let data of detailpictureresult) {
-
-          semi.push({ ...Object.values(data) });
+          test['url'] = (data.b_detail_picture_url);
+          // semi.push({ ...Object.values(data) });
+          semi.push(test);
         }
         // for (let data of detailpictureresult) {
         //   i++;

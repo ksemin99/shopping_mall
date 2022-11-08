@@ -7,9 +7,9 @@ const cors = require('cors');
 const mysqlConObj = require('../../config/mysql'); // #2
 const { request } = require('express');
 const db = mysqlConObj.init();
+const cookieParser = require('cookie-parser')
 
-cookieParser = require('cookie-parser');
-app.use(cookieParser());
+app.use(cookieParser('secretKey'))
 
 app.use(cors());
 
@@ -17,7 +17,7 @@ dotenv.config();
 
 app.get('/', (req, res, next) => {
     const id = req.query.id
-    const cookie = req.cookies  // 나중에 value값으로 바꾸기
+    const cookie = req.signedCookies.key
     if (id != "") {
         showbasketsql = 'SELECT * FROM basket WHERE id = ' + id
     } else {

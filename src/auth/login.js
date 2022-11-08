@@ -8,6 +8,9 @@ const checkauthorization = require('./checkauthorization');
 const mysqlConObj = require('../../config/mysql'); // #2
 const { request } = require('express');
 const db = mysqlConObj.init();
+const cookieParser = require('cookie-parser')
+
+app.use(cookieParser('secretKey'))
 
 app.use(cors());
 
@@ -71,7 +74,7 @@ app.post('/', (req, res, next) => {
                 basketupdatesql = "UPDATE basket SET id = '" +
                   req.query.id +
                   "' WHERE cookie = " +
-                  req.cookies + // value값으로 수정
+                  req.signedCookies.key + // value값으로 수정
                   " AND id = ''"
                 db.query(basketupdatesql, (err, basketupdateresult) => {
                   if (err) console.log(err);

@@ -4,9 +4,9 @@ const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const http = require('http');
-cookieParser = require('cookie-parser');
-app.use(cookieParser());
+const cookieParser = require('cookie-parser')
 
+app.use(cookieParser('secretKey'))
 
 const mysqlConObj = require('../../config/mysql'); // #2
 const { request } = require('express');
@@ -22,7 +22,7 @@ app.post('/', (req, res, next) => {
     const opt_color = req.query.opt_color;
     const opt_size = Number(req.query.opt_size);
     const opt_count = req.query.opt_count;
-    const cookie = req.cookies;
+    const cookie = req.signedCookies.key;
 
     addbasketsql = 'INSERT INTO basket VALUES (' +
         id + ', ' +

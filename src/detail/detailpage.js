@@ -84,7 +84,7 @@ app.get('/:pagenum', (req, res, next) => {
           let dummy = [];
           let semi = [];
           let test = {};
-          test['url'] = detailresult.b_detail_url;
+          test['url'] = detailresult;
           semi.push(test);
           sqlresult.data1[0].detail_url = dummy.concat(semi);
         }

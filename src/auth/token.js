@@ -12,6 +12,12 @@ app.use(cors());
 
 app.get('/', (req, res) => {
   const id = req.query.id
+  console.log(id)
+  sql = 'select token from users where id = ' + id;
+  db.query(sql, (err, result) => {
+    if (err) console.log(err);
+    else console.log(result);
+  });
   const authHeader = req.headers['authorization'];
   const refreshToken = authHeader && authHeader.split(' ')[1];
   if (refreshToken == null) return res.send('로그인을 하지 않은 상태입니다.');

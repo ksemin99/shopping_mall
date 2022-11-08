@@ -63,9 +63,11 @@ app.get('/:pagenum', (req, res, next) => {
         let semi = [];
         let dummy = [];
         let test = {};
+        let i = 0;
         console.log(detailpictureresult);
         for (let data of detailpictureresult) {
-          test['0'] = ({ ...Object.values(data) });
+          i++;
+          test[i] = (Object.values(data));
         }
         console.log(semi);
         semi.push(test);

@@ -24,11 +24,11 @@ const recent = require('./src/main/recent');
 const addcomment = require('./src/detail/addcomment');
 const basket = require('./src/detail/basket');
 const addbasket = require('./src/detail/addbasket');
-const deletecomment = require('./src/detail/deletecomment');
-const detailpage = require('./src/detail/detailpage');
+const deletecomment = require('./src/detail/comment/deletecomment');
+const detailpage = require('./src/detail/comment/detailpage');
 // const likecomment = require('./src/detail/likecomment');
-const updatecomment = require('./src/detail/updatecomment');
-const showcomment = require('./src/detail/showcomment');
+const updatecomment = require('./src/detail/comment/updatecomment');
+const showcomment = require('./src/detail/comment/showcomment');
 const showbasket = require('./src/detail/showbasket');
 const checklogin = require('./src/detail/checklogin');
 

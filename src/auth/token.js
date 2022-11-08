@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
     else {
       let refreshToken = "";
       for (let data of result) {
-        refreshToken = data
+        refreshToken = data.token
         console.log(refreshToken)
       }
       if (refreshToken == null) return res.send('로그인을 하지 않은 상태입니다.');

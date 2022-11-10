@@ -11,9 +11,7 @@ const db = mysqlConObj.init();
 app.use(cors());
 
 app.get('/', (req, res) => {
-  const id = req.query.id
-  const b_num = req.query.b_num;
-  console.log(b_num);
+  const id = req.body.id
   sql = 'select token from users where id = "' + id + '"';
   db.query(sql, (err, result) => {
     if (err) console.log(err);
@@ -32,7 +30,7 @@ app.get('/', (req, res) => {
         });
         const accessTokenExpiresIn =
           checkauthorization.checkAccessTokenExpiresIn(accessToken);  // accessToken 생명주기 불러오기
-        res.json({                                                    // accessToken 발급
+        res.json = ({                                                    // accessToken 발급
           grantType: 'bearer',
           accessToken: accessToken,
           accessTokenExpiresIn: accessTokenExpiresIn,

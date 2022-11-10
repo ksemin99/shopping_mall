@@ -4,11 +4,6 @@ dotenv.config();
 
 module.exports = {
   authenticateToken: function authenticateToken(req, res, next) { //로그아웃시 access토큰 받기
-    const b_num = req.query.b_num
-    const u_num = req.query.u_num
-    const id = req.query.id
-    const comment = req.query.comment
-    const newcomment = req.query.newcomment
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
     if (token == null) return res.send('로그인을 하지 않은 상태입니다.');
@@ -16,26 +11,12 @@ module.exports = {
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
       //accesstoken 받고 .env에 있는 토큰 암호값 계산해서 token에 맞는 사용자 정보 가져오기
-      if (err) res.redirect(`/auth/token/?b_num=${b_num}&u_num=${u_num}&id=${id}&comment=${comment}&newcomment=${newcomment}`);
+      if (err) res.send('AccessToken이 만료되었거나 틀린 AccessToken /auth/token 으로 RefreshToken 요함');
       else req.user = user;
       next();
     });
   },
 
-  logoutauthenticateToken: function logoutauthenticateToken(req, res, next) { //로그아웃시 access토큰 받기
-    const id = req.query.id
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
-    if (token == null) return res.send('로그인을 하지 않은 상태입니다.');
-    //return res.sendStatus(401);
-
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-      //accesstoken 받고 .env에 있는 토큰 암호값 계산해서 token에 맞는 사용자 정보 가져오기
-      if (err) res.send('AccessToken이 만료되었거나 틀린 AccessToken');
-      else req.user = user;
-      next();
-    });
-  },
 
   generateAccessToken: function generateAccessToken(user) {       // accesstoken 생성
     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {

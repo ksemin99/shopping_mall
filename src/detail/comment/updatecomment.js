@@ -12,16 +12,20 @@ app.use(cors());
 
 dotenv.config();
 
-app.patch('/', (req, res, next) => {
+app.patch('/', checkauthorization.authenticateToken, (req, res, next) => {
+    const index = req.query.index;
     const b_num = Number(req.query.b_num);
     const u_num = Number(req.query.u_num);
+    const id = req.query.id;
     const newcomment = req.query.newcomment;
     updatesql = "UPDATE comment SET comment = " +
         newcomment +
         " WHERE b_num = " +
         b_num +
         " AND u_num = " +
-        u_num;
+        u_num +
+        " AND index = " +
+        index;
     db.query(updatesql, (err, updateresult) => {
         if (err) console.log(err);
         else {

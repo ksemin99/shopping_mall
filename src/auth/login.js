@@ -70,7 +70,7 @@ app.post('/', (req, res, next) => {
                   refreshTokenexpiresIn: refreshTokenExpiresIn,
                 }); //이 부분이 로그인 시 accesstoken이랑 refreshtoken 나오는 곳
                 basketupdatesql = "UPDATE basket SET id = '" +
-                  req.query.id +
+                  req.body.id +
                   "' WHERE cookie = " +
                   req.signedCookies.key + // value값으로 수정
                   " AND id = ''"

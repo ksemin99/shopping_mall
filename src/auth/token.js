@@ -12,7 +12,8 @@ app.use(cors());
 
 app.get('/', (req, res) => {
   const id = req.query.id
-  console.log(id)
+  const b_num = Number(req.query.b_num);
+  console.log(b_num);
   sql = 'select token from users where id = "' + id + '"';
   db.query(sql, (err, result) => {
     if (err) console.log(err);

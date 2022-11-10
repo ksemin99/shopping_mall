@@ -18,6 +18,21 @@ module.exports = {
     });
   },
 
+  logoutauthenticateToken: function logoutauthenticateToken(req, res, next) { //로그아웃시 access토큰 받기
+    const id = req.query.id
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    if (token == null) return res.send('로그인을 하지 않은 상태입니다.');
+    //return res.sendStatus(401);
+
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+      //accesstoken 받고 .env에 있는 토큰 암호값 계산해서 token에 맞는 사용자 정보 가져오기
+      if (err) res.send('AccessToken이 만료되었거나 틀린 AccessToken');
+      else req.user = user;
+      next();
+    });
+  },
+
   generateAccessToken: function generateAccessToken(user) {       // accesstoken 생성
     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: '20s',

@@ -19,6 +19,11 @@ app.get('/', (req, res, next) => {
   let size = req.query.size; //limit ( (page - 1) * size  , 1 )
   const fullsort = req.query.sort;
 
+  console.log('b_num');
+  console.log('page');
+  console.log('size');
+  console.log('fullsort');
+
   const splitresult = fullsort.split(',');
 
   const sort = splitresult[0]; //최신순//
@@ -45,7 +50,7 @@ app.get('/', (req, res, next) => {
       commentsql =
         'SELECT * FROM comment WHERE b_num = ' +
         b_num +
-        " ORDER BY " +
+        ' ORDER BY ' +
         sort +
         ' ' +
         standard +

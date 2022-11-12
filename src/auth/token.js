@@ -38,7 +38,6 @@ app.get('/', (req, res) => {
             checkauthorization.checkAccessTokenExpiresIn(accessToken); // accessToken 생명주기 불러오기
           res.send = {
             // accessToken 발급
-            grantType: 'bearer',
             accessToken: accessToken,
             accessTokenExpiresIn: accessTokenExpiresIn,
           };

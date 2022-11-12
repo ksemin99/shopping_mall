@@ -16,10 +16,10 @@ dotenv.config();
 
 app.post('/', checkauthorization.authenticateToken, (req, res, next) => {
   console.log(req);
-  const b_num = Number(req.query.b_num);
-  const u_num = Number(req.query.u_num);
-  const id = Number(req.query.id);
-  const comment = Number(req.query.comment);
+  const b_num = Number(req.body.b_num);
+  const u_num = Number(req.body.u_num);
+  const id = Number(req.body.id);
+  const comment = Number(req.body.comment);
 
   comment_sql =
     "insert into comment(b_num, u_num, id, comment) values('" +

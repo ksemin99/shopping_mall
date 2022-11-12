@@ -15,21 +15,21 @@ app.use(cors());
 dotenv.config();
 
 app.delete('/', checkauthorization.authenticateToken, (req, res, next) => {
-  const index = req.query.index;
+  const index = req.body.index;
   const b_num = req.body.b_num;
   const u_num = req.body.u_num;
-  const id = req.query.id;
+  const id = req.body.id;
   deletesql =
     "DELETE FROM comment WHERE b_num = '" +
     b_num +
     "' AND u_num = '" +
     u_num +
-    " AND index = " +
+    ' AND index = ' +
     index;
   db.query(deletesql, (err, deleteresult) => {
     if (err) console.log(err);
     else {
-      console.log("삭제성공");
+      console.log('삭제성공');
     }
   });
 });

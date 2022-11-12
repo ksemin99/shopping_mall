@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
           console.log(accessToken);
           const accessTokenExpiresIn =
             checkauthorization.checkAccessTokenExpiresIn(accessToken); // accessToken 생명주기 불러오기
-          console.log(accessToken);
+          console.log(accessTokenExpiresIn);
           res.json = {
             // accessToken 발급
             grantType: 'bearer',

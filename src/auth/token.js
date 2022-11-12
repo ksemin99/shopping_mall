@@ -37,12 +37,12 @@ app.get('/', function (req, res) {
           const accessTokenExpiresIn =
             checkauthorization.checkAccessTokenExpiresIn(accessToken); // accessToken 생명주기 불러오기
           console.log(accessTokenExpiresIn);
-          res.send = {
+          res.send({
             // accessToken 발급
             grantType: 'bearer',
             accessToken: accessToken,
             accessTokenExpiresIn: accessTokenExpiresIn,
-          };
+          });
         }
       );
     }

@@ -11,9 +11,7 @@ const db = mysqlConObj.init();
 app.use(cors());
 
 app.get('/', (req, res) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-  if (token == null) return res.send('로그인을 하지 않은 상태입니다.');
+  token = req.body.refreshToken;
   sql = 'select token from users where token = "' + token + '"';
   db.query(sql, (err, result) => {
     if (err) console.log(err);

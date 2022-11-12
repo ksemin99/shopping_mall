@@ -14,10 +14,10 @@ dotenv.config();
 
 app.get('/', (req, res, next) => {
   let sqlresult = { data1: [] };
-  const b_num = Number(req.query.b_num); // 카테고리 ID //
-  const page = req.query.page; //limit ( (page - 1) * size  , 1 )
-  let size = req.query.size; //limit ( (page - 1) * size  , 1 )
-  const fullsort = req.query.sort;
+  const b_num = Number(req.body.b_num); // 카테고리 ID //
+  const page = req.body.page; //limit ( (page - 1) * size  , 1 )
+  let size = req.body.size; //limit ( (page - 1) * size  , 1 )
+  const fullsort = req.body.sort;
 
   console.log('b_num');
   console.log('page');

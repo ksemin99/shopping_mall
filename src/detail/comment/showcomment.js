@@ -19,10 +19,10 @@ app.get('/', (req, res, next) => {
   let size = req.body.size; //limit ( (page - 1) * size  , 1 )
   const fullsort = req.body.sort;
 
-  console.log('b_num');
-  console.log('page');
-  console.log('size');
-  console.log('fullsort');
+  console.log(b_num);
+  console.log(page);
+  console.log(size);
+  console.log(fullsort);
 
   const splitresult = fullsort.split(',');
 

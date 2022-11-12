@@ -10,15 +10,13 @@ const db = mysqlConObj.init();
 
 app.use(cors());
 
-app.get('/', (req, res) => {
+app.get('/', function (req, res) {
   token = req.body.refreshToken;
   sql = 'select token from users where token = "' + token + '"';
   db.query(sql, (err, result) => {
     if (err) console.log(err);
     else {
       let refreshToken = '';
-      let accessToken = '';
-      let accessTokenExpiresIn = '';
       for (let data of result) {
         refreshToken = data.token;
       }
@@ -30,23 +28,23 @@ app.get('/', (req, res) => {
         (err, user) => {
           if (err)
             return res.send('리프레쉬 토큰이 만료되었습니다. 다시 로그인');
-          accessToken = checkauthorization.generateAccessToken({
+          const accessToken = checkauthorization.generateAccessToken({
             // refreshToken이 살아있을 때
             id: user.id,
             pw: user.pw,
           });
           console.log(accessToken);
-          accessTokenExpiresIn =
+          const accessTokenExpiresIn =
             checkauthorization.checkAccessTokenExpiresIn(accessToken); // accessToken 생명주기 불러오기
           console.log(accessTokenExpiresIn);
+          res.send = {
+            // accessToken 발급
+            grantType: 'bearer',
+            accessToken: accessToken,
+            accessTokenExpiresIn: accessTokenExpiresIn,
+          };
         }
       );
-      res.send = {
-        // accessToken 발급
-        grantType: 'bearer',
-        accessToken: accessToken,
-        accessTokenExpiresIn: accessTokenExpiresIn,
-      };
     }
   });
 });

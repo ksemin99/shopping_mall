@@ -8,9 +8,9 @@ const checkauthorization = require('./checkauthorization');
 const mysqlConObj = require('../../config/mysql'); // #2
 const { request } = require('express');
 const db = mysqlConObj.init();
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 
-app.use(cookieParser('secretKey'))
+app.use(cookieParser('secretKey'));
 
 app.use(cors());
 
@@ -69,11 +69,12 @@ app.post('/', (req, res, next) => {
                   accessTokenexpiresIn: accessTokenExpiresIn,
                   refreshTokenexpiresIn: refreshTokenExpiresIn,
                 }); //이 부분이 로그인 시 accesstoken이랑 refreshtoken 나오는 곳
-                basketupdatesql = "UPDATE basket SET id = '" +
+                basketupdatesql =
+                  "UPDATE basket SET id = '" +
                   req.body.id +
                   "' WHERE cookie = " +
                   req.signedCookies.key + // value값으로 수정
-                  " AND id = ''"
+                  " AND id = ''";
                 db.query(basketupdatesql, (err, basketupdateresult) => {
                   if (err) console.log(err);
                 });

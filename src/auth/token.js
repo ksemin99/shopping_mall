@@ -19,7 +19,6 @@ app.get('/', (req, res) => {
       let refreshToken = '';
       for (let data of result) {
         refreshToken = data.token;
-        console.log(refreshToken);
       }
       if (refreshToken == null)
         return res.send('로그인을 하지 않은 상태입니다.');
@@ -34,6 +33,7 @@ app.get('/', (req, res) => {
             id: user.id,
             pw: user.pw,
           });
+          console.log(accessToken);
           const accessTokenExpiresIn =
             checkauthorization.checkAccessTokenExpiresIn(accessToken); // accessToken 생명주기 불러오기
           res.send = {

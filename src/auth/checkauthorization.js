@@ -53,6 +53,8 @@ module.exports = {
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
       if (err) return res.sendStatus(403);
       result = (user.exp - user.iat) * 1000;
+      console.log(user.exp);
+      console.log(user.iat);
     });
     return result;
   },

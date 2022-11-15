@@ -55,7 +55,6 @@ app.use('/detail/showcomment', showcomment);
 app.use('/detail/showbasket', showbasket);
 app.use('/detail/checklogin', checklogin);
 
-const multer = require("multer");
 
 // const dotenv = require('dotenv').config(); // #1
 const mysqlConObj = require('./config/mysql'); // #2
@@ -77,7 +76,7 @@ app.use(cookieParser('secretKey'));
 // app.use(cookieParser());
 let count = 0;
 app.listen(PORT, function () {
-  const dir = "./uploads";
+  const dir = "./img";
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
   }
@@ -97,21 +96,4 @@ app.get('/', function (req, res) {
     console.log(req.signedCookies.key);
   }
   res.send('<h1>Express Simple Server</h1>');
-});
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now())
-  }
-});
-
-const upload = multer({ storage: storage })
-
-app.post('/', upload.single('img'), (req, res, next) => {
-  res.status(200).send({
-    message: "Ok",
-    fileInfo: req.file
-  })
 });

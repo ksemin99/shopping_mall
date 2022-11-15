@@ -31,7 +31,6 @@ const updatecomment = require('./src/detail/comment/updatecomment');
 const showcomment = require('./src/detail/comment/showcomment');
 const showbasket = require('./src/detail/showbasket');
 const checklogin = require('./src/detail/checklogin');
-const test = require('./src/test');
 
 app.use(express.static(path.join(__dirname, 'src')));
 // auth //
@@ -55,7 +54,6 @@ app.use('/detail/updatecomment', updatecomment);
 app.use('/detail/showcomment', showcomment);
 app.use('/detail/showbasket', showbasket);
 app.use('/detail/checklogin', checklogin);
-app.use('/test', test);
 
 const multer = require("multer");
 

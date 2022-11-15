@@ -91,8 +91,11 @@ app.get('/', function (req, res) {
     signed: true
   };
   if (req.signedCookies.key) {
+    console.log('있으면');
     console.log(req.signedCookies.key);
+
   } else {
+    console.log('없으면');
     count++;
     res.cookie('key', count, cookieConfig);
     console.log(req.signedCookies.key);

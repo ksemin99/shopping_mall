@@ -71,6 +71,9 @@ app.use(cookieParser('secretKey'));
 // app.use(cookieParser());
 let count = 0;
 app.listen(PORT, function () {
+  console.log('server listening on port 3000');
+});
+app.get('/', function (req, res) {
   const cookieConfig = {
     httpOnly: true,
     maxAge: 100000,
@@ -83,9 +86,5 @@ app.listen(PORT, function () {
     res.cookie('key', count, cookieConfig);
     console.log(req.signedCookies.key);
   }
-  console.log('server listening on port 3000');
+  res.send('<h1>Express Simple Server</h1>');
 });
-// app.get('/', function (req, res) {
-
-//   res.send('<h1>Express Simple Server</h1>');
-// });

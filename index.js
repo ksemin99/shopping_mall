@@ -96,7 +96,7 @@ app.get('/', function (req, res) {
 
   } else {
     console.log('없으면');
-    count++;
+    count += 1;
     res.cookie('key', count, cookieConfig);
     console.log(req.signedCookies.key);
   }

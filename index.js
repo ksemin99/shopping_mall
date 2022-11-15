@@ -90,9 +90,7 @@ app.get('/', function (req, res) {
     maxAge: 100 * 1000,
     signed: true
   };
-  if (req.signedCookies.key) {
-    console.log(req.signedCookies.key);
-  } else {
+  if (!req.signedCookies.key) {
     count++;
     res.cookie('key', count, cookieConfig);
   }

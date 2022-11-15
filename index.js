@@ -55,6 +55,8 @@ app.use('/detail/showcomment', showcomment);
 app.use('/detail/showbasket', showbasket);
 app.use('/detail/checklogin', checklogin);
 
+const multer = require("multer");
+
 // const dotenv = require('dotenv').config(); // #1
 const mysqlConObj = require('./config/mysql'); // #2
 const { request, json } = require('express');
@@ -67,10 +69,18 @@ dotenv.config();
 
 let cookieParser = require('cookie-parser');
 
+
+const fs = require("fs");
+
+
 app.use(cookieParser('secretKey'));
 // app.use(cookieParser());
 let count = 0;
 app.listen(PORT, function () {
+  const dir = "./uploads";
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+  }
   console.log('server listening on port 3000');
 });
 app.get('/', function (req, res) {
@@ -88,3 +98,13 @@ app.get('/', function (req, res) {
   }
   res.send('<h1>Express Simple Server</h1>');
 });
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+});
+
+const upload = multer({ storage: storage })

@@ -28,7 +28,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 app.post('/', checkauthorization.authenticateToken, upload.single('img'), (req, res, next) => {
-  console.log(req);
+  console.log(req.file);
   const b_num = Number(req.body.b_num);
   const u_num = Number(req.body.u_num);
   const id = Number(req.body.id);

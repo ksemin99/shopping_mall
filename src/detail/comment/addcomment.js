@@ -31,8 +31,8 @@ app.post('/', checkauthorization.authenticateToken, upload.single('img'), (req, 
   console.log(req.file);
   const b_num = Number(req.body.b_num);
   const u_num = Number(req.body.u_num);
-  const id = Number(req.body.id);
-  const comment = Number(req.body.comment);
+  const id = req.body.id;
+  const comment = req.body.comment;
   const img = `img/${req.file.filename}`;
 
   comment_sql =

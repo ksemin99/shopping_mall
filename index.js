@@ -95,5 +95,6 @@ app.get('/', function (req, res) {
     res.cookie('key', count, cookieConfig);
   }
   console.log(req.signedCookies.key);
+  console.log(req.signedCookies);
   res.send('<h1>Express Simple Server</h1>');
 });

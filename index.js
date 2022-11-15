@@ -71,10 +71,10 @@ let cookieParser = require('cookie-parser');
 
 const fs = require("fs");
 
-
+let count = 0;
 app.use(cookieParser('secretKey'));
 // app.use(cookieParser());
-let count = 0;
+
 app.listen(PORT, function () {
   const dir = "./img";
   if (!fs.existsSync(dir)) {
@@ -84,6 +84,7 @@ app.listen(PORT, function () {
 });
 
 app.get('/', function (req, res) {
+
   const cookieConfig = {
     httpOnly: true,
     maxAge: 100 * 1000,

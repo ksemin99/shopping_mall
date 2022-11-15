@@ -91,14 +91,11 @@ app.get('/', function (req, res) {
     signed: true
   };
   if (req.signedCookies.key) {
-    console.log('있으면');
     console.log(req.signedCookies.key);
-
   } else {
-    console.log('없으면');
-    count += 1;
+    count++;
     res.cookie('key', count, cookieConfig);
-    console.log(req.signedCookies.key);
   }
+  console.log(req.signedCookies.key);
   res.send('<h1>Express Simple Server</h1>');
 });

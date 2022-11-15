@@ -110,3 +110,10 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage })
+
+app.post('/', upload.single('img'), (req, res, next) => {
+  res.status(200).send({
+    message: "Ok",
+    fileInfo: req.file
+  })
+});

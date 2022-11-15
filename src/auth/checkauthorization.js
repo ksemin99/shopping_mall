@@ -37,7 +37,7 @@ module.exports = {
 
   checkAccessTokenExpiresIn: function checkAccessTokenExpiresIn(accessToken) {
     // accessToken 생명주기 가져오기
-    let result = 0;
+    let result
     jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
       if (err) return res.sendStatus(403);
       result({ "issuedat": user.iat * 1000, "expiresIn": user.exp * 1000 })
@@ -49,7 +49,7 @@ module.exports = {
     // refreshToken 생명주기 가져오기
     refreshToken
   ) {
-    let result = 0;
+    let result
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
       if (err) return res.sendStatus(403);
       result({ "issuedat": user.iat * 1000, "expiresIn": user.exp * 1000 })

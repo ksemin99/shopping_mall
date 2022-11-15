@@ -50,7 +50,7 @@ app.post('/', checkauthorization.authenticateToken, upload.single('img'), (req, 
   db.query(comment_sql, (err, comment_sqlresult) => {
     if (err) console.log(err);
     else {
-
+      console.log('추가 성공');
     }
   });
 });

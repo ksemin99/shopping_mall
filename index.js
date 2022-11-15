@@ -82,10 +82,11 @@ app.listen(PORT, function () {
   }
   console.log('server listening on port 3000');
 });
+
 app.get('/', function (req, res) {
   const cookieConfig = {
     httpOnly: true,
-    maxAge: 100000,
+    maxAge: 100 * 1000,
     signed: true
   };
   if (req.signedCookies.key) {

@@ -58,6 +58,7 @@ app.get('/:pagenum', (req, res, next) => {
         break;
     }
     db.query(detailpicturesql, (err, detailpictureresult) => {
+      //////////////////////// 수정 ///////////////////////////////////////////////////
       if (err) console.log(err);
       else {
         let semi = [];
@@ -66,7 +67,7 @@ app.get('/:pagenum', (req, res, next) => {
         let i = 0;
         console.log(detailpictureresult);
         for (let data of detailpictureresult) {
-          test['url'] = (data.b_detail_picture_url);
+          test['url'] = data.b_detail_picture_url;
           // semi.push({ ...Object.values(data) });
           semi.push(test);
         }
@@ -85,7 +86,7 @@ app.get('/:pagenum', (req, res, next) => {
           let semi = [];
           let test = {};
           for (let data of detailresult) {
-            test['url'] = (data.b_detail_url);
+            test['url'] = data.b_detail_url;
             semi.push(test);
           }
           sqlresult.data1[0].detail_url = dummy.concat(semi);

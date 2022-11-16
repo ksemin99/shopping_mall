@@ -42,7 +42,7 @@ module.exports = {
     jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
       if (err) return res.sendStatus(403);
       console.log(user);
-      d = new Date(user.exp);
+      d = new Date(user.exp * 1000);
       result = d.toLocaleString();
     });
     return result;
@@ -57,7 +57,7 @@ module.exports = {
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
       if (err) return res.sendStatus(403);
       console.log(user);
-      d = new Date(user.exp);
+      d = new Date(user.exp * 1000);
       result = d.toLocaleString();
     });
     return result;

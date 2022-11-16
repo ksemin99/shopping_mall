@@ -40,6 +40,7 @@ module.exports = {
     let result;
     jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
       if (err) return res.sendStatus(403);
+      console.log(user);
       result = Date(user.exp);
     });
     return result;
@@ -52,6 +53,7 @@ module.exports = {
     let result;
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
       if (err) return res.sendStatus(403);
+      console.log(user);
       result = Date(user.exp);
     });
     return result;

@@ -37,10 +37,10 @@ module.exports = {
 
   checkAccessTokenExpiresIn: function checkAccessTokenExpiresIn(accessToken) {
     // accessToken 생명주기 가져오기
-    let result
+    let result;
     jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
       if (err) return res.sendStatus(403);
-      result = user.exp * 1000
+      result = Date(user.exp);
     });
     return result;
   },
@@ -49,10 +49,10 @@ module.exports = {
     // refreshToken 생명주기 가져오기
     refreshToken
   ) {
-    let result
+    let result;
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
       if (err) return res.sendStatus(403);
-      result = user.exp * 1000
+      result = Date(user.exp);
     });
     return result;
   },

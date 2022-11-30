@@ -56,7 +56,7 @@ module.exports = {
     let d;
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
       if (err) return res.sendStatus(403);
-      console.log(user);
+      console.log(user.exp);
       d = new Date(user.exp * 1000);
       result = d.toLocaleString();
     });

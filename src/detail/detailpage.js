@@ -57,6 +57,8 @@ app.get('/:pagenum', (req, res, next) => {
           boardnum;
         break;
     }
+    colorsql = 'SELECT b_color FROM board_color WHERE bc_num = ' +
+      boardnum;
     db.query(detailpicturesql, (err, detailpictureresult) => {
       //////////////////////// 수정 ///////////////////////////////////////////////////
       if (err) console.log(err);
@@ -100,7 +102,18 @@ app.get('/:pagenum', (req, res, next) => {
               semi.push(data);
             }
             sqlresult.data1[0].b_size = dummy.concat(...semi);
-            res.send(sqlresult);
+            db.query(colorsql, (err, colorresult) => {
+              if (err) console.log(err);
+              else {
+                let semi = [];
+                let dummy = [];
+                for (let data of colorresult) {
+                  semi.push(data);
+                }
+                sqlresult.data1[0].b_color = dummy.concat(...semi);
+                res.send(sqlresult);
+              }
+            });
           }
         });
       });

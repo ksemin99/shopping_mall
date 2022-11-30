@@ -43,7 +43,7 @@ module.exports = {
       if (err) return res.sendStatus(403);
       console.log(user);
       d = new Date((user.exp + 32400) * 1000);
-      result = d.toLocaleString();
+      result = d.toString();
     });
     return result;
   },
@@ -58,7 +58,7 @@ module.exports = {
       if (err) return res.sendStatus(403);
       console.log(user.exp);
       d = new Date((user.exp + 32400) * 1000);
-      result = d.toLocaleString();
+      result = d.toString();
     });
     return result;
   },

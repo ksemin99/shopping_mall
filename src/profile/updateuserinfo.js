@@ -15,7 +15,7 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/', (req, res, next) => {
+app.patch('/', (req, res, next) => {
     // 이름, 아이디, 비밀번호, 비밀번호 확인, 생년월일, 우편번호, 집주소, 상세주소, 이메일, 휴대폰, 계좌
     const name = req.body.name;
     const id = req.body.id;

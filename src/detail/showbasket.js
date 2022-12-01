@@ -18,19 +18,28 @@ dotenv.config();
 // b_num을 이용해 b_name 상품이름 가져오기, 
 // b_num을 이용해 b_price 상품가격 가져오기
 app.get('/', (req, res, next) => {
+    let sqlresult = { data1: [] };
     const id = req.query.id
     const cookie = req.signedCookies.key
 
     // boardinfosql = 'SELECT b_url, b_name, b_price FROM board WHERE b_num = ' + b_num;
     if (id != "") {
         showbasketsql = 'SELECT * FROM basket WHERE id = ' + id
+        boardinfosql = 'SELECT b_url, b_name, b_price FROM board WHERE b_num = (SELECT b_num FROM basket WHERE id = ' + id + ')';
     } else {
         showbasketsql = 'SELECT * FROM basket WHERE id = "" AND cookie = ' + cookie
+        boardinfosql = 'SELECT b_url, b_name, b_price FROM board WHERE b_num = (SELECT b_num FROM basket WHERE id = ' + id + ')';
     }
     db.query(showbasketsql, (err, showbasketresult) => {
         if (err) console.log(err);
         else {
-            res.send(showbasketresult.b_num)
+            sqlresult.data1.push(...showbasketresult);
+            db.query(boardinfosql, (err, boardinforesult) => {
+                if (err) console.log(err);
+                else {
+                    res.send(showbasketresult)
+                }
+            });
         }
     });
 });

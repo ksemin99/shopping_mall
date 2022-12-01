@@ -63,7 +63,7 @@ app.post('/', (req, res, next) => {
                 console.log(result, 'mysql 안에 refresh 토큰 삽입 성공');
                 res.json({
                   id: id,
-                  idIndex: idIndex,
+                  u_num: idIndex,
                   accessToken: accessToken,
                   refreshToken: refreshToken,
                   accessTokenexpiresIn: accessTokenExpiresIn,

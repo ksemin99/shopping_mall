@@ -10,7 +10,7 @@ const db = mysqlConObj.init();
 
 app.use(cors());
 
-app.get('/', function (req, res) {
+app.post('/', function (req, res) {
   token = req.body.refreshToken;
   console.log(req);
   console.log('refreshToken = ' + token);

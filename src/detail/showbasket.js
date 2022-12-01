@@ -30,7 +30,7 @@ app.get('/', (req, res, next) => {
     db.query(showbasketsql, (err, showbasketresult) => {
         if (err) console.log(err);
         else {
-            res.send(showbasketresult[1].key)
+            res.send(showbasketresult[1].value)
         }
     });
 });

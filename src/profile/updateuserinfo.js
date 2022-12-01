@@ -36,6 +36,7 @@ app.patch('/', (req, res, next) => {
     db.query(updatesql, (err, updateresult) => {
         if (err) console.log(err);
         else {
+            res.send(name)
         }
     });
 });

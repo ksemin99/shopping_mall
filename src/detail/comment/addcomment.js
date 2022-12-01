@@ -25,7 +25,7 @@ const multer = require('multer');
 //   },
 // });
 
-const upload = multer({ storage: storage });
+//const upload = multer({ storage: storage });
 
 app.post(
   '/',

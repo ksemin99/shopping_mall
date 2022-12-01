@@ -18,7 +18,7 @@ dotenv.config();
 // b_num을 이용해 b_name 상품이름 가져오기, 
 // b_num을 이용해 b_price 상품가격 가져오기
 app.get('/', (req, res, next) => {
-    let sqlresult = { data1: [], data2: [] };
+    let sqlresult = { data1: [], data2: [{}] };
     const id = req.query.id
     const cookie = req.signedCookies.key
 
@@ -42,7 +42,7 @@ app.get('/', (req, res, next) => {
                     for (let data of boardinforesult) {
                         semi.push(data);
                     }
-                    sqlresult.data2.b_info = dummy.concat(...semi);
+                    sqlresult.data2[0].b_info = dummy.concat(...semi);
                     res.send(sqlresult)
                 }
             });

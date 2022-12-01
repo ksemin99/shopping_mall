@@ -21,7 +21,7 @@ app.get('/', (req, res, next) => {
     const id = req.query.id
     const cookie = req.signedCookies.key
 
-    boardinfosql = 'SELECT b_url, b_name, b_price FROM board WHERE b_num = ' + b_num;
+    // boardinfosql = 'SELECT b_url, b_name, b_price FROM board WHERE b_num = ' + b_num;
     if (id != "") {
         showbasketsql = 'SELECT * FROM basket WHERE id = ' + id
     } else {

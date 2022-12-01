@@ -20,6 +20,8 @@ dotenv.config();
 app.get('/', (req, res, next) => {
     const id = req.query.id
     const cookie = req.signedCookies.key
+
+    boardinfosql = 'SELECT b_url, b_name, b_price FROM board WHERE b_num = ' + b_num;
     if (id != "") {
         showbasketsql = 'SELECT * FROM basket WHERE id = ' + id
     } else {
@@ -28,7 +30,7 @@ app.get('/', (req, res, next) => {
     db.query(showbasketsql, (err, showbasketresult) => {
         if (err) console.log(err);
         else {
-            res.send(showbasketresult);
+            res.send(showbasketresult.b_num)
         }
     });
 });

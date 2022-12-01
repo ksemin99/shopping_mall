@@ -54,7 +54,8 @@ app.post(
     db.query(comment_sql, (err, comment_sqlresult) => {
       if (err) console.log(err);
       else {
-        res.send('추가 성공');
+        console.log('추가 성공');
+        //res.send('추가 성공');
       }
     });
   }

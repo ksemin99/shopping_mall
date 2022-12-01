@@ -30,7 +30,7 @@ const multer = require('multer');
 app.post(
   '/',
   checkauthorization.authenticateToken,
-  upload.single('img'),
+  //upload.single('img'),
   (req, res, next) => {
     console.log(req.file);
     const b_num = Number(req.body.b_num);

@@ -8,6 +8,7 @@ module.exports = {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
     console.log('authHeader = ' + authHeader);
+    console.log(req.headers);
     console.log('token = ' + token);
     if (token == null) return res.send('로그인을 하지 않은 상태입니다.');
     //return res.sendStatus(401);

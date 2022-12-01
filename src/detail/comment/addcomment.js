@@ -16,14 +16,14 @@ dotenv.config();
 
 const multer = require('multer');
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'img');
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now());
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, 'img');
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.fieldname + '-' + Date.now());
+//   },
+// });
 
 const upload = multer({ storage: storage });
 

@@ -32,6 +32,10 @@ const showcomment = require('./src/detail/comment/showcomment');
 const showbasket = require('./src/detail/showbasket');
 const checklogin = require('./src/detail/checklogin');
 
+const deleteuserinfo = require('./src/profile/deleteuserinfo');
+const profile = require('./src/profile/profile');
+const updateuserinfo = require('./src/profile/updateuserinfo');
+
 app.use(express.static(path.join(__dirname, 'src')));
 // auth //
 app.use('/auth/login', login);
@@ -54,6 +58,10 @@ app.use('/detail/updatecomment', updatecomment);
 app.use('/detail/showcomment', showcomment);
 app.use('/detail/showbasket', showbasket);
 app.use('/detail/checklogin', checklogin);
+
+app.use('/profile/deleteuserinfo', deleteuserinfo);
+app.use('/profile', profile);
+app.use('/profile/updateuserinfo', updateuserinfo);
 
 
 // const dotenv = require('dotenv').config(); // #1

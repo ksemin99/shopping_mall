@@ -27,8 +27,8 @@ app.get('/', function (req, res) {
         process.env.REFRESH_TOKEN_SECRET,
         (err, user) => {
           if (err)
-            //return res.send('리프레쉬 토큰이 만료되었습니다. 다시 로그인');
-            console.log(err);
+            return res.send('리프레쉬 토큰이 만료되었습니다. 다시 로그인');
+          // console.log(err);
           const accessToken = checkauthorization.generateAccessToken({
             // refreshToken이 살아있을 때
             id: user.id,

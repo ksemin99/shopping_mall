@@ -42,7 +42,7 @@ app.get('/', (req, res, next) => {
                     for (let data of boardinforesult) {
                         semi.push(data);
                     }
-                    sqlresult.data2[0].b_info = dummy.concat(...semi);
+                    sqlresult.data2.b_info = dummy.concat(...semi);
                     res.send(sqlresult)
                 }
             });

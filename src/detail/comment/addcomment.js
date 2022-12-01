@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
     cb(null, 'img');
   },
   filename: function (req, file, cb) {
-    cb(null, file.filename + '-' + Date.now());
+    cb(null, file.fieldname + '-' + Date.now());
   },
 });
 
@@ -37,7 +37,7 @@ app.post(
     const u_num = Number(req.body.u_num);
     const id = req.body.id;
     const comment = req.body.comment;
-    const img = `img/${req.file.filename}`;
+    const img = `img/${req.file.filename}`; // 필수 아니게 바꾸기
 
     comment_sql =
       "insert into comment(b_num, u_num, id, comment, c_img) values('" +

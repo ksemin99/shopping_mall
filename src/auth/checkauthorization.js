@@ -7,6 +7,8 @@ module.exports = {
     //로그아웃시 access토큰 받기
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
+    console.log('authHeader = ' + authHeader);
+    console.log('token = ' + token);
     if (token == null) return res.send('로그인을 하지 않은 상태입니다.');
     //return res.sendStatus(401);
 

@@ -37,7 +37,7 @@ app.get('/', (req, res, next) => {
             db.query(boardinfosql, (err, boardinforesult) => {
                 if (err) console.log(err);
                 else {
-                    res.send(showbasketresult)
+                    res.send(sqlresult)
                 }
             });
         }

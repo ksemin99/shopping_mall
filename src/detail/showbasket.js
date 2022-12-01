@@ -37,6 +37,12 @@ app.get('/', (req, res, next) => {
             db.query(boardinfosql, (err, boardinforesult) => {
                 if (err) console.log(err);
                 else {
+                    let semi = [];
+                    let dummy = [];
+                    for (let data of boardinforesult) {
+                        semi.push(data);
+                    }
+                    sqlresult.data1[0].b_info = dummy.concat(...semi);
                     res.send(sqlresult)
                 }
             });

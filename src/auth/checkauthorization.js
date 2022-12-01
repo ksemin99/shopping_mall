@@ -24,7 +24,7 @@ module.exports = {
   generateAccessToken: function generateAccessToken(user) {
     // accesstoken 생성
     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: '20s',
+      expiresIn: '5m',
     });
   },
 

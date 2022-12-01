@@ -43,7 +43,7 @@ app.get('/', (req, res, next) => {
                         semi.push(data);
                     }
                     sqlresult.data1[0].b_info = dummy.concat(...semi);
-                    res.send(sqlresult)
+                    res.send(boardinforesult)
                 }
             });
         }

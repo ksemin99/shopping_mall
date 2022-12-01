@@ -12,7 +12,7 @@ app.use(cors());
 
 app.get('/', function (req, res) {
   token = req.body.refreshToken;
-  console.log(token);
+  console.log('refreshToken = ' + token);
   sql = 'select token from users where token = "' + token + '"';
   db.query(sql, (err, result) => {
     if (err) console.log(err);

@@ -55,6 +55,7 @@ app.post(
       if (err) console.log(err);
       else {
         console.log('추가 성공');
+        res.send(comment_sql);
         //res.send('추가 성공');
       }
     });

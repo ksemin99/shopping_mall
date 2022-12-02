@@ -8,8 +8,6 @@ module.exports = {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
     console.log('authHeader = ' + authHeader);
-    console.log(req.headers);
-    console.log(req);
     console.log('token = ' + token);
     if (token == null) return res.send('로그인을 하지 않은 상태입니다.');
     //return res.sendStatus(401);
@@ -28,7 +26,7 @@ module.exports = {
   generateAccessToken: function generateAccessToken(user) {
     // accesstoken 생성
     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: '5m',
+      expiresIn: '30m',
     });
   },
 

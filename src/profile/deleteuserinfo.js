@@ -19,6 +19,7 @@ app.delete('/', (req, res, next) => {
   const id = req.body.id;
   // const pw = req.body.pw;
   deletesql = 'DELETE FROM users WHERE id = ' + id;
+  console.log(deletesql);
   db.query(deletesql, (err, deleteresult) => {
     if (err) console.log(err);
     else {

@@ -17,6 +17,7 @@ dotenv.config();
 
 app.get('/', (req, res, next) => {
   const id = req.body.id;
+  console.log(id);
   profilesql =
     'SELECT id, name, sex, height, weight FROM users WHERE id = "' + id + '"';
   db.query(profilesql, (err, profileresult) => {

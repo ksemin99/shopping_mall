@@ -18,12 +18,27 @@ dotenv.config();
 app.delete('/', (req, res, next) => {
   const id = req.body.id;
   // const pw = req.body.pw;
-  deletesql = 'DELETE FROM users WHERE id = "' + id + '"';
-  console.log(deletesql);
-  db.query(deletesql, (err, deleteresult) => {
+  basketdeletesql = 'DELETE FROM basket WHERE id = "' + id + '"';
+  commentdeletesql = 'DELETE FROM comment WHERE id = "' + id + '"';
+  usersdeletesql = 'DELETE FROM users WHERE id = "' + id + '"';
+  console.log(basketdeletesql);
+  console.log(commentdeletesql);
+  console.log(usersdeletesql);
+
+  db.query(basketdeletesql, (err, basketdeleteresult) => {
     if (err) console.log(err);
     else {
-      res.send(deletesql);
+      db.query(commentdeletesql, (err, commentdeleteresult) => {
+        if (err) console.log(err);
+        else {
+          db.query(usersdeletesql, (err, usersdeleteresult) => {
+            if (err) console.log(err);
+            else {
+              res.send('ㄱ');
+            }
+          });
+        }
+      });
     }
   });
 });

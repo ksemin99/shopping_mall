@@ -15,7 +15,7 @@ app.use(cors());
 
 dotenv.config();
 
-app.get('/', (req, res, next) => {
+app.post('/', (req, res, next) => {
   const id = req.body.id;
   console.log(id);
   profilesql =

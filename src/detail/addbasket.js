@@ -6,6 +6,8 @@ const cors = require('cors');
 const http = require('http');
 const cookieParser = require('cookie-parser')
 
+const checkauthorization = require('../auth/checkauthorization');
+
 app.use(cookieParser('secretKey'))
 
 const mysqlConObj = require('../../config/mysql'); // #2
@@ -16,7 +18,7 @@ app.use(cors());
 
 dotenv.config();
 
-app.post('/', (req, res, next) => {
+app.post('/', checkauthorization.authenticateToken, (req, res, next) => {
     const id = req.query.id;                        // 비로그인시 id는 "" 받기
     const b_num = Number(req.query.b_num);
     const opt_color = req.query.opt_color;

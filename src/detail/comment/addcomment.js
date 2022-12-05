@@ -52,16 +52,16 @@ app.post(
       img +
       "');";
     console.log(comment_sql);
-    res.send(comment_sql);
-    // db.query(comment_sql, (err, comment_sqlresult) => {
-    //   if (err) console.log(err);
-    //   else {
-    //     console.log('추가 성공');
-    //     console.log(comment_sql);
-    //     res.send(comment_sql);
-    //     //res.send('추가 성공');
-    //   }
-    // });
+    //    res.send(comment_sql);
+    db.query(comment_sql, (err, comment_sqlresult) => {
+      if (err) console.log(err);
+      else {
+        console.log('추가 성공');
+        console.log(comment_sql);
+        res.send(comment_sql);
+        //res.send('추가 성공');
+      }
+    });
   }
 );
 

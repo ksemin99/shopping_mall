@@ -9,13 +9,15 @@ const { request } = require('express');
 const db = mysqlConObj.init();
 const cookieParser = require('cookie-parser');
 
+const checkauthorization = require('../auth/checkauthorization');
+
 app.use(cookieParser('secretKey'));
 
 app.use(cors());
 
 dotenv.config();
 
-app.delete('/', (req, res, next) => {
+app.delete('/', checkauthorization.authenticateToken, (req, res, next) => {
   const id = req.body.id;
   // const pw = req.body.pw;
   basketdeletesql = 'DELETE FROM basket WHERE id = "' + id + '"';

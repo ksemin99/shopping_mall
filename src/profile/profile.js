@@ -9,13 +9,15 @@ const { request } = require('express');
 const db = mysqlConObj.init();
 const cookieParser = require('cookie-parser');
 
+const checkauthorization = require('../auth/checkauthorization');
+
 app.use(cookieParser('secretKey'));
 
 app.use(cors());
 
 dotenv.config();
 
-app.post('/', (req, res, next) => {
+app.post('/', checkauthorization.authenticateToken, (req, res, next) => {
   const id = req.body.id;
   console.log(id);
   profilesql =

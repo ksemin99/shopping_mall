@@ -12,7 +12,7 @@ app.use(cors());
 app.post('/', checkauthorization.authenticateToken, (req, res) => {
   const id = req.body.id;
   // db에서 받아오기
-  sql = "UPDATE users SET token = ''" + " where id ='" + id + "';";
+  sql = "UPDATE users SET token = NULL where id ='" + id + "';";
   db.query(sql, (err, result) => {
     if (err) console.log(err);
     else console.log(result, 'mysql 성공');

@@ -25,10 +25,10 @@ app.post('/', (req, res, next) => {
     // boardinfosql = 'SELECT b_url, b_name, b_price FROM board WHERE b_num = ' + b_num;
     if (id != "") {
         showbasketsql = 'SELECT * FROM basket WHERE id = "' + id + '"';
-        boardinfosql = 'SELECT b_url, b_name, b_price FROM board WHERE b_num = any (SELECT b_num FROM basket WHERE id = ' + id + ')';
+        boardinfosql = 'SELECT b_url, b_name, b_price FROM board WHERE b_num = any (SELECT b_num FROM basket WHERE id = "' + id + '")';
     } else {
-        showbasketsql = 'SELECT * FROM basket WHERE id = "" AND cookie = ' + cookie
-        boardinfosql = 'SELECT b_url, b_name, b_price FROM board WHERE b_num = any (SELECT b_num FROM basket WHERE id = ' + id + ')';
+        showbasketsql = 'SELECT * FROM basket WHERE id = "" AND cookie = "' + cookie + '"'
+        boardinfosql = 'SELECT b_url, b_name, b_price FROM board WHERE b_num = any (SELECT b_num FROM basket WHERE id = "' + id + '")';
     }
     db.query(showbasketsql, (err, showbasketresult) => {
         if (err) console.log(err);

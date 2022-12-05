@@ -19,7 +19,7 @@ dotenv.config();
 // b_num을 이용해 b_price 상품가격 가져오기
 app.post('/', (req, res, next) => {
     let sqlresult = { data1: [], data2: [{}] };
-    const id = req.query.id
+    const id = req.body.id
     const cookie = req.signedCookies.key
 
     // boardinfosql = 'SELECT b_url, b_name, b_price FROM board WHERE b_num = ' + b_num;

@@ -19,6 +19,7 @@ dotenv.config();
 
 app.delete('/', checkauthorization.authenticateToken, (req, res, next) => {
   const id = req.body.id;
+  console.log(id);
   // const pw = req.body.pw;
   basketdeletesql = 'DELETE FROM basket WHERE id = "' + id + '"';
   commentdeletesql = 'DELETE FROM comment WHERE id = "' + id + '"';

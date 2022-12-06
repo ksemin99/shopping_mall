@@ -40,7 +40,7 @@ app.patch('/', checkauthorization.authenticateToken, (req, res, next) => {
     id +
     '"';
   db.query(updatesql, (err, updateresult) => {
-    if (err) console.log(err);
+    if (err) res.send(err);
     else {
       res.send(updatesql);
     }

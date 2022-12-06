@@ -19,7 +19,7 @@ dotenv.config();
 
 app.post('/', checkauthorization.authenticateToken, (req, res, next) => {
   const id = req.body.id;
-  console.log(id);
+  console.log('ID = ' + id);
   profilesql =
     'SELECT id, name, sex, height, weight FROM users WHERE id = "' + id + '"';
   db.query(profilesql, (err, profileresult) => {

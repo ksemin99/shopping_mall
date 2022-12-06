@@ -16,21 +16,21 @@ dotenv.config();
 
 const multer = require('multer');
 
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, 'img');
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.fieldname + '-' + Date.now());
-//   },
-// });
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'img');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now());
+  },
+});
 
-//const upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
 
 app.post(
   '/',
   checkauthorization.authenticateToken,
-  //upload.single('img'),
+  upload.single('img'),
   (req, res, next) => {
     //console.log(req.file);
     const b_num = Number(req.body.b_num);

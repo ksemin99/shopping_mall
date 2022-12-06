@@ -34,7 +34,7 @@ app.patch('/', checkauthorization.authenticateToken, (req, res, next) => {
     sex +
     '", height = ' +
     height +
-    ', weigth = ' +
+    ', weight = ' +
     weight +
     ' WHERE id = "' +
     id +

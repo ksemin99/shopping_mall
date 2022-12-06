@@ -17,33 +17,38 @@ app.use(cors());
 
 dotenv.config();
 
-app.post('/', checkauthorization.authenticateToken, (req, res, next) => {
-  const id = req.body.id;
-  console.log(id);
-  // const pw = req.body.pw;
-  basketdeletesql = 'DELETE FROM basket WHERE id = "' + id + '"';
-  commentdeletesql = 'DELETE FROM comment WHERE id = "' + id + '"';
-  usersdeletesql = 'DELETE FROM users WHERE id = "' + id + '"';
-  console.log(basketdeletesql);
-  console.log(commentdeletesql);
-  console.log(usersdeletesql);
+app.delete(
+  '/:userid',
+  checkauthorization.authenticateToken,
+  (req, res, next) => {
+    //const id = req.body.id;
+    const id = req.params.userid;
+    console.log(id);
+    // const pw = req.body.pw;
+    basketdeletesql = 'DELETE FROM basket WHERE id = "' + id + '"';
+    commentdeletesql = 'DELETE FROM comment WHERE id = "' + id + '"';
+    usersdeletesql = 'DELETE FROM users WHERE id = "' + id + '"';
+    console.log(basketdeletesql);
+    console.log(commentdeletesql);
+    console.log(usersdeletesql);
 
-  db.query(basketdeletesql, (err, basketdeleteresult) => {
-    if (err) console.log(err);
-    else {
-      db.query(commentdeletesql, (err, commentdeleteresult) => {
-        if (err) console.log(err);
-        else {
-          db.query(usersdeletesql, (err, usersdeleteresult) => {
-            if (err) console.log(err);
-            else {
-              res.send('ㄱ');
-            }
-          });
-        }
-      });
-    }
-  });
-});
+    db.query(basketdeletesql, (err, basketdeleteresult) => {
+      if (err) console.log(err);
+      else {
+        db.query(commentdeletesql, (err, commentdeleteresult) => {
+          if (err) console.log(err);
+          else {
+            db.query(usersdeletesql, (err, usersdeleteresult) => {
+              if (err) console.log(err);
+              else {
+                res.send('ㄱ');
+              }
+            });
+          }
+        });
+      }
+    });
+  }
+);
 
 module.exports = app;

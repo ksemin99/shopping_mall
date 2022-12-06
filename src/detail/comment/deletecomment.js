@@ -14,7 +14,7 @@ app.use(cors());
 
 dotenv.config();
 
-app.delete('/', checkauthorization.authenticateToken, (req, res, next) => {
+app.post('/', checkauthorization.authenticateToken, (req, res, next) => {
   const index = req.body.index;
   const b_num = req.body.b_num;
   const u_num = req.body.u_num;

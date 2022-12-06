@@ -24,6 +24,7 @@ app.delete(
       if (err) console.log(err);
       else {
         console.log('삭제성공');
+        res.send('삭제성공');
       }
     });
   }

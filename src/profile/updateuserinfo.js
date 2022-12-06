@@ -28,16 +28,17 @@ app.patch('/', checkauthorization.authenticateToken, (req, res, next) => {
   console.log(req);
 
   updatesql =
-    'UPDATE users SET name = ' +
+    'UPDATE users SET name = "' +
     name +
-    ', sex = ' +
+    '", sex = "' +
     sex +
-    ', height = ' +
+    '", height = ' +
     height +
     ', weigth = ' +
     weight +
-    ' WHERE id = ' +
-    id;
+    ' WHERE id = "' +
+    id +
+    '"';
   db.query(updatesql, (err, updateresult) => {
     if (err) console.log(err);
     else {

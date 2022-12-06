@@ -18,8 +18,10 @@ module.exports = {
         res.send(
           'AccessToken이 만료되었거나 틀린 AccessToken /auth/token 으로 RefreshToken 요함'
         );
-      else req.user = user;
-      next();
+      else {
+        req.user = user;
+        next();
+      }
     });
   },
 

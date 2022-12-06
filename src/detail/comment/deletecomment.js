@@ -19,7 +19,7 @@ app.delete(
   checkauthorization.authenticateToken,
   (req, res, next) => {
     const index = req.params.index;
-    deletesql = 'DELETE FROM comment WHERE index = ' + index;
+    deletesql = 'DELETE FROM comment WHERE com_index = ' + index;
     db.query(deletesql, (err, deleteresult) => {
       if (err) console.log(err);
       else {

@@ -25,6 +25,8 @@ app.patch('/', checkauthorization.authenticateToken, (req, res, next) => {
   const height = req.body.height;
   const weight = req.body.weight;
 
+  console.log(req);
+
   updatesql =
     'UPDATE users SET name = ' +
     name +

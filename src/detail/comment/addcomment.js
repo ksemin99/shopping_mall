@@ -32,7 +32,7 @@ app.post(
   checkauthorization.authenticateToken,
   upload.single('img'),
   (req, res, next) => {
-    //console.log(req.file);
+    console.log(req);
     const b_num = Number(req.body.b_num);
     const u_num = Number(req.body.u_num);
     const id = req.body.id;
